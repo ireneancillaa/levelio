@@ -10,6 +10,9 @@ import SwiftData
 
 @main
 struct LevelioApp: App {
+    // Pantau status login secara global di level aplikasi
+    @AppStorage("isUserLoggedIn") private var isUserLoggedIn = false
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
@@ -25,8 +28,16 @@ struct LevelioApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Group {
+                if isUserLoggedIn {
+                    // Jika user sudah masuk sebelumnya, langsung bypass ke HomePage
+                    HomePage()
+                } else {
+                    // Jika belum, jalankan alur Onboarding Carousel manual dari awal
+                    SplashScreen()
+                }
+            }
+            .modelContainer(sharedModelContainer)
         }
-        .modelContainer(sharedModelContainer)
     }
 }
