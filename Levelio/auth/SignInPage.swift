@@ -198,44 +198,6 @@ struct SignInPage: View {
                             .cornerRadius(25)
                     }
                     
-                    // Pembatas 'or' Linear Line
-                    HStack(spacing: 16) {
-                        Rectangle()
-                            .fill(Color.white.opacity(0.2))
-                            .frame(height: 1)
-                        
-                        Text("or")
-                            .font(.system(size: 14, weight: .semibold))
-                            .foregroundColor(.white)
-                        
-                        Rectangle()
-                            .fill(Color.white.opacity(0.2))
-                            .frame(height: 1)
-                    }
-                    .padding(.horizontal, 5)
-                    
-                    // Tombol Google OAuth
-                    Button(action: {
-                        // Proses Login Pihak Ketiga Google
-                    }) {
-                        HStack(spacing: 12) {
-                            Image("google-logo")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 20, height: 20)
-                            
-                            Text("Continue with Google")
-                                .font(.system(size: 16, weight: .semibold))
-                                .foregroundColor(.white)
-                        }
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 50)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 25)
-                                .stroke(Color.white.opacity(0.4), lineWidth: 1.5)
-                        )
-                    }
-                    
                     // Teks Link Pindah Halaman ke Registrasi Akun
                     HStack(spacing: 4) {
                         Text("New to Levelio?")

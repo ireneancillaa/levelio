@@ -314,44 +314,6 @@ struct SignUpPage: View {
                             .cornerRadius(25)
                     }
                     
-                    // Garis pembatas linear 'or'
-                    HStack(spacing: 16) {
-                        Rectangle()
-                            .fill(Color.white.opacity(0.2))
-                            .frame(height: 1)
-                        
-                        Text("or")
-                            .font(.system(size: 14, weight: .semibold))
-                            .foregroundColor(.white)
-                        
-                        Rectangle()
-                            .fill(Color.white.opacity(0.2))
-                            .frame(height: 1)
-                    }
-                    .padding(.horizontal, 5)
-                    
-                    // Tombol Google OAuth Signup
-                    Button(action: {
-                        // Jalankan Google OAuth
-                    }) {
-                        HStack(spacing: 12) {
-                            Image("google-logo")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 20, height: 20)
-                            
-                            Text("Continue with Google")
-                                .font(.system(size: 16, weight: .semibold))
-                                .foregroundColor(.white)
-                        }
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 50)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 25)
-                                .stroke(Color.white.opacity(0.4), lineWidth: 1.5)
-                        )
-                    }
-                    
                     // Link navigasi kembali ke halaman masuk (Sign In)
                     HStack(spacing: 4) {
                         Text("Already have an account?")
