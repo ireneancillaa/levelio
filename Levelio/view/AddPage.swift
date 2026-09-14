@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddPage: View {
     @Environment(\.dismiss) private var dismiss
+    @ObservedObject var store: HabitStore
     
     // --- STATE FORM DATA ---
     @State private var habitName = ""
@@ -16,6 +17,7 @@ struct AddPage: View {
     @State private var selectedColor = Color.cyan
     @State private var frequency = "Daily"
     @State private var reminderTime = "08.00am"
+    @State private var showValidationError = false
     
     let frequencies = ["Daily", "Weekly"]
     
@@ -33,9 +35,18 @@ struct AddPage: View {
                     
                     // SECTION 1: HABIT DETAIL
                     VStack(alignment: .leading, spacing: 12) {
-                        Text("Habit Detail")
-                            .font(.system(size: 18, weight: .bold))
-                            .foregroundColor(.white)
+                        HStack {
+                            Text("Habit Detail")
+                                .font(.system(size: 18, weight: .bold))
+                                .foregroundColor(.white)
+                            
+                            if showValidationError {
+                                Spacer()
+                                Text("Habit name is required")
+                                    .font(.system(size: 12, weight: .medium))
+                                    .foregroundColor(.red)
+                            }
+                        }
                         
                         VStack(spacing: 0) {
                             HStack(spacing: 12) {
@@ -44,6 +55,11 @@ struct AddPage: View {
                                     .frame(width: 20)
                                 TextField("", text: $habitName, prompt: Text("Enter habit name").foregroundColor(.gray))
                                     .foregroundColor(.white)
+                                    .onChange(of: habitName) { _, _ in
+                                        if showValidationError && !habitName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                                            showValidationError = false
+                                        }
+                                    }
                             }
                             .padding(.vertical, 16)
                             
@@ -85,7 +101,10 @@ struct AddPage: View {
                             }
                         )
                         .cornerRadius(14)
-                        .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.white.opacity(0.1), lineWidth: 1))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 14)
+                                .stroke(showValidationError ? Color.red.opacity(0.8) : Color.white.opacity(0.1), lineWidth: 1)
+                        )
                     }
                     
                     // SECTION 2: SCHEDULE
@@ -103,40 +122,28 @@ struct AddPage: View {
                                     .foregroundColor(.white)
                                 Spacer()
                                 
-                                HStack(spacing: 4) {
-                                    ForEach(frequencies, id: \.self) { item in
-                                        Text(item)
-                                            .font(.system(size: 13, weight: .semibold))
-                                            .foregroundColor(frequency == item ? .white : .gray)
-                                            .padding(.horizontal, 16)
-                                            .padding(.vertical, 6)
-                                            .background(frequency == item ? Color.white.opacity(0.2) : Color.clear)
-                                            .cornerRadius(12)
-                                            .onTapGesture {
-                                                withAnimation(.spring(response: 0.25, dampingFraction: 0.75)) { frequency = item }
-                                            }
+                                Picker("Frequency", selection: $frequency) {
+                                    ForEach(frequencies, id: \.self) { freq in
+                                        Text(freq).tag(freq)
                                     }
                                 }
-                                .padding(.all, 4)
-                                .background(Color.black.opacity(0.3))
-                                .cornerRadius(14)
+                                .pickerStyle(.menu)
+                                .tint(.cyan)
                             }
                             .padding(.vertical, 12)
                             
                             Divider().background(Color.white.opacity(0.15))
                             
-                            HStack(spacing: 12) {
+                            HStack {
                                 Image(systemName: "clock")
                                     .foregroundColor(.white.opacity(0.6))
                                     .frame(width: 20)
-                                Text("Reminder")
+                                Text("Reminder Time")
                                     .foregroundColor(.white)
                                 Spacer()
                                 Text(reminderTime)
-                                    .foregroundColor(.white.opacity(0.8))
-                                Image(systemName: "chevron.right")
-                                    .font(.system(size: 14, weight: .bold))
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(.cyan)
+                                    .font(.system(size: 14, weight: .semibold))
                             }
                             .padding(.vertical, 16)
                         }
@@ -196,7 +203,19 @@ struct AddPage: View {
             // --- 2. FIXED BOTTOM BUTTON AREA (Overlay di atas ScrollView) ---
             VStack {
                 Button(action: {
-                    dismiss()
+                    let trimmed = habitName.trimmingCharacters(in: .whitespacesAndNewlines)
+                    if trimmed.isEmpty {
+                        showValidationError = true
+                    } else {
+                        store.addHabit(
+                            title: trimmed,
+                            description: description,
+                            colorName: "cyan",
+                            frequency: frequency,
+                            time: reminderTime
+                        )
+                        dismiss()
+                    }
                 }) {
                     Text("Create Habit")
                         .font(.system(size: 16, weight: .bold))
@@ -250,6 +269,6 @@ struct AddPage: View {
 
 #Preview {
     NavigationStack {
-        AddPage()
+        AddPage(store: HabitStore())
     }
 }

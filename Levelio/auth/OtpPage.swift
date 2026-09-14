@@ -28,113 +28,102 @@ struct OtpPage: View {
                     hideKeyboard()
                 }
             
-            VStack(spacing: 0) {
-                Spacer()
-                    .frame(height: 60)
-                
-                VStack(spacing: 20) {
-                    Image("dino-curious")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 100)
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(spacing: 0) {
+                    Spacer(minLength: 20)
                     
-                    VStack(spacing: 5) {
-                        Text("Verify Code")
-                            .font(.system(size: 32, weight: .heavy))
-                            .foregroundColor(.white)
+                    VStack(spacing: 16) {
+                        Image("dino-curious")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 90)
                         
-                        Text("Enter the 6-digit code sent to your email")
-                            .font(.system(size: 16, weight: .semibold))
-                            .foregroundColor(.gray.opacity(0.8))
-                            .multilineTextAlignment(.center)
-                    }
-                }
-                .padding(.bottom, 30)
-                
-                HStack(spacing: 12) {
-                    ForEach(0..<6, id: \.self) { index in
-                        TextField("", text: $otpDigits[index])
-                            .font(.system(size: 22, weight: .bold))
-                            .foregroundColor(.white)
-                            .multilineTextAlignment(.center)
-                            .keyboardType(.numberPad)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 55)
-                            .background(Color.clear)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 12)
-                                    .stroke(focusedField == index ? Color.white : Color.white.opacity(0.4), lineWidth: 1.5)
-                            )
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                focusedField = index
-                            }
-                            .focused($focusedField, equals: index)
-                            .onChange(of: otpDigits[index]) { oldValue, newValue in
-                                // Keep focus on current field when deleting; do not jump to previous box
-                                if newValue.isEmpty {
-                                    // Do nothing; stay focused on the same index
-                                    return
-                                }
-
-                                // Ensure only 1 numeric character in each box
-                                // 1) Filter non-digits
-                                let filtered = newValue.filter { $0.isNumber }
-                                if filtered != newValue {
-                                    otpDigits[index] = filtered
-                                }
-
-                                // 2) Keep only the last digit if user pasted/typed multiple
-                                if otpDigits[index].count > 1 {
-                                    otpDigits[index] = String(otpDigits[index].last!)
-                                }
-
-                                // Auto-advance to next box only when user entered a digit and next is empty
-                                if index < 5, !otpDigits[index].isEmpty {
-                                    let nextIsEmpty = otpDigits[index + 1].isEmpty
-                                    if nextIsEmpty {
-                                        focusedField = index + 1
-                                    }
-                                }
-                            }
-                    }
-                }
-                .padding(.horizontal, 24)
-                
-                Spacer()
-                
-                VStack(spacing: 20) {
-                    Button(action: {
-                        let fullCode = otpDigits.joined()
-                        print("Verify OTP: \(fullCode)")
-                    }) {
-                        Text("Verify")
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(.black)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 50)
-                            .background(Color.white)
-                            .cornerRadius(25)
-                    }
-                    
-                    HStack(spacing: 4) {
-                        Text("Didn’t receive any code?")
-                            .font(.system(size: 14, weight: .medium))
-                            .foregroundColor(.white)
-                        
-                        Button(action: {
-                            // Aksi resend
-                        }) {
-                            Text("Resend code")
-                                .font(.system(size: 14, weight: .bold))
-                                .foregroundColor(Color("secondary"))
+                        VStack(spacing: 4) {
+                            Text("Verify Code")
+                                .font(.system(size: 30, weight: .heavy))
+                                .foregroundColor(.white)
+                            
+                            Text("Enter the 6-digit code sent to your email")
+                                .font(.system(size: 15, weight: .semibold))
+                                .foregroundColor(.gray.opacity(0.8))
+                                .multilineTextAlignment(.center)
                         }
                     }
+                    .padding(.bottom, 24)
+                    
+                    HStack(spacing: 8) {
+                        ForEach(0..<6, id: \.self) { index in
+                            TextField("", text: $otpDigits[index])
+                                .font(.system(size: 20, weight: .bold))
+                                .foregroundColor(.white)
+                                .multilineTextAlignment(.center)
+                                .keyboardType(.numberPad)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 52)
+                                .background(Color.clear)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(focusedField == index ? Color.white : Color.white.opacity(0.4), lineWidth: 1.5)
+                                )
+                                .contentShape(Rectangle())
+                                .onTapGesture {
+                                    focusedField = index
+                                }
+                                .focused($focusedField, equals: index)
+                                .onChange(of: otpDigits[index]) { oldValue, newValue in
+                                    if newValue.isEmpty { return }
+                                    let filtered = newValue.filter { $0.isNumber }
+                                    if filtered != newValue {
+                                        otpDigits[index] = filtered
+                                    }
+                                    if otpDigits[index].count > 1 {
+                                        otpDigits[index] = String(otpDigits[index].last!)
+                                    }
+                                    if index < 5, !otpDigits[index].isEmpty {
+                                        let nextIsEmpty = otpDigits[index + 1].isEmpty
+                                        if nextIsEmpty {
+                                            focusedField = index + 1
+                                        }
+                                    }
+                                }
+                        }
+                    }
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 30)
+                    
+                    VStack(spacing: 20) {
+                        Button(action: {
+                            let fullCode = otpDigits.joined()
+                            print("Verify OTP: \(fullCode)")
+                        }) {
+                            Text("Verify")
+                                .font(.system(size: 16, weight: .bold))
+                                .foregroundColor(.black)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 50)
+                                .background(Color.white)
+                                .cornerRadius(25)
+                        }
+                        
+                        HStack(spacing: 4) {
+                            Text("Didn’t receive any code?")
+                                .font(.system(size: 14, weight: .medium))
+                                .foregroundColor(.white)
+                            
+                            Button(action: {
+                                // Aksi resend
+                            }) {
+                                Text("Resend code")
+                                    .font(.system(size: 14, weight: .bold))
+                                    .foregroundColor(Color("secondary"))
+                            }
+                        }
+                    }
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 40)
                 }
-                .padding(.horizontal, 24)
-                .padding(.bottom, 70)
             }
-            .ignoresSafeArea(.keyboard, edges: .bottom)
+            .safeAreaPadding(.top)
             .contentShape(Rectangle())
             .onTapGesture {
                 hideKeyboard()

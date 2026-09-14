@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomePage: View {
+    @StateObject private var habitStore = HabitStore()
     @State private var selectedTab = 0
     
     // 1. Saklar state untuk mengontrol buka/tutup lembaran AddPage
@@ -17,7 +18,7 @@ struct HomePage: View {
         TabView(selection: $selectedTab) {
             
             // --- TAB 0: HOME ---
-            HomeTabContent()
+            HomeTabContent(store: habitStore)
                 .tabItem {
                     Label("Home", systemImage: selectedTab == 0 ? "house.fill" : "house")
                 }
@@ -68,7 +69,7 @@ struct HomePage: View {
         // 3. KUNCI UTAMA: Memanggil AddPage dengan pembungkus NavigationStack dari luar
         .fullScreenCover(isPresented: $isPresentingAddPage) {
             NavigationStack {
-                AddPage()
+                AddPage(store: habitStore)
             }
         }
     }
@@ -76,6 +77,8 @@ struct HomePage: View {
 
 // MARK: - KONTEN UTAMA HALAMAN HOME
 struct HomeTabContent: View {
+    @ObservedObject var store: HabitStore
+    
     var body: some View {
         ZStack {
             // Latar Belakang Gelap Khas Levelio
@@ -87,11 +90,14 @@ struct HomeTabContent: View {
             // Menggunakan VStack utama untuk memisahkan area Statis (Atas) dan area Scrollable (Bawah)
             VStack(spacing: 0) {
                 
-                // --- AREA 1: STATIS (Mengunci di atas, tidak ikut bergeser) ---
+                // --- AREA 1: HEADER STATIS (Identik dengan Stats & Challenges) ---
+                HeaderView()
+                    .padding(.horizontal, 24)
+                    .padding(.top, 50)
+                    .padding(.bottom, 20)
+                
+                // --- AREA 2: HERO, TIMELINE, XP CARD ---
                 VStack(alignment: .leading, spacing: 25) {
-                    HeaderView()
-                        .padding(.top, 50) // Disesuaikan agar pas di bawah status bar bersama safeAreaPadding
-                    
                     EggHeroSection()
                     
                     EvolutionJourneyTimeline()
@@ -105,9 +111,23 @@ struct HomeTabContent: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .leading, spacing: 25) {
                         
-                        HabitSectionView(title: "Today's Progress", status: .active)
+                        HabitSectionView(
+                            title: "Today's Progress",
+                            status: .active,
+                            habits: store.habits.filter { !$0.isCompleted },
+                            onToggle: { habit in
+                                store.toggleCompletion(for: habit.id)
+                            }
+                        )
                         
-                        HabitSectionView(title: "Past Progress", status: .completed)
+                        HabitSectionView(
+                            title: "Past Progress",
+                            status: .completed,
+                            habits: store.habits.filter { $0.isCompleted },
+                            onToggle: { habit in
+                                store.toggleCompletion(for: habit.id)
+                            }
+                        )
                         
                     }
                     .padding(.horizontal, 24)
@@ -126,7 +146,7 @@ struct HeaderView: View {
         HStack(alignment: .center) {
             VStack(alignment: .leading, spacing: 4) {
                 Text("Morning, Samsudin!")
-                    .font(.system(size: 24, weight: .heavy))
+                    .font(.system(size: 26, weight: .heavy))
                     .foregroundColor(.white)
                 
                 Text("Monday, 20 April 2026")
@@ -158,19 +178,19 @@ struct EggHeroSection: View {
                 Image("dino-egg-blue")
                     .resizable()
                     .scaledToFit()
-                    .frame(height: 180)
+                    .frame(maxHeight: 160)
                     .shadow(color: Color.blue.opacity(0.3), radius: 20, x: 0, y: 10)
                 
                 // Balon Komik Dialog "Hatch me!"
                 Image("speech-bubble") // Atur asset balon teks Anda
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 80)
-                    .offset(x: 60, y: -25)
+                    .frame(width: 70)
+                    .offset(x: 50, y: -20)
             }
             Spacer()
         }
-        .padding(.vertical, 10)
+        .padding(.vertical, 6)
     }
 }
 
@@ -201,16 +221,28 @@ struct TimelineNode: View {
     let isActive: Bool
     
     var body: some View {
-        VStack(spacing: 8) {
-            Image(imageName)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 40, height: 40)
-                .opacity(isActive ? 1.0 : 0.3) // Meredup jika belum tercapai
+        VStack(spacing: 6) {
+            ZStack {
+                Circle()
+                    .fill(isActive ? Color.white.opacity(0.15) : Color.white.opacity(0.04))
+                    .frame(width: 44, height: 44)
+                    .overlay(
+                        Circle()
+                            .stroke(isActive ? Color("secondary") : Color.white.opacity(0.1), lineWidth: isActive ? 2 : 1)
+                    )
+                
+                Image(imageName)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 26, height: 26)
+                    .opacity(isActive ? 1.0 : 0.4)
+            }
             
             Text(label)
-                .font(.system(size: 8, weight: .heavy))
+                .font(.system(size: 10, weight: isActive ? .bold : .medium))
                 .foregroundColor(isActive ? .white : .gray)
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
         }
         .frame(maxWidth: .infinity)
     }
@@ -219,10 +251,9 @@ struct TimelineNode: View {
 struct TimelineLine: View {
     var body: some View {
         Rectangle()
-            .fill(Color.white.opacity(0.2))
-            .frame(height: 1)
-            .frame(maxWidth: .infinity)
-            .offset(y: -10) // Menyelaraskan garis horizontal di tengah ikon
+            .fill(Color.white.opacity(0.15))
+            .frame(height: 2)
+            .offset(y: -10)
     }
 }
 
@@ -230,27 +261,29 @@ struct TimelineLine: View {
 struct XpProgressCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
+            // Label Level Saat Ini & XP Numeric Indicator
             HStack {
-                Text("Egg")
-                    .font(.system(size: 14, weight: .heavy))
+                Text("Level 1: Egg")
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundColor(.white)
+                
                 Spacer()
-                Text("150/400 XP")
-                    .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(.gray)
+                
+                Text("150 / 400 XP")
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundColor(Color("secondary"))
             }
-            .foregroundColor(.white)
             
-            // Custom Linear Progress Bar (Ungu Gradasi Putih)
+            // Custom Linear Progress Bar Capsul
             GeometryReader { geo in
                 ZStack(alignment: .leading) {
                     Capsule()
-                        .fill(Color.white)
+                        .fill(Color.white.opacity(0.1))
                         .frame(height: 6)
                     
                     Capsule()
                         .fill(LinearGradient(colors: [Color("secondary"), Color("secondary").opacity(0.6)], startPoint: .leading, endPoint: .trailing))
-                        // Mengkalkulasi porsi bar terisi (150 dari 400 XP)
-                        .frame(width: geo.size.width * (150/400), height: 6)
+                        .frame(width: geo.size.width * (150.0 / 400.0), height: 6)
                 }
             }
             .frame(height: 6)
@@ -285,75 +318,114 @@ enum HabitStatus {
 struct HabitSectionView: View {
     let title: String
     let status: HabitStatus
+    let habits: [Habit]
+    let onToggle: (Habit) -> Void
     
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
-            Text(title)
-                .font(.system(size: 20, weight: .bold))
-                .foregroundColor(.white)
+            HStack {
+                Text(title)
+                    .font(.system(size: 20, weight: .bold))
+                    .foregroundColor(.white)
+                
+                Spacer()
+                
+                Text("\(habits.count)")
+                    .font(.system(size: 12, weight: .bold))
+                    .foregroundColor(.gray)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 3)
+                    .background(Color.white.opacity(0.1))
+                    .cornerRadius(8)
+            }
             
-            // Menampilkan dua baris habit tiruan per section sesuai contoh gambar
-            HabitRowCard(habitName: "Morning Yoga", time: "08.00am", status: status)
-            HabitRowCard(habitName: "Morning Yoga", time: "08.00am", status: status)
+            if habits.isEmpty {
+                HStack {
+                    Spacer()
+                    VStack(spacing: 6) {
+                        Image(systemName: status == .active ? "sparkles" : "checkmark.seal")
+                            .font(.system(size: 22))
+                            .foregroundColor(.gray.opacity(0.5))
+                        Text(status == .active ? "No active habits right now" : "No completed habits yet")
+                            .font(.system(size: 13, weight: .medium))
+                            .foregroundColor(.gray.opacity(0.6))
+                    }
+                    .padding(.vertical, 16)
+                    Spacer()
+                }
+                .background(Color.white.opacity(0.02))
+                .cornerRadius(14)
+                .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.white.opacity(0.05), lineWidth: 1))
+            } else {
+                ForEach(habits) { habit in
+                    HabitRowCard(habit: habit, status: status) {
+                        onToggle(habit)
+                    }
+                }
+            }
         }
     }
 }
 
 struct HabitRowCard: View {
-    let habitName: String
-    let time: String
+    let habit: Habit
     let status: HabitStatus
+    let onToggle: () -> Void
     
     var body: some View {
-        HStack(spacing: 16) {
-            // Indikator Titik Berwarna Lingkaran (Ungu vs Cyan)
-            Circle()
-                .fill(status == .active ? Color("secondary").opacity(0.8) : Color("primary").opacity(0.8))
-                .frame(width: 20, height: 20)
-            
-            VStack(alignment: .leading, spacing: 4) {
-                Text(habitName)
-                    .font(.system(size: 15, weight: .bold))
-                    .foregroundColor(.white)
-                Text(time)
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundColor(.gray)
-            }
-            
-            Spacer()
-            
-            // Info XP & Status Centang Kanan
-            if status == .active {
-                Text("+50XP")
-                    .font(.system(size: 14, weight: .bold))
-                    .foregroundColor(Color("secondary").opacity(0.9))
+        Button(action: onToggle) {
+            HStack(spacing: 16) {
+                // Indikator Titik Berwarna Lingkaran (Ungu vs Cyan)
+                Circle()
+                    .fill(status == .active ? Color("secondary").opacity(0.8) : Color("primary").opacity(0.8))
+                    .frame(width: 20, height: 20)
                 
-                Image(systemName: "circle")
-                    .font(.system(size: 18))
-                    .foregroundColor(.gray.opacity(0.5))
-            } else {
-                VStack(alignment: .trailing, spacing: 2) {
-                    Text("+50XP")
-                        .font(.system(size: 14, weight: .bold))
-                        .foregroundColor(.gray.opacity(0.4))
-                        .strikethrough() // Efek coret tulisan XP karena sudah diklaim
-                    Text("Completed!")
-                        .font(.system(size: 11, weight: .semibold))
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(habit.title)
+                        .font(.system(size: 15, weight: .bold))
+                        .foregroundColor(.white)
+                    
+                    Text(habit.time)
+                        .font(.system(size: 12, weight: .medium))
                         .foregroundColor(.gray)
                 }
                 
-                Image(systemName: "checkmark.circle.fill")
-                    .font(.system(size: 18))
-                    .foregroundColor(.white)
+                Spacer()
+                
+                // Info XP & Status Centang Kanan
+                if status == .active {
+                    Text("+\(habit.xpReward)XP")
+                        .font(.system(size: 14, weight: .bold))
+                        .foregroundColor(Color("secondary").opacity(0.9))
+                    
+                    Image(systemName: "circle")
+                        .font(.system(size: 18))
+                        .foregroundColor(.gray.opacity(0.5))
+                } else {
+                    VStack(alignment: .trailing, spacing: 2) {
+                        Text("+\(habit.xpReward)XP")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundColor(.gray.opacity(0.4))
+                            .strikethrough() // Efek coret tulisan XP karena sudah diklaim
+                        Text("Completed!")
+                            .font(.system(size: 11, weight: .semibold))
+                            .foregroundColor(.gray)
+                    }
+                    
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.system(size: 18))
+                        .foregroundColor(.white)
+                }
             }
+            .padding(.all, 16)
+            .background(Color.white.opacity(0.04))
+            .cornerRadius(14)
+            .overlay(
+                RoundedRectangle(cornerRadius: 14)
+                    .stroke(Color.white.opacity(0.08), lineWidth: 1)
+            )
         }
-        .padding(.all, 16)
-        .background(Color.white.opacity(0.04))
-        .cornerRadius(14)
-        .overlay(
-            RoundedRectangle(cornerRadius: 14)
-                .stroke(Color.white.opacity(0.08), lineWidth: 1)
-        )
+        .buttonStyle(PlainButtonStyle())
     }
 }
 

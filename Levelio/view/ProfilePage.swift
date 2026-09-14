@@ -26,7 +26,7 @@ struct ProfilePage: View {
                     HStack {
                         Spacer()
                         Text("Profile")
-                            .font(.system(size: 24, weight: .black))
+                            .font(.system(size: 26, weight: .heavy))
                             .foregroundColor(.white)
                             .padding(.leading, 32) // Mengompensasi jarak agar teks tetap di tengah
                         Spacer()
@@ -39,9 +39,10 @@ struct ProfilePage: View {
                                 .foregroundColor(.white)
                         }
                     }
+                    .frame(height: 55)
                     .padding(.horizontal, 24)
-                    .padding(.bottom, 20)
                     .padding(.top, 50)
+                    .padding(.bottom, 20)
                     
                     // --- AREA STATIS ATAS (STAY / TIDAK IKUT SCROLL) ---
                     // Hanya menyisakan Avatar, Level Progress, dan Stat Matrix

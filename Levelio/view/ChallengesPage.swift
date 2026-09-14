@@ -21,26 +21,26 @@ struct ChallengesPage: View {
                 HStack(alignment: .center) {
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Levelers Challenges")
-                            .font(.system(size: 28, weight: .black))
+                            .font(.system(size: 26, weight: .heavy))
                             .foregroundColor(.white)
                         Text("Complete quests and earn XP")
-                            .font(.system(size: 15, weight: .medium))
+                            .font(.system(size: 14, weight: .semibold))
                             .foregroundColor(.gray)
                     }
                     Spacer()
                     
                     // Avatar Pet Dinosaurus
-                    Image("ava-1") // Sesuaikan dengan nama aset dinal Anda di Xcode
+                    Image("ava-1")
                         .resizable()
-                        .scaledToFill()
+                        .scaledToFit()
                         .frame(width: 55, height: 55)
-                        .background(Color.white.opacity(0.1))
+                        .background(Circle().fill(Color.white.opacity(0.1)))
                         .clipShape(Circle())
-                        .overlay(Circle().stroke(Color.white.opacity(0.2), lineWidth: 1))
+                        .overlay(Circle().stroke(Color.gray.opacity(0.3), lineWidth: 1))
                 }
                 .padding(.horizontal, 24)
-                .padding(.bottom, 16)
                 .padding(.top, 50)
+                .padding(.bottom, 20)
                 
                 // --- 2. SCROLLABLE QUEST LIST ---
                 ScrollView(.vertical, showsIndicators: false) {
@@ -310,6 +310,7 @@ struct ChallengesPage: View {
                     .padding(.bottom, 100)
                 }
             }
+            .safeAreaPadding(.top)
         }
         .preferredColorScheme(.dark)
     }

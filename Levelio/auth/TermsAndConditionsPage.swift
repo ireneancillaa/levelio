@@ -17,105 +17,183 @@ struct ScrollOffsetPreferenceKey: PreferenceKey {
 struct TermsAndConditionsPage: View {
     @Binding var activePage: AuthPage?
     @Binding var isAccepted: Bool
+    
     @State private var hasScrolledToBottom = false
     @State private var isAutoScrollEnabled = false
+    @State private var isCheckboxChecked = false
     
+    // Data Struktur untuk Section T&C
+    struct TermSection: Identifiable {
+        let id = UUID()
+        let icon: String
+        let title: String
+        let content: String
+    }
+    
+    let sections: [TermSection] = [
+        TermSection(
+            icon: "person.badge.key.fill",
+            title: "1. Account Responsibility & Security",
+            content: "You are responsible for safeguarding your personal data, level logs, and achievement sync history inside Levelio. Any unauthorized use of your account must be reported immediately to the support team. Levelio cannot and will not be liable for any loss or damage arising from your failure to comply with these security obligations."
+        ),
+        TermSection(
+            icon: "gamecontroller.fill",
+            title: "2. Gamification & Fair Play Rules",
+            content: "Any unfair methods, third-party modifications, botting, or system exploits used to manipulate user levels, streak counters, task timers, or dino rewards are strictly prohibited. Continuous manipulation of the gamification mechanics compromises the experience for the entire community and may result in account restrictions."
+        ),
+        TermSection(
+            icon: "lock.shield.fill",
+            title: "3. Data Privacy & Protection Policy",
+            content: "We care deeply about your privacy. Levelio stores your local preferences and uses secure synchronization protocols. Your personal goal data, daily logs, and habit routines will never be traded, sold, or shared with unverified external parties without your explicit consent."
+        ),
+        TermSection(
+            icon: "paintpalette.fill",
+            title: "4. Intellectual Property Rights",
+            content: "All custom graphics, illustrations, dino character designs, user interface layouts, software code, and brand assets contained within Levelio are the exclusive property of Levelio and its creators. Unauthorized reproduction or distribution is strictly prohibited."
+        ),
+        TermSection(
+            icon: "scalemass.fill",
+            title: "5. Limitation of Liability",
+            content: "Levelio is provided on an 'as-is' and 'as-available' basis. We strive for maximum reliability but do not guarantee that the application will be error-free at all times. Levelio shall not be liable for any indirect or incidental damages resulting from your use of the service."
+        ),
+        TermSection(
+            icon: "arrow.triangle.2.circlepath",
+            title: "6. Content Updates & Terms Modification",
+            content: "Levelio reserves the right to update features, interface designs, reward thresholds, and terms periodically to improve user experience. Continued use of the application after updates constitutes acceptance of the modified terms."
+        )
+    ]
+
     var body: some View {
         ZStack {
-            // 1. Latar Belakang Gelap Konstan
+            // Latar Belakang Gelap Khas Levelio
             Image("background")
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
             
             VStack(spacing: 0) {
-                Spacer()
-                    .frame(height: 60)
                 
-                VStack(spacing: 20) {
-                    Image("dino-book")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 100)
-                    
-                    VStack(spacing: 5) {
-                        Text("Terms & Conditions")
-                            .font(.system(size: 32, weight: .heavy))
+                // --- 1. TOP NAVIGATION BAR ---
+                ZStack {
+                    HStack {
+                        Button(action: {
+                            activePage = .signUp
+                        }) {
+                            HStack(spacing: 6) {
+                                Image(systemName: "chevron.left")
+                                    .font(.system(size: 16, weight: .bold))
+                                Text("Back")
+                                    .font(.system(size: 16, weight: .semibold))
+                            }
                             .foregroundColor(.white)
-                        
-                        Text("Please read and accept our rules to continue")
-                            .font(.system(size: 16, weight: .semibold))
-                            .foregroundColor(.gray.opacity(0.8))
+                        }
+                        Spacer()
                     }
-                    .padding(.bottom, 25)
+                    
+                    Text("Terms of Service")
+                        .font(.system(size: 18, weight: .bold))
+                        .foregroundColor(.white)
                 }
+                .padding(.horizontal, 24)
+                .padding(.top, 50)
+                .padding(.bottom, 16)
+                
+                // --- 2. MAIN SCROLLABLE CONTENT ---
                 ScrollViewReader { proxy in
                     ScrollView(.vertical, showsIndicators: true) {
-                        VStack(alignment: .leading, spacing: 5) {
+                        VStack(alignment: .leading, spacing: 18) {
                             
-                            Text("Welcome to Levelio!")
-                                .font(.system(size: 18, weight: .bold))
-                                .foregroundColor(.white)
+                            // HERO HEADER
+                            VStack(spacing: 12) {
+                                ZStack {
+                                    Circle()
+                                        .fill(Color.cyan.opacity(0.15))
+                                        .frame(width: 90, height: 90)
+                                        .blur(radius: 10)
+                                    
+                                    Image("dino-book")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 90)
+                                }
+                                
+                                Text("Terms & Conditions")
+                                    .font(.system(size: 26, weight: .heavy))
+                                    .foregroundColor(.white)
+                                
+                                Text("Please read and accept our community guidelines to level up your habits.")
+                                    .font(.system(size: 14, weight: .medium))
+                                    .foregroundColor(.gray)
+                                    .multilineTextAlignment(.center)
+                                    .padding(.horizontal, 12)
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 6)
                             
-                            Text("By creating an account and using this application, you agree to build positive small habits, maintain your daily streaks, and push your personal growth boundaries everyday. Please read these terms carefully before proceeding.")
-                                .font(.system(size: 14, weight: .medium))
-                                .foregroundColor(.gray.opacity(0.9))
-                                .padding(.bottom, 5)
+                            // QUICK HIGHLIGHTS BOX (AT A GLANCE)
+                            VStack(alignment: .leading, spacing: 10) {
+                                HStack(spacing: 6) {
+                                    Image(systemName: "sparkles")
+                                        .foregroundColor(.cyan)
+                                    Text("AT A GLANCE")
+                                        .font(.system(size: 12, weight: .black))
+                                        .foregroundColor(.cyan)
+                                }
+                                
+                                HStack(spacing: 8) {
+                                    HighlightPill(icon: "shield.fill", text: "Fair Play")
+                                    HighlightPill(icon: "lock.fill", text: "Private Data")
+                                    HighlightPill(icon: "star.fill", text: "XP Rewards")
+                                }
+                            }
+                            .padding(.all, 14)
+                            .background(Color.white.opacity(0.04))
+                            .cornerRadius(14)
+                            .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.white.opacity(0.1), lineWidth: 1))
                             
-                            Text("1. Account Responsibility")
-                                .font(.system(size: 16, weight: .semibold))
-                                .foregroundColor(.white)
+                            // SECTION CARDS DOKUMEN HUKUM
+                            ForEach(sections) { sec in
+                                VStack(alignment: .leading, spacing: 8) {
+                                    HStack(spacing: 10) {
+                                        Image(systemName: sec.icon)
+                                            .font(.system(size: 15, weight: .bold))
+                                            .foregroundColor(.cyan)
+                                            .frame(width: 28, height: 28)
+                                            .background(Color.cyan.opacity(0.15))
+                                            .cornerRadius(8)
+                                        
+                                        Text(sec.title)
+                                            .font(.system(size: 15, weight: .bold))
+                                            .foregroundColor(.white)
+                                    }
+                                    
+                                    Text(sec.content)
+                                        .font(.system(size: 13, weight: .regular))
+                                        .foregroundColor(.white.opacity(0.8))
+                                        .lineSpacing(4)
+                                }
+                                .padding(.all, 16)
+                                .background(Color.white.opacity(0.04))
+                                .cornerRadius(14)
+                                .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.white.opacity(0.08), lineWidth: 1))
+                            }
                             
-                            Text("You are responsible for safeguarding your personal data, level logs, and achievement sync history inside Levelio. Any unauthorized use of your account must be reported immediately to the support team. Levelio cannot and will not be liable for any loss or damage arising from your failure to comply with these security obligations.")
-                                .font(.system(size: 14, weight: .medium))
-                                .foregroundColor(.gray.opacity(0.9))
-                                .padding(.bottom, 5)
+                            // CALLOUT NOTICE AT BOTTOM
+                            HStack(spacing: 12) {
+                                Image(systemName: "info.circle.fill")
+                                    .font(.system(size: 18))
+                                    .foregroundColor(.cyan)
+                                
+                                Text("By accepting, you agree to build positive habits consistently and respect Levelio's community standards.")
+                                    .font(.system(size: 13, weight: .medium))
+                                    .foregroundColor(.white.opacity(0.9))
+                            }
+                            .padding(.all, 14)
+                            .background(Color.cyan.opacity(0.1))
+                            .cornerRadius(12)
+                            .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.cyan.opacity(0.3), lineWidth: 1))
                             
-                            Text("2. Gamification & Fair Play Rules")
-                                .font(.system(size: 16, weight: .semibold))
-                                .foregroundColor(.white)
-                            
-                            Text("Any unfair methods, third-party modifications, botting, or system exploits used to manipulate user levels, streak counters, task timers, or dino rewards are highly discouraged. Continuous manipulation of the gamification mechanics compromises the experience for the entire community and may result in temporary or permanent account restrictions.")
-                                .font(.system(size: 14, weight: .medium))
-                                .foregroundColor(.gray.opacity(0.9))
-                                .padding(.bottom, 5)
-                            
-                            Text("3. Data Privacy Policy")
-                                .font(.system(size: 16, weight: .semibold))
-                                .foregroundColor(.white)
-                            
-                            Text("We care about your privacy. Levelio stores your local preferences and uses secure synchronization protocols. Your personal goal data, daily logs, and habit routines will never be traded, sold, or shared with unverified external parties without explicit user consent. For more details, please review our comprehensive Privacy Policy section.")
-                                .font(.system(size: 14, weight: .medium))
-                                .foregroundColor(.gray.opacity(0.9))
-                                .padding(.bottom, 5)
-                            
-                            Text("4. Intellectual Property Rights")
-                                .font(.system(size: 16, weight: .semibold))
-                                .foregroundColor(.white)
-                            
-                            Text("All custom graphics, illustrations, dino character designs, user interface layouts, software code, and brand assets contained within Levelio are the exclusive property of Levelio and its creators. Unauthorized reproduction, distribution, or modification of these assets is strictly prohibited.")
-                                .font(.system(size: 14, weight: .medium))
-                                .foregroundColor(.gray.opacity(0.9))
-                                .padding(.bottom, 5)
-                            
-                            Text("5. Limitation of Liability")
-                                .font(.system(size: 16, weight: .semibold))
-                                .foregroundColor(.white)
-                            
-                            Text("Levelio is provided on an 'as-is' and 'as-available' basis. We do not guarantee that the application will be completely error-free or uninterrupted at all times. In no event shall Levelio be liable for any indirect, incidental, or consequential damages resulting from your use or inability to use the service.")
-                                .font(.system(size: 14, weight: .medium))
-                                .foregroundColor(.gray.opacity(0.9))
-                                .padding(.bottom, 5)
-                            
-                            Text("6. Content Updates & Service Changes")
-                                .font(.system(size: 16, weight: .semibold))
-                                .foregroundColor(.white)
-                            
-                            Text("Levelio reserves the right to update features, interface designs, reward thresholds, and habit-tracking engines periodically to improve user experience. Continuous violation of our fair-play or safety guidelines may lead to access termination without prior notice.")
-                                .font(.system(size: 14, weight: .medium))
-                                .foregroundColor(.gray.opacity(0.9))
-                            
-                            // Penanda Akhir Dokumen
+                            // Scroll Bottom Marker
                             GeometryReader { geo in
                                 Color.clear
                                     .preference(
@@ -126,85 +204,128 @@ struct TermsAndConditionsPage: View {
                             .frame(height: 1)
                             .id("bottomMarker")
                         }
-                        .padding(.all, 18) // Mengatur padding teks di dalam box agar lebih rapi
+                        .padding(.horizontal, 24)
+                        .padding(.bottom, 20)
                     }
+                    .coordinateSpace(name: "scrollSpace")
                     .onPreferenceChange(ScrollOffsetPreferenceKey.self) { maxY in
-                        // Menggunakan toleransi dinamis (bila posisi maxY sudah mendekati area bawah box)
-                        if maxY < 580 && !hasScrolledToBottom {
+                        if maxY < 750 && !hasScrolledToBottom {
                             withAnimation {
                                 hasScrolledToBottom = true
+                                isCheckboxChecked = true
                             }
                         }
                     }
                     .onChange(of: isAutoScrollEnabled) { _, newValue in
                         if newValue {
-                            withAnimation(.easeInOut(duration: 3.5)) {
+                            withAnimation(.easeInOut(duration: 3.0)) {
                                 proxy.scrollTo("bottomMarker", anchor: .bottom)
                             }
                         }
                     }
                 }
-                .coordinateSpace(name: "scrollSpace")
-                .background(Color.white.opacity(0.05))
-                .cornerRadius(16)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.white.opacity(0.15), lineWidth: 1.2)
-                )
-                .padding(.horizontal, 24)
                 
-                // 4. Baris Saklar Fitur Auto-Scroll
-                Toggle(isOn: $isAutoScrollEnabled) {
-                    HStack(spacing: 6) {
-                        Image(systemName: "arrow.down.doc.fill")
-                            .font(.system(size: 13))
-                        Text("Auto scroll to bottom")
-                            .font(.system(size: 13, weight: .semibold))
+                // --- 3. BOTTOM CONSENT & ACTION BAR ---
+                VStack(spacing: 14) {
+                    
+                    // Auto Scroll Toggle & Status Indicator
+                    HStack {
+                        Toggle(isOn: $isAutoScrollEnabled) {
+                            HStack(spacing: 6) {
+                                Image(systemName: "arrow.down.circle.fill")
+                                    .font(.system(size: 14))
+                                    .foregroundColor(.cyan)
+                                Text("Auto scroll to bottom")
+                                    .font(.system(size: 13, weight: .semibold))
+                                    .foregroundColor(.white.opacity(0.8))
+                            }
+                        }
+                        .toggleStyle(SwitchToggleStyle(tint: .cyan))
                     }
-                    .foregroundColor(.gray.opacity(0.9))
-                }
-                .toggleStyle(SwitchToggleStyle(tint: Color("secondary")))
-                .padding(.horizontal, 28)
-                .padding(.top, 16)
-                
-                Spacer()
-                    .frame(height: 25)
-                
-                // 5. Tombol Aksi "Accept"
-                VStack {
+                    .padding(.horizontal, 4)
+                    
+                    // Agreement Checkbox
                     Button(action: {
-                        isAccepted = true
-                        UserDefaults.standard.set(true, forKey: "hasAcceptedTerms")
-                        activePage = .signUp
+                        isCheckboxChecked.toggle()
                     }) {
-                        Text("Accept and Continue")
-                            .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(hasScrolledToBottom ? .black : .white.opacity(0.3))
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 50)
-                            .background(hasScrolledToBottom ? Color.white : Color.white.opacity(0.15))
-                            .cornerRadius(25)
+                        HStack(spacing: 10) {
+                            Image(systemName: isCheckboxChecked ? "checkmark.square.fill" : "square")
+                                .font(.system(size: 18, weight: .bold))
+                                .foregroundColor(isCheckboxChecked ? Color("secondary") : .white.opacity(0.4))
+                            
+                            Text("I have read and agree to the Terms & Conditions")
+                                .font(.system(size: 13, weight: .medium))
+                                .foregroundColor(.white)
+                            
+                            Spacer()
+                        }
                     }
-                    .disabled(!hasScrolledToBottom)
+                    .buttonStyle(PlainButtonStyle())
+                    
+                    // Action Buttons
+                    HStack(spacing: 12) {
+                        Button(action: {
+                            activePage = .signUp
+                        }) {
+                            Text("Decline")
+                                .font(.system(size: 15, weight: .bold))
+                                .foregroundColor(.white.opacity(0.7))
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 50)
+                                .background(Color.white.opacity(0.1))
+                                .cornerRadius(25)
+                        }
+                        
+                        Button(action: {
+                            isAccepted = true
+                            UserDefaults.standard.set(true, forKey: "hasAcceptedTerms")
+                            activePage = .signUp
+                        }) {
+                            Text("Accept & Continue")
+                                .font(.system(size: 15, weight: .bold))
+                                .foregroundColor((isCheckboxChecked || hasScrolledToBottom) ? .black : .white.opacity(0.3))
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 50)
+                                .background((isCheckboxChecked || hasScrolledToBottom) ? Color.white : Color.white.opacity(0.15))
+                                .cornerRadius(25)
+                        }
+                        .disabled(!isCheckboxChecked && !hasScrolledToBottom)
+                    }
                 }
                 .padding(.horizontal, 24)
-                .padding(.bottom, 60)
+                .padding(.top, 14)
+                .padding(.bottom, 40)
+                .background(
+                    Color.black.opacity(0.3)
+                        .blur(radius: 10)
+                        .ignoresSafeArea(edges: .bottom)
+                )
             }
+            .safeAreaPadding(.top)
         }
         .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    activePage = .signUp
-                }) {
-                    HStack(spacing: 5) {
-                        Image(systemName: "chevron.left")
-                            .font(.system(size: 17, weight: .semibold))
-                    }
-                    .foregroundColor(.white)
-                }
-            }
+    }
+}
+
+// Subview Pill untuk Quick Highlights (At a Glance)
+struct HighlightPill: View {
+    let icon: String
+    let text: String
+    
+    var body: some View {
+        HStack(spacing: 6) {
+            Image(systemName: icon)
+                .font(.system(size: 12))
+                .foregroundColor(.cyan)
+            Text(text)
+                .font(.system(size: 12, weight: .semibold))
+                .foregroundColor(.white)
         }
+        .padding(.horizontal, 8)
+        .padding(.vertical, 6)
+        .frame(maxWidth: .infinity)
+        .background(Color.white.opacity(0.06))
+        .cornerRadius(10)
     }
 }
 
