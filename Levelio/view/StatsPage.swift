@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct StatsPage: View {
+    var user: UserEntity? = nil
+    
     var body: some View {
         ZStack {
             // 1. Latar Belakang Gelap Khas Levelio
@@ -83,6 +85,8 @@ struct StatsHeaderView: View {
 
 // MARK: - 2. STREAK TARGET BANNER
 struct StreakCardView: View {
+    var user: UserEntity?
+    
     var body: some View {
         ZStack(alignment: .bottomTrailing) { // Mengunci semua elemen overlay ke pojok kanan bawah
             
@@ -93,7 +97,7 @@ struct StreakCardView: View {
                         .font(.system(size: 15, weight: .bold))
                         .foregroundColor(.white.opacity(0.8))
                     
-                    Text("7 Days")
+                    Text("\(user?.streak ?? 0) Days")
                         .font(.system(size: 28, weight: .black))
                         .foregroundColor(Color("primary"))
                     

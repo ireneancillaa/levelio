@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct FilesUserDefaultsHelper {
     static func getTermsStatus() -> Bool {
@@ -18,10 +19,12 @@ struct FilesUserDefaultsHelper {
 }
 
 struct SignUpPage: View {
+    @Environment(\.managedObjectContext) private var viewContext
     @Binding var activePage: AuthPage?
     
     // Sinkronisasi status login global aplikasi
     @AppStorage("isUserLoggedIn") private var isUserLoggedIn = false
+    @AppStorage("currentUserId") private var currentUserId = ""
     
     @State private var fullName = ""
     @State private var email = ""
@@ -401,11 +404,53 @@ struct SignUpPage: View {
             
             // Eksekusi jika seluruh form valid
             if isValid {
-                withAnimation(.easeInOut(duration: 0.25)) {
-                    isUserLoggedIn = true
-                }
+                registerUser()
             }
         }
+    }
+    
+    private func registerUser() {
+        let request: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "email ==[c] %@", email)
+        
+        do {
+            let existingUser = try viewContext.fetch(request)
+            if !existingUser.isEmpty {
+                emailError = "Email already registered"
+                return
+            }
+            
+            let levelioId = generateLevelioId()
+            let assignedRole = email.contains("dev.co.id") ? "developer" : "user"
+            
+            let newUser = UserEntity(context: viewContext)
+            newUser.id = UUID()
+            newUser.fullName = fullName
+            newUser.email = email
+            newUser.password = password
+            newUser.levelioId = levelioId
+            newUser.role = assignedRole
+            newUser.createdDate = Date()
+            
+            try viewContext.save()
+            
+            currentUserId = newUser.id?.uuidString ?? ""
+            
+            withAnimation(.easeInOut(duration: 0.25)) {
+                isUserLoggedIn = true
+            }
+        } catch {
+            emailError = "Failed to save account. Please try again."
+        }
+    }
+    
+    private func generateLevelioId() -> String {
+        var generatedId = ""
+        let randomNumber = Int.random(in: 0...99999)
+        
+        generatedId = String(format: "LV%05d", randomNumber)
+        
+        return generatedId
     }
 }
 

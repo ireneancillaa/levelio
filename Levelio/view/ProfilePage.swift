@@ -11,6 +11,8 @@ struct ProfilePage: View {
     @AppStorage("isUserLoggedIn") private var isUserLoggedIn = true
     @State private var selectedGender = "Prefer not to say"
     
+    var user: UserEntity?
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -58,10 +60,10 @@ struct ProfilePage: View {
                                 .overlay(Circle().stroke(Color.white.opacity(0.2), lineWidth: 1))
                             
                             VStack(alignment: .leading, spacing: 4) {
-                                Text("Samsudin Udin")
+                                Text(user?.fullName ?? "Explorer")
                                     .font(.system(size: 20, weight: .bold))
                                     .foregroundColor(.white)
-                                Text("ID : LV01234")
+                                Text(user?.levelioId ?? "LV00000")
                                     .font(.system(size: 14, weight: .medium))
                                     .foregroundColor(.gray)
                             }
@@ -96,7 +98,7 @@ struct ProfilePage: View {
                         // QUICK STATS MATRIX CARD (4 Kolom dengan Pembagi Garis)
                         HStack(spacing: 0) {
                             VStack(spacing: 6) {
-                                Text("🔥 7").font(.system(size: 16, weight: .bold))
+                                Text("🔥 \(user?.streak ?? 0)").font(.system(size: 16, weight: .bold))
                                 Text("Streak").font(.system(size: 12, weight: .medium)).foregroundColor(.gray)
                             }.frame(maxWidth: .infinity)
                             
@@ -195,7 +197,11 @@ struct ProfilePage: View {
                                             .font(.system(size: 12, weight: .bold))
                                             .foregroundColor(.white.opacity(0.8))
                                     }
-                                    Text("April 20, 2026")
+                                    Text(user?.createdDate?
+                                        .formatted(
+                                            .dateTime.month(.wide).day().year()
+                                            .locale(Locale(identifier: "en_US"))
+                                        ) ?? "-")
                                         .font(.system(size: 15, weight: .medium))
                                         .foregroundColor(.white)
                                 }
@@ -224,7 +230,7 @@ struct ProfilePage: View {
                                             .font(.system(size: 12, weight: .bold))
                                             .foregroundColor(.white.opacity(0.8))
                                     }
-                                    Text("Samsudin Udin")
+                                    Text(user?.fullName ?? "Explorer")
                                     Spacer()
                                     Image(systemName: "pencil")
                                         .font(.system(size: 14))
@@ -247,7 +253,7 @@ struct ProfilePage: View {
                                             .font(.system(size: 12, weight: .bold))
                                             .foregroundColor(.white.opacity(0.8))
                                     }
-                                    Text("samsudin.udin@gmail.com")
+                                    Text(user?.email ?? "-")
                                     Spacer()
                                 }
                                 .padding(.horizontal, 16)

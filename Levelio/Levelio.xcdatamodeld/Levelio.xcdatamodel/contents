@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="25249" systemVersion="25G83" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="UserEntity" representedClassName=".UserEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="birthDate" attributeType="Date" defaultDateTimeInterval="813258000" usesScalarValueType="NO"/>
+        <attribute name="createdDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="email" attributeType="String" spotlightIndexingEnabled="YES"/>
+        <attribute name="fullName" attributeType="String"/>
+        <attribute name="gender" attributeType="String" defaultValueString="Prefer not to say"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="levelioId" attributeType="String" spotlightIndexingEnabled="YES"/>
+        <attribute name="password" attributeType="String"/>
+        <attribute name="role" attributeType="String"/>
+        <attribute name="streak" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+</model>

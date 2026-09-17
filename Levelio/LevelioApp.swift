@@ -7,9 +7,12 @@
 
 import SwiftUI
 import SwiftData
+import CoreData
 
 @main
 struct LevelioApp: App {
+    let persistenceController = PersistenceController.shared
+    
     // Pantau status login secara global di level aplikasi
     @AppStorage("isUserLoggedIn") private var isUserLoggedIn = false
     
@@ -38,6 +41,7 @@ struct LevelioApp: App {
                 }
             }
             .modelContainer(sharedModelContainer)
+            .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

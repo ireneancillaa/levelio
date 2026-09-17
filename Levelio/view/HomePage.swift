@@ -6,10 +6,15 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct HomePage: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    @AppStorage("currentUserId") private var currentUserId = ""
+    
     @StateObject private var habitStore = HabitStore()
     @State private var selectedTab = 0
+    @State private var currentUser: UserEntity?
     
     // 1. Saklar state untuk mengontrol buka/tutup lembaran AddPage
     @State private var isPresentingAddPage = false
@@ -18,14 +23,14 @@ struct HomePage: View {
         TabView(selection: $selectedTab) {
             
             // --- TAB 0: HOME ---
-            HomeTabContent(store: habitStore)
+            HomeTabContent(store: habitStore, user: currentUser)
                 .tabItem {
                     Label("Home", systemImage: selectedTab == 0 ? "house.fill" : "house")
                 }
                 .tag(0)
             
             // --- TAB 1: STATS ---
-            StatsPage()
+            StatsPage(user: currentUser)
                 .tabItem {
                     Label("Stats", systemImage: selectedTab == 1 ? "chart.bar.fill" : "chart.bar")
                 }
@@ -46,7 +51,7 @@ struct HomePage: View {
                 .tag(3)
             
             // --- TAB 4: PROFILE ---
-            ProfilePage()
+            ProfilePage(user: currentUser)
                 .tabItem {
                     Label("Profile", systemImage: selectedTab == 4 ? "person.fill" : "person")
                 }
@@ -54,6 +59,9 @@ struct HomePage: View {
         }
         .tint(.blue)
         .preferredColorScheme(.dark)
+        .task {
+            loadCurrentUser()
+        }
         
         // 2. DETEKSI AMAN: Begitu user mengetuk Tab ke-2 (Plus), langsung cegah masuk ke layar kosong
         .onChange(of: selectedTab) { oldValue, newValue in
@@ -73,11 +81,21 @@ struct HomePage: View {
             }
         }
     }
+    
+    private func loadCurrentUser() {
+        guard let uuid = UUID(uuidString: currentUserId) else { return }
+        let request: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", uuid as CVarArg)
+        request.fetchLimit = 1
+        
+        currentUser = try? viewContext.fetch(request).first
+    }
 }
 
 // MARK: - KONTEN UTAMA HALAMAN HOME
 struct HomeTabContent: View {
     @ObservedObject var store: HabitStore
+    var user: UserEntity?
     
     var body: some View {
         ZStack {
@@ -91,7 +109,7 @@ struct HomeTabContent: View {
             VStack(spacing: 0) {
                 
                 // --- AREA 1: HEADER STATIS (Identik dengan Stats & Challenges) ---
-                HeaderView()
+                HeaderView(user: user)
                     .padding(.horizontal, 24)
                     .padding(.top, 50)
                     .padding(.bottom, 20)
@@ -142,10 +160,12 @@ struct HomeTabContent: View {
 
 // MARK: - 1. HEADER VIEW
 struct HeaderView: View {
+    var user: UserEntity?
+    
     var body: some View {
         HStack(alignment: .center) {
             VStack(alignment: .leading, spacing: 4) {
-                Text("Morning, Samsudin!")
+                Text("Morning, \(user?.fullName ?? "Explorer")!")
                     .font(.system(size: 26, weight: .heavy))
                     .foregroundColor(.white)
                 

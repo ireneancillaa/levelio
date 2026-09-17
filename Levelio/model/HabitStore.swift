@@ -48,7 +48,16 @@ class HabitStore: ObservableObject {
                     time: "09.00pm",
                     isCompleted: true,
                     xpReward: 50
-                )
+                ),
+                Habit(
+                    title: "Jalan jalan sama iren",
+                    description: "Kalo ga jalan nanti ngamuk",
+                    colorName: "cyan",
+                    frequency: "Daily",
+                    time: "09.00pm",
+                    isCompleted: true,
+                    xpReward: 1000
+                ),
             ]
         }
     }

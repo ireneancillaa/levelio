@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct SignInPage: View {
+    @Environment(\.managedObjectContext) private var viewContext
     @Binding var activePage: AuthPage?
     
     // Sinkronisasi status login global menggunakan penyimpanan internal iOS
     @AppStorage("isUserLoggedIn") private var isUserLoggedIn = false
+    @AppStorage("currentUserId") private var currentUserId = ""
     
     @State private var email = ""
     @State private var password = ""
@@ -251,10 +254,30 @@ struct SignInPage: View {
             
             // Eksekusi jika valid
             if isValid {
+                loginUser()
+            }
+        }
+    }
+    
+    private func loginUser() {
+        let request: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "email ==[c] %@ AND password == %@", email, password)
+        request.fetchLimit = 1
+        
+        do {
+            let result = try viewContext.fetch(request)
+            
+            if let user = result.first {
+                currentUserId = user.id?.uuidString ?? ""
+                
                 withAnimation(.easeInOut(duration: 0.25)) {
                     isUserLoggedIn = true
                 }
+            } else {
+                emailError = "Email or Password incorrect"
             }
+        } catch {
+            emailError = "Email or Password incorrect"
         }
     }
 }
