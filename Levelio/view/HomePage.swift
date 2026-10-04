@@ -16,8 +16,9 @@ struct HomePage: View {
     @State private var selectedTab = 0
     @State private var currentUser: UserEntity?
     
-    // 1. Saklar state untuk mengontrol buka/tutup lembaran AddPage
+    // 1. Saklar state untuk mengontrol buka/tutup lembaran AddPage dan Ad Page
     @State private var isPresentingAddPage = false
+    @State private var isPresentingAdPage = false
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -63,18 +64,35 @@ struct HomePage: View {
             loadCurrentUser()
         }
         
-        // 2. DETEKSI AMAN: Begitu user mengetuk Tab ke-2 (Plus), langsung cegah masuk ke layar kosong
+        // 2. DETEKSI AMAN: Begitu user mengetuk Tab ke-2 (Plus), periksa role admin atau bukan
         .onChange(of: selectedTab) { oldValue, newValue in
             if newValue == 2 {
                 // Kembalikan seleksi tab aktif ke halaman sebelumnya agar tidak macet di layar kosong
                 selectedTab = oldValue
                 
-                // Nyalakan lembaran penuh AddPage
-                isPresentingAddPage = true
+                let userEmail = currentUser?.email?.lowercased() ?? ""
+                let isAdmin = userEmail.hasSuffix("@dev.co.id") || userEmail.contains("dev.co.id") || currentUser?.role == "developer"
+                
+                if isAdmin {
+                    // Jika admin, langsung tampilkan AddPage tanpa iklan
+                    isPresentingAddPage = true
+                } else {
+                    // Jika bukan admin, tampilkan iklan SubscriptionPage terlebih dahulu
+                    isPresentingAdPage = true
+                }
             }
         }
         
-        // 3. KUNCI UTAMA: Memanggil AddPage dengan pembungkus NavigationStack dari luar
+        // 3. TAMPILAN IKLAN SUBSCRIPTION PAGE (Untuk user non-admin)
+        .fullScreenCover(isPresented: $isPresentingAdPage) {
+            SubscriptionPage(isAdMode: true, onAdDismissed: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    isPresentingAddPage = true
+                }
+            })
+        }
+        
+        // 4. KUNCI UTAMA: Memanggil AddPage dengan pembungkus NavigationStack dari luar
         .fullScreenCover(isPresented: $isPresentingAddPage) {
             NavigationStack {
                 AddPage(store: habitStore)

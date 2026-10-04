@@ -25,31 +25,35 @@ struct WelcomeScreen: View {
                 .scaledToFill()
                 .ignoresSafeArea()
             
-            VStack(spacing: 50) {
+            VStack(spacing: 0) {
                 Spacer()
-                    .frame(height: 150)
                 
-                Image("dino-car")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 250)
-                
-                VStack(spacing: 5) {
-                    Text("Hello Levelers!")
-                        .font(.system(size: 32, weight: .heavy))
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
+                // Hero Character & Title
+                VStack(spacing: 20) {
+                    Image("dino-car")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 200)
                     
-                    Text("Don't forget to keep your streak alive")
-                        .font(.system(size: 20, weight: .semibold))
-                        .foregroundColor(.gray)
-                        .multilineTextAlignment(.center)
-                        .frame(maxWidth: .infinity)
+                    VStack(spacing: 8) {
+                        Text("Hello Levelers!")
+                            .font(.system(size: 32, weight: .heavy))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                        
+                        Text("Don't forget to keep your streak alive")
+                            .font(.system(size: 18, weight: .semibold))
+                            .foregroundColor(.gray)
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity)
+                    }
+                    .padding(.horizontal, 24)
                 }
-                .padding(.horizontal, 25)
+                .padding(.top, 28)
                 
                 Spacer()
                 
+                // Bottom Action Buttons sticky 16pt above Home Bar
                 VStack(spacing: 12) {
                     Button(action: {
                         activePage = .signIn
@@ -64,6 +68,7 @@ struct WelcomeScreen: View {
                     }
                     
                     Button(action: {
+                        FilesUserDefaultsHelper.setTermsStatus(false)
                         activePage = .signUp
                     }) {
                         Text("Sign Up")
@@ -79,8 +84,8 @@ struct WelcomeScreen: View {
                     }
                 }
                 .padding(.horizontal, 24)
+                .padding(.bottom, 40)
             }
-            .padding(.bottom, 70)
         }
         .navigationDestination(item: $activePage) { page in
             switch page {

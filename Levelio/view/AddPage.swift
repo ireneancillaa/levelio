@@ -199,6 +199,7 @@ struct AddPage: View {
                 .padding(.top, 50)
                 .padding(.bottom, 160)
             }
+            .scrollDismissesKeyboard(.interactively)
             
             // --- 2. FIXED BOTTOM BUTTON AREA (Overlay di atas ScrollView) ---
             VStack {
@@ -242,18 +243,20 @@ struct AddPage: View {
             )
             .ignoresSafeArea(.keyboard, edges: .bottom)
         }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            hideKeyboard()
+        }
         .preferredColorScheme(.dark)
         .navigationBarBackButtonHidden(true)
         .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: { dismiss() }) {
-                    HStack(spacing: 4) {
-                        Image(systemName: "chevron.left")
-                        Text("Back")
-                    }
-                    .font(.system(size: 17, weight: .medium))
-                    .foregroundColor(.blue)
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "chevron.left")
                 }
+                .buttonStyle(.glassCircle)
             }
             
             ToolbarItem(placement: .principal) {
@@ -262,8 +265,9 @@ struct AddPage: View {
                     .foregroundColor(.white)
             }
         }
+        .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar(.hidden, for: .tabBar)
-        .ignoresSafeArea(.keyboard)
+        .ignoresSafeArea(.keyboard, edges: .bottom)
     }
 }
 

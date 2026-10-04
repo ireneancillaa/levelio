@@ -1,0 +1,128 @@
+{
+  "source": "/Users/ireneancilla/Internship/Levelio/Levelio/auth/SignInPage.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Welcome back",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 49
+        }
+      },
+      {
+        "comment": "",
+        "key": "Continue your journey to level up!",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 53
+        }
+      },
+      {
+        "comment": "",
+        "key": "Email",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 64
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enter your email",
+        "location": {
+          "startingColumn": 78,
+          "startingLine": 73
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 73
+        }
+      },
+      {
+        "comment": "",
+        "key": "Password",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 103
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enter your password",
+        "location": {
+          "startingColumn": 85,
+          "startingLine": 113
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enter your password",
+        "location": {
+          "startingColumn": 87,
+          "startingLine": 122
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 51,
+          "startingLine": 113
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 53,
+          "startingLine": 122
+        }
+      },
+      {
+        "comment": "",
+        "key": "Remember me",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 169
+        }
+      },
+      {
+        "comment": "",
+        "key": "Forgot Password?",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 181
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sign In",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 200
+        }
+      },
+      {
+        "comment": "",
+        "key": "New to Levelio?",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 211
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sign Up.",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 216
+        }
+      }
+    ]
+  },
+  "version": 1
+}

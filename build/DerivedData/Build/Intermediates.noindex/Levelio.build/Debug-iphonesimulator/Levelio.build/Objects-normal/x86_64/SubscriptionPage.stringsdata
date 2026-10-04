@@ -1,0 +1,272 @@
+{
+  "source": "/Users/ireneancilla/Internship/Levelio/Levelio/view/SubscriptionPage.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "✨ LEVELIO PREMIUM",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 85
+        }
+      },
+      {
+        "comment": "",
+        "key": "%llds",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 113
+        }
+      },
+      {
+        "comment": "",
+        "key": "Master Your Routine With Premium",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 165
+        }
+      },
+      {
+        "comment": "",
+        "key": "Level up faster, unlock powerful analytics, and achieve consistency effortlessly.",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 170
+        }
+      },
+      {
+        "comment": "",
+        "key": "Included With Premium",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 183
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 261
+        }
+      },
+      {
+        "comment": "",
+        "key": "Try all premium features for 7 days free. Cancel anytime.",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 254
+        }
+      },
+      {
+        "comment": "",
+        "key": "7-Day Free Trial Included",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 241
+        }
+      },
+      {
+        "comment": "",
+        "key": "RISK-FREE",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 245
+        }
+      },
+      {
+        "comment": "",
+        "key": "Choose Your Plan",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 284
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pay Monthly",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 316
+        }
+      },
+      {
+        "comment": "",
+        "key": "Billed monthly",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 329
+        }
+      },
+      {
+        "comment": "",
+        "key": "$3.99",
+        "location": {
+          "startingColumn": 54,
+          "startingLine": 321
+        }
+      },
+      {
+        "comment": "",
+        "key": "/mo",
+        "location": {
+          "startingColumn": 54,
+          "startingLine": 324
+        }
+      },
+      {
+        "comment": "",
+        "key": "SAVE 37% 🔥",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 417
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pay Yearly",
+        "location": {
+          "startingColumn": 54,
+          "startingLine": 374
+        }
+      },
+      {
+        "comment": "",
+        "key": "$2.50/mo (Save 37%)",
+        "location": {
+          "startingColumn": 54,
+          "startingLine": 387
+        }
+      },
+      {
+        "comment": "",
+        "key": "$29.99",
+        "location": {
+          "startingColumn": 58,
+          "startingLine": 379
+        }
+      },
+      {
+        "comment": "",
+        "key": "/yr",
+        "location": {
+          "startingColumn": 58,
+          "startingLine": 382
+        }
+      },
+      {
+        "comment": "",
+        "key": "⭐️⭐️⭐️⭐️⭐️",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 439
+        }
+      },
+      {
+        "comment": "",
+        "key": "4.9/5 rated by 10,000+ habit builders",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 441
+        }
+      },
+      {
+        "comment": "",
+        "key": "7 days free, then %@. Cancel anytime.",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 490
+        }
+      },
+      {
+        "comment": "",
+        "key": "Billed %@. Cancel anytime.",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 491
+        }
+      },
+      {
+        "comment": "",
+        "key": "Start 7-Day Free Trial",
+        "location": {
+          "startingColumn": 55,
+          "startingLine": 465
+        }
+      },
+      {
+        "comment": "",
+        "key": "Subscribe for $29.99 / Year",
+        "location": {
+          "startingColumn": 68,
+          "startingLine": 466
+        }
+      },
+      {
+        "comment": "",
+        "key": "Subscribe for $3.99 / Month",
+        "location": {
+          "startingColumn": 100,
+          "startingLine": 466
+        }
+      },
+      {
+        "comment": "",
+        "key": "•",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 503
+        }
+      },
+      {
+        "comment": "",
+        "key": "•",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 510
+        }
+      },
+      {
+        "comment": "",
+        "key": "Restore Purchases",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 498
+        }
+      },
+      {
+        "comment": "",
+        "key": "Terms of Service",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 505
+        }
+      },
+      {
+        "comment": "",
+        "key": "Privacy Policy",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 512
+        }
+      },
+      {
+        "comment": "",
+        "key": "Levelio Premium",
+        "location": {
+          "startingColumn": 29,
+          "startingLine": 538
+        }
+      },
+      {
+        "comment": "",
+        "key": "OK",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 540
+        }
+      }
+    ]
+  },
+  "version": 1
+}

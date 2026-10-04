@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>13</integer>
+	<key>logs</key>
+	<dict>
+		<key>9100636F-AFE1-467D-98C7-0FAC3E3D8EB8</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>9100636F-AFE1-467D-98C7-0FAC3E3D8EB8.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>106</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>6</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Levelio project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Levelio</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project Levelio with scheme Levelio</string>
+			<key>timeStartedRecording</key>
+			<real>811908335.04241705</real>
+			<key>timeStoppedRecording</key>
+			<real>811908340.32426906</real>
+			<key>title</key>
+			<string>Building project Levelio with scheme Levelio</string>
+			<key>uniqueIdentifier</key>
+			<string>9100636F-AFE1-467D-98C7-0FAC3E3D8EB8</string>
+		</dict>
+		<key>F461356F-26DC-4740-9D90-1F4A30ACDDC6</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>F461356F-26DC-4740-9D90-1F4A30ACDDC6.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>106</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>4</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Levelio project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Levelio</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project Levelio with scheme Levelio</string>
+			<key>timeStartedRecording</key>
+			<real>811908356.07493198</real>
+			<key>timeStoppedRecording</key>
+			<real>811908359.39491606</real>
+			<key>title</key>
+			<string>Building project Levelio with scheme Levelio</string>
+			<key>uniqueIdentifier</key>
+			<string>F461356F-26DC-4740-9D90-1F4A30ACDDC6</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,176 @@
+{
+  "source": "/Users/ireneancilla/Internship/Levelio/Levelio/view/ProfilePage.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Profile",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 37
+        }
+      },
+      {
+        "comment": "",
+        "key": "Level 1",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 82
+        }
+      },
+      {
+        "comment": "",
+        "key": "150/400 XP",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 86
+        }
+      },
+      {
+        "comment": "",
+        "key": "🔥 %lld",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 107
+        }
+      },
+      {
+        "comment": "",
+        "key": "Streak",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 108
+        }
+      },
+      {
+        "comment": "",
+        "key": "⚡️ 120",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 114
+        }
+      },
+      {
+        "comment": "",
+        "key": "Today's XP",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 115
+        }
+      },
+      {
+        "comment": "",
+        "key": "🎯 40%",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 121
+        }
+      },
+      {
+        "comment": "",
+        "key": "Completion",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 122
+        }
+      },
+      {
+        "comment": "",
+        "key": "🗓️ 10",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 128
+        }
+      },
+      {
+        "comment": "",
+        "key": "Active",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 129
+        }
+      },
+      {
+        "comment": "",
+        "key": "💎 Upgrade to Premium",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 148
+        }
+      },
+      {
+        "comment": "",
+        "key": "Level up faster with unlimited habits\n& advanced stats.",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 152
+        }
+      },
+      {
+        "comment": "",
+        "key": "Upgrade Now",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 160
+        }
+      },
+      {
+        "comment": "",
+        "key": "Levelers Since",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 192
+        }
+      },
+      {
+        "comment": "",
+        "key": "User’s Information",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 224
+        }
+      },
+      {
+        "comment": "",
+        "key": "Full Name",
+        "location": {
+          "startingColumn": 51,
+          "startingLine": 241
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 52,
+          "startingLine": 336
+        }
+      },
+      {
+        "comment": "",
+        "key": "Prefer not to say",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 358
+        }
+      },
+      {
+        "comment": "",
+        "key": "Female",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 367
+        }
+      },
+      {
+        "comment": "",
+        "key": "Male",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 376
+        }
+      }
+    ]
+  },
+  "version": 1
+}

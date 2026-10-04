@@ -32,193 +32,201 @@ struct SignInPage: View {
                 .scaledToFill()
                 .ignoresSafeArea()
             
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack(spacing: 0) {
-                    Spacer(minLength: 20)
-                    
-                    // 1. Header Area
-                    VStack(spacing: 16) {
-                        Image("dino-selfies")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 90)
+            VStack(spacing: 0) {
+                // Top Scrollable Area for Header & Form
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(spacing: 20) {
+                        Spacer(minLength: 12)
                         
-                        VStack(spacing: 4) {
-                            Text("Welcome back")
-                                .font(.system(size: 30, weight: .heavy))
-                                .foregroundColor(.white)
+                        // 1. Header Area
+                        VStack(spacing: 12) {
+                            Image("dino-selfies")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 85)
                             
-                            Text("Continue your journey to level up!")
-                                .font(.system(size: 15, weight: .semibold))
-                                .foregroundColor(.gray.opacity(0.8))
-                        }
-                    }
-                    .padding(.bottom, 24)
-                    
-                    // 2. Form Input Area
-                    VStack(spacing: 16) {
-                        // Email Field
-                        VStack(alignment: .leading, spacing: 6) {
-                            Text("Email")
-                                .font(.system(size: 14, weight: .semibold))
-                                .foregroundColor(.white)
-                            
-                            HStack(spacing: 12) {
-                                Image(systemName: "envelope")
-                                    .foregroundColor(emailError != nil ? .red : .gray)
-                                    .frame(width: 24, alignment: .center)
+                            VStack(spacing: 4) {
+                                Text("Welcome back")
+                                    .font(.system(size: 28, weight: .heavy))
+                                    .foregroundColor(.white)
                                 
-                                TextField("", text: $email, prompt: Text("Enter your email")
+                                Text("Continue your journey to level up!")
                                     .font(.system(size: 14, weight: .semibold))
-                                    .foregroundColor(.gray)
-                                )
-                                .foregroundColor(.white)
-                                .autocapitalization(.none)
-                                .keyboardType(.emailAddress)
-                                .onChange(of: email) {
-                                    if emailError != nil { emailError = nil }
-                                }
-                            }
-                            .padding()
-                            .frame(height: 50)
-                            .background(Color.clear)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 25)
-                                    .stroke(emailError != nil ? Color.red : Color.white.opacity(0.4), lineWidth: 1.5)
-                            )
-                            
-                            if let emailError = emailError {
-                                Text(emailError)
-                                    .font(.system(size: 12, weight: .medium))
-                                    .foregroundColor(.red)
-                                    .padding(.leading, 12)
-                                    .transition(.opacity.combined(with: .move(edge: .top)))
+                                    .foregroundColor(.gray.opacity(0.8))
                             }
                         }
+                        .padding(.top, 28)
                         
-                        // Password Field
-                        VStack(alignment: .leading, spacing: 6) {
-                            Text("Password")
-                                .font(.system(size: 14, weight: .semibold))
-                                .foregroundColor(.white)
-                            
-                            HStack(spacing: 12) {
-                                Image(systemName: "lock")
-                                    .foregroundColor(passwordError != nil ? .red : .gray)
-                                    .frame(width: 24, alignment: .center)
+                        // 2. Form Input Area
+                        VStack(spacing: 16) {
+                            // Email Field
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text("Email")
+                                    .font(.system(size: 14, weight: .semibold))
+                                    .foregroundColor(.white)
                                 
-                                if isPasswordVisible {
-                                    TextField("", text: $password, prompt: Text("Enter your password")
+                                HStack(spacing: 12) {
+                                    Image(systemName: "envelope")
+                                        .foregroundColor(emailError != nil ? .red : .gray)
+                                        .frame(width: 24, alignment: .center)
+                                    
+                                    TextField("", text: $email, prompt: Text("Enter your email")
                                         .font(.system(size: 14, weight: .semibold))
                                         .foregroundColor(.gray)
                                     )
                                     .foregroundColor(.white)
-                                    .onChange(of: password) {
-                                        if passwordError != nil { passwordError = nil }
-                                    }
-                                } else {
-                                    SecureField("", text: $password, prompt: Text("Enter your password")
-                                        .font(.system(size: 14, weight: .semibold))
-                                        .foregroundColor(.gray)
-                                    )
-                                    .foregroundColor(.white)
-                                    .onChange(of: password) {
-                                        if passwordError != nil { passwordError = nil }
+                                    .autocapitalization(.none)
+                                    .keyboardType(.emailAddress)
+                                    .onChange(of: email) {
+                                        if emailError != nil { emailError = nil }
                                     }
                                 }
-                                
-                                Button(action: {
-                                    isPasswordVisible.toggle()
-                                }) {
-                                    Image(systemName: isPasswordVisible ? "eye" : "eye.slash")
-                                        .foregroundColor(.gray)
-                                }
-                            }
-                            .padding()
-                            .frame(height: 50)
-                            .background(Color.clear)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 25)
-                                    .stroke(passwordError != nil ? Color.red : Color.white.opacity(0.4), lineWidth: 1.5)
-                            )
-                            
-                            if let passwordError = passwordError {
-                                Text(passwordError)
-                                    .font(.system(size: 12, weight: .medium))
-                                    .foregroundColor(.red)
-                                    .padding(.leading, 12)
-                                    .transition(.opacity.combined(with: .move(edge: .top)))
-                            }
-                        }
-                    }
-                    .padding(.horizontal, 24)
-                    
-                    // 3. Remember Me & Forgot Password Links
-                    HStack {
-                        Button(action: {
-                            withAnimation(.easeIn(duration: 0.1)) {
-                                rememberMe.toggle()
-                            }
-                        }) {
-                            HStack(spacing: 8) {
-                                Image(systemName: rememberMe ? "checkmark.square.fill" : "square")
-                                    .font(.system(size: 18))
-                                    .foregroundColor(rememberMe ? .gray : .white)
-                                
-                                Text("Remember me")
-                                    .font(.system(size: 14, weight: .semibold))
-                                    .foregroundColor(.white)
-                            }
-                        }
-                        .buttonStyle(PlainButtonStyle())
-                        
-                        Spacer()
-                        
-                        Button(action: {
-                            activePage = .forgotPassword
-                        }) {
-                            Text("Forgot Password?")
-                                .font(.system(size: 14, weight: .semibold))
-                                .foregroundColor(Color("secondary"))
-                        }
-                    }
-                    .padding(.horizontal, 24)
-                    .padding(.top, 16)
-                    .padding(.bottom, 24)
-                    
-                    // 4. Action Buttons
-                    VStack(spacing: 10) {
-                        Button(action: {
-                            validateAndSignIn()
-                        }) {
-                            Text("Sign In")
-                                .font(.system(size: 16, weight: .bold))
-                                .foregroundColor(.black)
-                                .frame(maxWidth: .infinity)
+                                .padding()
                                 .frame(height: 50)
-                                .background(Color.white)
-                                .cornerRadius(25)
+                                .background(Color.clear)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 25)
+                                        .stroke(emailError != nil ? Color.red : Color.white.opacity(0.4), lineWidth: 1.5)
+                                )
+                                
+                                if let emailError = emailError {
+                                    Text(emailError)
+                                        .font(.system(size: 12, weight: .medium))
+                                        .foregroundColor(.red)
+                                        .padding(.leading, 12)
+                                        .transition(.opacity.combined(with: .move(edge: .top)))
+                                }
+                            }
+                            
+                            // Password Field
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text("Password")
+                                    .font(.system(size: 14, weight: .semibold))
+                                    .foregroundColor(.white)
+                                
+                                HStack(spacing: 12) {
+                                    Image(systemName: "lock")
+                                        .foregroundColor(passwordError != nil ? .red : .gray)
+                                        .frame(width: 24, alignment: .center)
+                                    
+                                    if isPasswordVisible {
+                                        TextField("", text: $password, prompt: Text("Enter your password")
+                                            .font(.system(size: 14, weight: .semibold))
+                                            .foregroundColor(.gray)
+                                        )
+                                        .foregroundColor(.white)
+                                        .onChange(of: password) {
+                                            if passwordError != nil { passwordError = nil }
+                                        }
+                                    } else {
+                                        SecureField("", text: $password, prompt: Text("Enter your password")
+                                            .font(.system(size: 14, weight: .semibold))
+                                            .foregroundColor(.gray)
+                                        )
+                                        .foregroundColor(.white)
+                                        .onChange(of: password) {
+                                            if passwordError != nil { passwordError = nil }
+                                        }
+                                    }
+                                    
+                                    Button(action: {
+                                        isPasswordVisible.toggle()
+                                    }) {
+                                        Image(systemName: isPasswordVisible ? "eye" : "eye.slash")
+                                            .foregroundColor(.gray)
+                                    }
+                                }
+                                .padding()
+                                .frame(height: 50)
+                                .background(Color.clear)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 25)
+                                        .stroke(passwordError != nil ? Color.red : Color.white.opacity(0.4), lineWidth: 1.5)
+                                )
+                                
+                                if let passwordError = passwordError {
+                                    Text(passwordError)
+                                        .font(.system(size: 12, weight: .medium))
+                                        .foregroundColor(.red)
+                                        .padding(.leading, 12)
+                                        .transition(.opacity.combined(with: .move(edge: .top)))
+                                }
+                            }
                         }
                         
-                        // Teks Link Pindah Halaman ke Registrasi Akun
-                        HStack(spacing: 4) {
-                            Text("New to Levelio?")
-                                .font(.system(size: 14, weight: .medium))
-                                .foregroundColor(.white)
+                        // 3. Remember Me & Forgot Password Links
+                        HStack {
+                            Button(action: {
+                                withAnimation(.easeIn(duration: 0.1)) {
+                                    rememberMe.toggle()
+                                }
+                            }) {
+                                HStack(spacing: 8) {
+                                    Image(systemName: rememberMe ? "checkmark.square.fill" : "square")
+                                        .font(.system(size: 18))
+                                        .foregroundColor(rememberMe ? .gray : .white)
+                                    
+                                    Text("Remember me")
+                                        .font(.system(size: 14, weight: .semibold))
+                                        .foregroundColor(.white)
+                                }
+                            }
+                            .buttonStyle(PlainButtonStyle())
                             
-                            Button(action: { activePage = .signUp }) {
-                                Text("Sign Up.")
-                                    .font(.system(size: 14, weight: .bold))
+                            Spacer()
+                            
+                            Button(action: {
+                                activePage = .forgotPassword
+                            }) {
+                                Text("Forgot Password?")
+                                    .font(.system(size: 14, weight: .semibold))
                                     .foregroundColor(Color("secondary"))
                             }
                         }
-                        .padding(.top, 10)
+                        .padding(.top, 4)
                     }
                     .padding(.horizontal, 24)
-                    .padding(.bottom, 40)
+                    .padding(.bottom, 16)
                 }
+                .scrollDismissesKeyboard(.interactively)
+                
+                Spacer(minLength: 10)
+                
+                // 4. Bottom Action Buttons (Sticky 16pt above Home Bar)
+                VStack(spacing: 12) {
+                    Button(action: {
+                        validateAndSignIn()
+                    }) {
+                        Text("Sign In")
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundColor(.black)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 50)
+                            .background(Color.white)
+                            .cornerRadius(25)
+                    }
+                    
+                    // Teks Link Pindah Halaman ke Registrasi Akun
+                    HStack(spacing: 4) {
+                        Text("New to Levelio?")
+                            .font(.system(size: 14, weight: .medium))
+                            .foregroundColor(.white)
+                        
+                        Button(action: { activePage = .signUp }) {
+                            Text("Sign Up.")
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundColor(Color("secondary"))
+                        }
+                    }
+                }
+                .padding(.horizontal, 24)
+                .padding(.bottom, 40)
             }
-            .safeAreaPadding(.top)
+            .ignoresSafeArea(.keyboard, edges: .bottom)
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            hideKeyboard()
         }
     }
     

@@ -1,0 +1,23 @@
+{
+  "/Users/ireneancilla/Internship/Levelio/Levelio/view/AddPage.swift" : {
+    "const-values" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/AddPage.swiftconstvalues",
+    "dependencies" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/AddPage.d",
+    "diagnostics" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/AddPage.dia",
+    "object" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/AddPage.o",
+    "swift-dependencies" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/AddPage.swiftdeps"
+  },
+  "/Users/ireneancilla/Internship/Levelio/Levelio/view/ChallengesPage.swift" : {
+    "const-values" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/ChallengesPage.swiftconstvalues",
+    "dependencies" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/ChallengesPage.d",
+    "diagnostics" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/ChallengesPage.dia",
+    "object" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/ChallengesPage.o",
+    "swift-dependencies" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/ChallengesPage.swiftdeps"
+  },
+  "/Users/ireneancilla/Internship/Levelio/Levelio/view/HomePage.swift" : {
+    "const-values" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/HomePage.swiftconstvalues",
+    "dependencies" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/HomePage.d",
+    "diagnostics" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/HomePage.dia",
+    "object" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/HomePage.o",
+    "swift-dependencies" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/HomePage.swiftdeps"
+  }
+}

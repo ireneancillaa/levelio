@@ -1,0 +1,72 @@
+{
+  "source": "/Users/ireneancilla/Internship/Levelio/Levelio/auth/TermsAndConditionsPage.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Terms & Conditions",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 107
+        }
+      },
+      {
+        "comment": "",
+        "key": "Please read and accept our community guidelines to level up your habits.",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 111
+        }
+      },
+      {
+        "comment": "",
+        "key": "AT A GLANCE",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 124
+        }
+      },
+      {
+        "comment": "",
+        "key": "By accepting, you agree to build positive habits consistently and respect Levelio's community standards.",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 181
+        }
+      },
+      {
+        "comment": "",
+        "key": "Auto scroll to bottom",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 232
+        }
+      },
+      {
+        "comment": "",
+        "key": "I have read and agree to the Terms & Conditions",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 250
+        }
+      },
+      {
+        "comment": "",
+        "key": "Decline",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 267
+        }
+      },
+      {
+        "comment": "",
+        "key": "Accept & Continue",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 283
+        }
+      }
+    ]
+  },
+  "version": 1
+}

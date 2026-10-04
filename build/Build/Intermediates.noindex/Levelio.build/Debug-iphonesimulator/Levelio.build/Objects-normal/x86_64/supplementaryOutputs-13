@@ -1,0 +1,23 @@
+{
+  "/Users/ireneancilla/Internship/Levelio/Levelio/PersistenceController.swift" : {
+    "const-values" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/PersistenceController.swiftconstvalues",
+    "dependencies" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/PersistenceController.d",
+    "diagnostics" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/PersistenceController.dia",
+    "object" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/PersistenceController.o",
+    "swift-dependencies" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/PersistenceController.swiftdeps"
+  },
+  "/Users/ireneancilla/Internship/Levelio/Levelio/SplashScreen.swift" : {
+    "const-values" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/SplashScreen.swiftconstvalues",
+    "dependencies" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/SplashScreen.d",
+    "diagnostics" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/SplashScreen.dia",
+    "object" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/SplashScreen.o",
+    "swift-dependencies" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/SplashScreen.swiftdeps"
+  },
+  "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/DerivedSources/CoreDataGenerated/Levelio/Levelio+CoreDataModel.swift" : {
+    "const-values" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/Levelio+CoreDataModel.swiftconstvalues",
+    "dependencies" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/Levelio+CoreDataModel.d",
+    "diagnostics" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/Levelio+CoreDataModel.dia",
+    "object" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/Levelio+CoreDataModel.o",
+    "swift-dependencies" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/Levelio+CoreDataModel.swiftdeps"
+  }
+}

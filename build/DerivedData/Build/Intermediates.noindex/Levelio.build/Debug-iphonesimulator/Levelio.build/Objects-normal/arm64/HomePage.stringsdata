@@ -1,0 +1,152 @@
+{
+  "source": "/Users/ireneancilla/Internship/Levelio/Levelio/view/HomePage.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Home",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 29
+        }
+      },
+      {
+        "comment": "",
+        "key": "Stats",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 36
+        }
+      },
+      {
+        "comment": "",
+        "key": "Add",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 43
+        }
+      },
+      {
+        "comment": "",
+        "key": "Challenges",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 50
+        }
+      },
+      {
+        "comment": "",
+        "key": "Profile",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 57
+        }
+      },
+      {
+        "comment": "",
+        "key": "Morning, %@!",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 186
+        }
+      },
+      {
+        "comment": "",
+        "key": "Monday, 20 April 2026",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 190
+        }
+      },
+      {
+        "comment": "",
+        "key": "Udin’s Evolution Journey",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 239
+        }
+      },
+      {
+        "comment": "",
+        "key": "Level 1: Egg",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 304
+        }
+      },
+      {
+        "comment": "",
+        "key": "150 / 400 XP",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 310
+        }
+      },
+      {
+        "comment": "",
+        "key": "250 XP left to hatch into",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 333
+        }
+      },
+      {
+        "comment": "",
+        "key": "Hatchling",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 334
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 371
+        }
+      },
+      {
+        "comment": "",
+        "key": "No active habits right now",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 387
+        }
+      },
+      {
+        "comment": "",
+        "key": "No completed habits yet",
+        "location": {
+          "startingColumn": 81,
+          "startingLine": 387
+        }
+      },
+      {
+        "comment": "",
+        "key": "+%lldXP",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 435
+        }
+      },
+      {
+        "comment": "",
+        "key": "+%lldXP",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 444
+        }
+      },
+      {
+        "comment": "",
+        "key": "Completed!",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 448
+        }
+      }
+    ]
+  },
+  "version": 1
+}

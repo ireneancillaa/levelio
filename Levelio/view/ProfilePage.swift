@@ -6,12 +6,19 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ProfilePage: View {
+    @Environment(\.managedObjectContext) private var viewContext
     @AppStorage("isUserLoggedIn") private var isUserLoggedIn = true
-    @State private var selectedGender = "Prefer not to say"
     
     var user: UserEntity?
+    
+    @State private var fullName: String = ""
+    @State private var birthDate: Date = Date()
+    @State private var selectedGender: String = "Prefer not to say"
+    @State private var isEditingName: Bool = false
+    @State private var isEditingBirthDate: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -33,13 +40,12 @@ struct ProfilePage: View {
                             .padding(.leading, 32) // Mengompensasi jarak agar teks tetap di tengah
                         Spacer()
                         
-                        Button(action: {
+                        Button {
                             isUserLoggedIn = false
-                        }) {
+                        } label: {
                             Image(systemName: "rectangle.portrait.and.arrow.forward")
-                                .font(.system(size: 20, weight: .semibold))
-                                .foregroundColor(.white)
                         }
+                        .buttonStyle(.glassCircle)
                     }
                     .frame(height: 55)
                     .padding(.horizontal, 24)
@@ -60,7 +66,7 @@ struct ProfilePage: View {
                                 .overlay(Circle().stroke(Color.white.opacity(0.2), lineWidth: 1))
                             
                             VStack(alignment: .leading, spacing: 4) {
-                                Text(user?.fullName ?? "Explorer")
+                                Text(fullName.isEmpty ? (user?.fullName ?? "Explorer") : fullName)
                                     .font(.system(size: 20, weight: .bold))
                                     .foregroundColor(.white)
                                 Text(user?.levelioId ?? "LV00000")
@@ -219,7 +225,7 @@ struct ProfilePage: View {
                                     .font(.system(size: 16, weight: .bold))
                                     .foregroundColor(.white)
                                 
-                                // Row 1: Name
+                                // Row 1: Name (Editable)
                                 HStack(spacing: 12) {
                                     ZStack {
                                         Circle()
@@ -230,11 +236,40 @@ struct ProfilePage: View {
                                             .font(.system(size: 12, weight: .bold))
                                             .foregroundColor(.white.opacity(0.8))
                                     }
-                                    Text(user?.fullName ?? "Explorer")
-                                    Spacer()
-                                    Image(systemName: "pencil")
-                                        .font(.system(size: 14))
-                                        .foregroundColor(.gray)
+                                    
+                                    if isEditingName {
+                                        TextField("Full Name", text: $fullName, onCommit: {
+                                            isEditingName = false
+                                            saveProfile()
+                                        })
+                                        .font(.system(size: 15, weight: .medium))
+                                        .foregroundColor(.white)
+                                        
+                                        Spacer()
+                                        
+                                        Button(action: {
+                                            isEditingName = false
+                                            saveProfile()
+                                        }) {
+                                            Image(systemName: "checkmark.circle.fill")
+                                                .font(.system(size: 18, weight: .bold))
+                                                .foregroundColor(Color("secondary"))
+                                        }
+                                    } else {
+                                        Text(fullName.isEmpty ? (user?.fullName ?? "Explorer") : fullName)
+                                            .font(.system(size: 15, weight: .medium))
+                                            .foregroundColor(.white)
+                                        
+                                        Spacer()
+                                        
+                                        Button(action: {
+                                            isEditingName = true
+                                        }) {
+                                            Image(systemName: "pencil")
+                                                .font(.system(size: 14))
+                                                .foregroundColor(.gray)
+                                        }
+                                    }
                                 }
                                 .padding(.horizontal, 16)
                                 .frame(height: 52)
@@ -242,7 +277,7 @@ struct ProfilePage: View {
                                 .cornerRadius(25)
                                 .overlay(RoundedRectangle(cornerRadius: 25).stroke(Color.white.opacity(0.08), lineWidth: 1))
                                 
-                                // Row 2: Email
+                                // Row 2: Email (Read only)
                                 HStack(spacing: 12) {
                                     ZStack {
                                         Circle()
@@ -262,41 +297,81 @@ struct ProfilePage: View {
                                 .cornerRadius(25)
                                 .overlay(RoundedRectangle(cornerRadius: 25).stroke(Color.white.opacity(0.08), lineWidth: 1))
                                 
-                                // Row 3: Birth Date
-                                HStack(spacing: 12) {
-                                    ZStack {
-                                        Circle()
-                                            .fill(Color.white.opacity(0.1))
-                                            .frame(width: 32, height: 32)
-                                            .overlay(Circle().stroke(Color.white.opacity(0.15), lineWidth: 1))
-                                        Image(systemName: "birthday.cake")
-                                            .font(.system(size: 12, weight: .bold))
-                                            .foregroundColor(.white.opacity(0.8))
+                                // Row 3: Birth Date (Editable with Graphical DatePicker)
+                                VStack(spacing: 0) {
+                                    HStack(spacing: 12) {
+                                        ZStack {
+                                            Circle()
+                                                .fill(Color.white.opacity(0.1))
+                                                .frame(width: 32, height: 32)
+                                                .overlay(Circle().stroke(Color.white.opacity(0.15), lineWidth: 1))
+                                            Image(systemName: "birthday.cake")
+                                                .font(.system(size: 12, weight: .bold))
+                                                .foregroundColor(.white.opacity(0.8))
+                                        }
+                                        
+                                        Text(formattedDate(birthDate))
+                                            .font(.system(size: 15, weight: .medium))
+                                            .foregroundColor(.white)
+                                        
+                                        Spacer()
+                                        
+                                        Button(action: {
+                                            withAnimation(.easeInOut(duration: 0.2)) {
+                                                isEditingBirthDate.toggle()
+                                            }
+                                        }) {
+                                            Image(systemName: isEditingBirthDate ? "checkmark.circle.fill" : "pencil")
+                                                .font(.system(size: isEditingBirthDate ? 18 : 14, weight: isEditingBirthDate ? .bold : .regular))
+                                                .foregroundColor(isEditingBirthDate ? Color("secondary") : .gray)
+                                        }
                                     }
-                                    Text("12-03-2004")
-                                    Spacer()
+                                    .padding(.horizontal, 16)
+                                    .frame(height: 52)
+                                    
+                                    if isEditingBirthDate {
+                                        Divider()
+                                            .background(Color.white.opacity(0.1))
+                                        
+                                        DatePicker("", selection: $birthDate, displayedComponents: .date)
+                                            .datePickerStyle(.graphical)
+                                            .colorScheme(.dark)
+                                            .tint(Color("secondary"))
+                                            .padding(.horizontal, 12)
+                                            .padding(.vertical, 8)
+                                            .onChange(of: birthDate) {
+                                                saveProfile()
+                                            }
+                                    }
                                 }
-                                .padding(.horizontal, 16)
-                                .frame(height: 52)
                                 .background(Color.white.opacity(0.04))
                                 .cornerRadius(25)
                                 .overlay(RoundedRectangle(cornerRadius: 25).stroke(Color.white.opacity(0.08), lineWidth: 1))
                                 
-                                // Row 4: Gender Dropdown Menu
+                                // Row 4: Gender Dropdown Menu (Editable)
                                 Menu {
-                                    Button(action: { selectedGender = "Prefer not to say" }) {
+                                    Button(action: {
+                                        selectedGender = "Prefer not to say"
+                                        saveProfile()
+                                    }) {
                                         HStack {
                                             Text("Prefer not to say")
                                             if selectedGender == "Prefer not to say" { Image(systemName: "checkmark") }
                                         }
                                     }
-                                    Button(action: { selectedGender = "Female" }) {
+                                    Button(action: {
+                                        selectedGender = "Female"
+                                        saveProfile()
+                                    }) {
                                         HStack {
                                             Text("Female")
                                             if selectedGender == "Female" { Image(systemName: "checkmark") }
                                         }
                                     }
-                                    Button(action: { selectedGender = "Male" }) {
+                                    Button(action: {
+                                        selectedGender = "Male"
+                                        saveProfile()
+                                    }) {
                                         HStack {
                                             Text("Male")
                                             if selectedGender == "Male" { Image(systemName: "checkmark") }
@@ -335,15 +410,48 @@ struct ProfilePage: View {
                             .foregroundColor(.white)
                         }
                         .padding(.horizontal, 24)
-                        // Mengubah jarak atas ScrollView internal ke 24 agar sejajar rapi di bawah baris Stat Matrix
                         .padding(.top, 24)
                         .padding(.bottom, 110)
                     }
-                    .clipped() // Mengunci pemotongan scroll tepat di bawah Stat Matrix Card bawaan
+                    .clipped()
                 }
             }
             .preferredColorScheme(.dark)
+            .onAppear {
+                populateUserData()
+            }
+            .onChange(of: user) {
+                populateUserData()
+            }
         }
+    }
+    
+    private func populateUserData() {
+        guard let user = user else { return }
+        fullName = user.fullName ?? ""
+        selectedGender = user.gender ?? "Prefer not to say"
+        if let bDate = user.birthDate {
+            birthDate = bDate
+        }
+    }
+    
+    private func saveProfile() {
+        guard let user = user else { return }
+        user.fullName = fullName
+        user.gender = selectedGender
+        user.birthDate = birthDate
+        
+        do {
+            try viewContext.save()
+        } catch {
+            print("Failed to save user profile: \(error)")
+        }
+    }
+    
+    private func formattedDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy"
+        return formatter.string(from: date)
     }
 }
 

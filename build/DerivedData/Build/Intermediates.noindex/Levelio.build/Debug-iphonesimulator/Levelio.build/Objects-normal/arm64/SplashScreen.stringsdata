@@ -1,0 +1,24 @@
+{
+  "source": "/Users/ireneancilla/Internship/Levelio/Levelio/SplashScreen.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Get Started",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 116
+        }
+      },
+      {
+        "comment": "",
+        "key": "Skip",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 134
+        }
+      }
+    ]
+  },
+  "version": 1
+}

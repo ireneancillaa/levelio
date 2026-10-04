@@ -1,0 +1,23 @@
+{
+  "/Users/ireneancilla/Internship/Levelio/Levelio/model/Habit.swift" : {
+    "const-values" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/Habit.swiftconstvalues",
+    "dependencies" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/Habit.d",
+    "diagnostics" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/Habit.dia",
+    "object" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/Habit.o",
+    "swift-dependencies" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/Habit.swiftdeps"
+  },
+  "/Users/ireneancilla/Internship/Levelio/Levelio/model/HabitStore.swift" : {
+    "const-values" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/HabitStore.swiftconstvalues",
+    "dependencies" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/HabitStore.d",
+    "diagnostics" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/HabitStore.dia",
+    "object" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/HabitStore.o",
+    "swift-dependencies" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/HabitStore.swiftdeps"
+  },
+  "/Users/ireneancilla/Internship/Levelio/Levelio/utils/View+Extensions.swift" : {
+    "const-values" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/View+Extensions.swiftconstvalues",
+    "dependencies" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/View+Extensions.d",
+    "diagnostics" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/View+Extensions.dia",
+    "object" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/View+Extensions.o",
+    "swift-dependencies" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/x86_64/View+Extensions.swiftdeps"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "/Users/ireneancilla/Internship/Levelio/Levelio/auth/ForgotPasswordPage.swift" : {
+    "const-values" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/ForgotPasswordPage.swiftconstvalues",
+    "dependencies" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/ForgotPasswordPage.d",
+    "diagnostics" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/ForgotPasswordPage.dia",
+    "object" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/ForgotPasswordPage.o",
+    "swift-dependencies" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/ForgotPasswordPage.swiftdeps"
+  },
+  "/Users/ireneancilla/Internship/Levelio/Levelio/auth/OtpPage.swift" : {
+    "const-values" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/OtpPage.swiftconstvalues",
+    "dependencies" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/OtpPage.d",
+    "diagnostics" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/OtpPage.dia",
+    "object" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/OtpPage.o",
+    "swift-dependencies" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/OtpPage.swiftdeps"
+  },
+  "/Users/ireneancilla/Internship/Levelio/Levelio/auth/SignInPage.swift" : {
+    "const-values" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/SignInPage.swiftconstvalues",
+    "dependencies" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/SignInPage.d",
+    "diagnostics" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/SignInPage.dia",
+    "object" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/SignInPage.o",
+    "swift-dependencies" : "/Users/ireneancilla/Internship/Levelio/build/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/SignInPage.swiftdeps"
+  }
+}

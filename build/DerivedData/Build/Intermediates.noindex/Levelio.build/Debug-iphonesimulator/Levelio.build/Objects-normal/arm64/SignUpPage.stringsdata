@@ -1,0 +1,192 @@
+{
+  "source": "/Users/ireneancilla/Internship/Levelio/Levelio/auth/SignUpPage.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Create Account",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 65
+        }
+      },
+      {
+        "comment": "",
+        "key": "Join us to start your journey!",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 69
+        }
+      },
+      {
+        "comment": "",
+        "key": "Full Name",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 80
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enter your full name",
+        "location": {
+          "startingColumn": 81,
+          "startingLine": 89
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 89
+        }
+      },
+      {
+        "comment": "",
+        "key": "Email",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 118
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enter your email",
+        "location": {
+          "startingColumn": 78,
+          "startingLine": 127
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 127
+        }
+      },
+      {
+        "comment": "",
+        "key": "Password",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 157
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enter your password",
+        "location": {
+          "startingColumn": 85,
+          "startingLine": 167
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enter your password",
+        "location": {
+          "startingColumn": 87,
+          "startingLine": 176
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 51,
+          "startingLine": 167
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 53,
+          "startingLine": 176
+        }
+      },
+      {
+        "comment": "",
+        "key": "Confirm Password",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 212
+        }
+      },
+      {
+        "comment": "",
+        "key": "Re-enter your password",
+        "location": {
+          "startingColumn": 92,
+          "startingLine": 222
+        }
+      },
+      {
+        "comment": "",
+        "key": "Re-enter your password",
+        "location": {
+          "startingColumn": 94,
+          "startingLine": 231
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 51,
+          "startingLine": 222
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 53,
+          "startingLine": 231
+        }
+      },
+      {
+        "comment": "",
+        "key": "I agree to",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 283
+        }
+      },
+      {
+        "comment": "",
+        "key": "Terms and Conditions",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 290
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sign Up",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 322
+        }
+      },
+      {
+        "comment": "",
+        "key": "Already have an account?",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 333
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sign In.",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 338
+        }
+      }
+    ]
+  },
+  "version": 1
+}

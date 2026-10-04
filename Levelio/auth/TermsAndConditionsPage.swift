@@ -74,82 +74,76 @@ struct TermsAndConditionsPage: View {
             VStack(spacing: 0) {
                 
                 // --- 1. TOP NAVIGATION BAR ---
-                ZStack {
-                    HStack {
-                        Button(action: {
-                            activePage = .signUp
-                        }) {
-                            HStack(spacing: 6) {
-                                Image(systemName: "chevron.left")
-                                    .font(.system(size: 16, weight: .bold))
-                                Text("Back")
-                                    .font(.system(size: 16, weight: .semibold))
-                            }
-                            .foregroundColor(.white)
-                        }
-                        Spacer()
+                HStack {
+                    Button {
+                        activePage = .signUp
+                    } label: {
+                        Image(systemName: "chevron.left")
                     }
+                    .buttonStyle(.glassCircle)
                     
-                    Text("Terms of Service")
-                        .font(.system(size: 18, weight: .bold))
-                        .foregroundColor(.white)
+                    Spacer()
                 }
                 .padding(.horizontal, 24)
                 .padding(.top, 50)
-                .padding(.bottom, 16)
+                .padding(.bottom, 12)
                 
-                // --- 2. MAIN SCROLLABLE CONTENT ---
+                // --- 2. HEADER & AT A GLANCE (STATIC / UN-SCROLLED) ---
+                VStack(spacing: 12) {
+                    // HERO HEADER
+                    VStack(spacing: 8) {
+                        ZStack {
+                            Circle()
+                                .fill(Color.cyan.opacity(0.15))
+                                .frame(width: 75, height: 75)
+                                .blur(radius: 10)
+                            
+                            Image("dino-book")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 100)
+                        }
+                        
+                        Text("Terms & Conditions")
+                            .font(.system(size: 24, weight: .heavy))
+                            .foregroundColor(.white)
+                        
+                        Text("Please read and accept our community guidelines to level up your habits.")
+                            .font(.system(size: 13, weight: .medium))
+                            .foregroundColor(.gray)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 12)
+                    }
+                    .frame(maxWidth: .infinity)
+                    
+                    // QUICK HIGHLIGHTS BOX (AT A GLANCE)
+                    VStack(alignment: .leading, spacing: 10) {
+                        HStack(spacing: 6) {
+                            Image(systemName: "sparkles")
+                                .foregroundColor(.cyan)
+                            Text("AT A GLANCE")
+                                .font(.system(size: 12, weight: .black))
+                                .foregroundColor(.cyan)
+                        }
+                        
+                        HStack(spacing: 6) {
+                            HighlightPill(icon: "shield.fill", text: "Fair Play")
+                            HighlightPill(icon: "lock.fill", text: "Private Data")
+                            HighlightPill(icon: "star.fill", text: "XP Rewards")
+                        }
+                    }
+                    .padding(.all, 12)
+                    .background(Color.white.opacity(0.04))
+                    .cornerRadius(14)
+                    .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.white.opacity(0.1), lineWidth: 1))
+                }
+                .padding(.horizontal, 20)
+                .padding(.bottom, 12)
+                
+                // --- 3. MAIN SCROLLABLE CONTENT (SECTIONS ONLY) ---
                 ScrollViewReader { proxy in
                     ScrollView(.vertical, showsIndicators: true) {
-                        VStack(alignment: .leading, spacing: 18) {
-                            
-                            // HERO HEADER
-                            VStack(spacing: 12) {
-                                ZStack {
-                                    Circle()
-                                        .fill(Color.cyan.opacity(0.15))
-                                        .frame(width: 90, height: 90)
-                                        .blur(radius: 10)
-                                    
-                                    Image("dino-book")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(height: 90)
-                                }
-                                
-                                Text("Terms & Conditions")
-                                    .font(.system(size: 26, weight: .heavy))
-                                    .foregroundColor(.white)
-                                
-                                Text("Please read and accept our community guidelines to level up your habits.")
-                                    .font(.system(size: 14, weight: .medium))
-                                    .foregroundColor(.gray)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.horizontal, 12)
-                            }
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 6)
-                            
-                            // QUICK HIGHLIGHTS BOX (AT A GLANCE)
-                            VStack(alignment: .leading, spacing: 10) {
-                                HStack(spacing: 6) {
-                                    Image(systemName: "sparkles")
-                                        .foregroundColor(.cyan)
-                                    Text("AT A GLANCE")
-                                        .font(.system(size: 12, weight: .black))
-                                        .foregroundColor(.cyan)
-                                }
-                                
-                                HStack(spacing: 8) {
-                                    HighlightPill(icon: "shield.fill", text: "Fair Play")
-                                    HighlightPill(icon: "lock.fill", text: "Private Data")
-                                    HighlightPill(icon: "star.fill", text: "XP Rewards")
-                                }
-                            }
-                            .padding(.all, 14)
-                            .background(Color.white.opacity(0.04))
-                            .cornerRadius(14)
-                            .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.white.opacity(0.1), lineWidth: 1))
+                        VStack(alignment: .leading, spacing: 14) {
                             
                             // SECTION CARDS DOKUMEN HUKUM
                             ForEach(sections) { sec in
@@ -178,7 +172,7 @@ struct TermsAndConditionsPage: View {
                                 .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.white.opacity(0.08), lineWidth: 1))
                             }
                             
-                            // CALLOUT NOTICE AT BOTTOM
+                            // CALLOUT NOTICE AT BOTTOM (DENGAN MARKER PERSISI SAMA)
                             HStack(spacing: 12) {
                                 Image(systemName: "info.circle.fill")
                                     .font(.system(size: 18))
@@ -192,20 +186,20 @@ struct TermsAndConditionsPage: View {
                             .background(Color.cyan.opacity(0.1))
                             .cornerRadius(12)
                             .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.cyan.opacity(0.3), lineWidth: 1))
-                            
-                            // Scroll Bottom Marker
-                            GeometryReader { geo in
-                                Color.clear
-                                    .preference(
-                                        key: ScrollOffsetPreferenceKey.self,
-                                        value: geo.frame(in: .named("scrollSpace")).maxY
-                                    )
-                            }
-                            .frame(height: 1)
                             .id("bottomMarker")
+                            .background(
+                                GeometryReader { geo in
+                                    Color.clear
+                                        .preference(
+                                            key: ScrollOffsetPreferenceKey.self,
+                                            value: geo.frame(in: .named("scrollSpace")).maxY
+                                        )
+                                }
+                            )
                         }
-                        .padding(.horizontal, 24)
-                        .padding(.bottom, 20)
+                        .padding(.horizontal, 20)
+                        .padding(.top, 4)
+                        .padding(.bottom, 12)
                     }
                     .coordinateSpace(name: "scrollSpace")
                     .onPreferenceChange(ScrollOffsetPreferenceKey.self) { maxY in
@@ -218,7 +212,7 @@ struct TermsAndConditionsPage: View {
                     }
                     .onChange(of: isAutoScrollEnabled) { _, newValue in
                         if newValue {
-                            withAnimation(.easeInOut(duration: 3.0)) {
+                            withAnimation(.easeInOut(duration: 0.8)) {
                                 proxy.scrollTo("bottomMarker", anchor: .bottom)
                             }
                         }
@@ -256,6 +250,9 @@ struct TermsAndConditionsPage: View {
                             Text("I have read and agree to the Terms & Conditions")
                                 .font(.system(size: 13, weight: .medium))
                                 .foregroundColor(.white)
+                                .lineLimit(2)
+                                .minimumScaleFactor(0.85)
+                                .multilineTextAlignment(.leading)
                             
                             Spacer()
                         }
@@ -263,12 +260,14 @@ struct TermsAndConditionsPage: View {
                     .buttonStyle(PlainButtonStyle())
                     
                     // Action Buttons
-                    HStack(spacing: 12) {
+                    HStack(spacing: 10) {
                         Button(action: {
                             activePage = .signUp
                         }) {
                             Text("Decline")
                                 .font(.system(size: 15, weight: .bold))
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.85)
                                 .foregroundColor(.white.opacity(0.7))
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 50)
@@ -283,6 +282,8 @@ struct TermsAndConditionsPage: View {
                         }) {
                             Text("Accept & Continue")
                                 .font(.system(size: 15, weight: .bold))
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.8)
                                 .foregroundColor((isCheckboxChecked || hasScrolledToBottom) ? .black : .white.opacity(0.3))
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 50)
@@ -292,9 +293,9 @@ struct TermsAndConditionsPage: View {
                         .disabled(!isCheckboxChecked && !hasScrolledToBottom)
                     }
                 }
-                .padding(.horizontal, 24)
+                .padding(.horizontal, 20)
                 .padding(.top, 14)
-                .padding(.bottom, 40)
+                .padding(.bottom, 34)
                 .background(
                     Color.black.opacity(0.3)
                         .blur(radius: 10)
@@ -313,16 +314,18 @@ struct HighlightPill: View {
     let text: String
     
     var body: some View {
-        HStack(spacing: 6) {
+        HStack(spacing: 5) {
             Image(systemName: icon)
-                .font(.system(size: 12))
+                .font(.system(size: 11, weight: .bold))
                 .foregroundColor(.cyan)
             Text(text)
-                .font(.system(size: 12, weight: .semibold))
+                .font(.system(size: 11, weight: .semibold))
                 .foregroundColor(.white)
+                .lineLimit(1)
+                .minimumScaleFactor(0.75)
         }
-        .padding(.horizontal, 8)
-        .padding(.vertical, 6)
+        .padding(.horizontal, 6)
+        .padding(.vertical, 8)
         .frame(maxWidth: .infinity)
         .background(Color.white.opacity(0.06))
         .cornerRadius(10)

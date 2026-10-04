@@ -88,11 +88,6 @@ struct SplashScreen: View {
                         }
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                    /*
-                       TRICK UTAMA: Menambahkan .id(currentPage) memaksa TabView memperbarui
-                       tampilannya secara instan saat tombol 'Skip' mengubah nilai state.
-                    */
-                    .id(currentPage)
                     
                     Spacer()
                     
@@ -104,7 +99,7 @@ struct SplashScreen: View {
                                 .frame(width: currentPage == index ? 24 : 12, height: 4)
                         }
                     }
-                    .animation(.easeInOut, value: currentPage)
+                    .animation(.spring(response: 0.4, dampingFraction: 0.75), value: currentPage)
                     .padding(.bottom, 40)
                     
                     // Bagian Tombol Aksi
@@ -113,11 +108,13 @@ struct SplashScreen: View {
                         
                         Button(action: {
                             if isLastPage {
-                                navigateToWelcome = true
+                                withAnimation(.easeInOut(duration: 0.3)) {
+                                    navigateToWelcome = true
+                                }
                             }
                         }) {
                             Text("Get Started")
-                                .font(.system(size: 16, weight: .semibold))
+                               .font(.system(size: 16, weight: .semibold))
                                 .foregroundColor(isLastPage ? .black : .gray)
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 50)
@@ -126,10 +123,11 @@ struct SplashScreen: View {
                                 .padding(.horizontal, 24)
                         }
                         .disabled(!isLastPage)
+                        .animation(.easeInOut(duration: 0.3), value: isLastPage)
                         
                         Button(action: {
-                            // Memicu perpindahan halaman ke index terakhir dengan animasi bawaan iOS
-                            withAnimation(.easeInOut(duration: 0.4)) {
+                            // Memicu perpindahan halaman ke index terakhir dengan animasi spring yang halus
+                            withAnimation(.spring(response: 0.45, dampingFraction: 0.85)) {
                                 currentPage = carouselItems.count - 1
                             }
                         }) {
@@ -139,15 +137,17 @@ struct SplashScreen: View {
                                 .opacity(isLastPage ? 0 : 1)
                         }
                         .disabled(isLastPage)
+                        .animation(.easeInOut(duration: 0.3), value: isLastPage)
                     }
                     .padding(.bottom, 50)
                 }
             }
-            // Mengatur transparansi seluruh hierarki ZStack berdasarkan state animasi
+            // Mengatur transparansi dan skala seluruh hierarki ZStack untuk transisi masuk yang halus
             .opacity(isViewAppeared ? 1.0 : 0.0)
-            // Memicu perubahan state transisi menjadi tampak (fade-in) saat layar dimuat
+            .scaleEffect(isViewAppeared ? 1.0 : 0.96)
+            // Memicu perubahan state transisi menjadi tampak (fade-in & scale) saat layar dimuat
             .onAppear {
-                withAnimation(.easeIn(duration: 0.6)) {
+                withAnimation(.easeOut(duration: 0.7)) {
                     isViewAppeared = true
                 }
             }
