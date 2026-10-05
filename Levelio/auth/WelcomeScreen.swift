@@ -87,6 +87,8 @@ struct WelcomeScreen: View {
                 .padding(.bottom, 40)
             }
         }
+        .navigationBarBackButtonHidden(true)
+        .toolbar(.hidden, for: .navigationBar)
         .navigationDestination(item: $activePage) { page in
             switch page {
             case .signIn:
