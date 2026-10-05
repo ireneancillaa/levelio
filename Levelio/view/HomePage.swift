@@ -152,7 +152,9 @@ struct HomeTabContent: View {
                             status: .active,
                             habits: store.habits.filter { !$0.isCompleted },
                             onToggle: { habit in
-                                store.toggleCompletion(for: habit.id)
+                                if let habitId = habit.habitId {
+                                    store.toggleCompletion(for: habitId)
+                                }
                             }
                         )
                         
@@ -161,7 +163,9 @@ struct HomeTabContent: View {
                             status: .completed,
                             habits: store.habits.filter { $0.isCompleted },
                             onToggle: { habit in
-                                store.toggleCompletion(for: habit.id)
+                                if let habitId = habit.habitId {
+                                    store.toggleCompletion(for: habitId)
+                                }
                             }
                         )
                         
@@ -356,8 +360,8 @@ enum HabitStatus {
 struct HabitSectionView: View {
     let title: String
     let status: HabitStatus
-    let habits: [Habit]
-    let onToggle: (Habit) -> Void
+    let habits: [HabitEntity]
+    let onToggle: (HabitEntity) -> Void
     
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
@@ -406,7 +410,7 @@ struct HabitSectionView: View {
 }
 
 struct HabitRowCard: View {
-    let habit: Habit
+    let habit: HabitEntity
     let status: HabitStatus
     let onToggle: () -> Void
     
@@ -419,11 +423,11 @@ struct HabitRowCard: View {
                     .frame(width: 20, height: 20)
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(habit.title)
+                    Text(habit.title ?? "Untitled Habit")
                         .font(.system(size: 15, weight: .bold))
                         .foregroundColor(.white)
                     
-                    Text(habit.time)
+                    Text(habit.time ?? "08.00am")
                         .font(.system(size: 12, weight: .medium))
                         .foregroundColor(.gray)
                 }

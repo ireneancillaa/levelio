@@ -8,63 +8,48 @@
 import Foundation
 import SwiftUI
 import Combine
+import CoreData
 
 @MainActor
 class HabitStore: ObservableObject {
-    @Published var habits: [Habit] = [] {
-        didSet {
-            saveHabits()
-        }
-    }
+    private let viewContext: NSManagedObjectContext
+    
+    @Published var habits: [HabitEntity] = []
     
     private let userDefaultsKey = "levelio_user_habits_data"
     
     init() {
+        self.viewContext = PersistenceController.shared.container.viewContext
+        loadHabits()
+    }
+    
+    init(context: NSManagedObjectContext) {
+        self.viewContext = context
         loadHabits()
     }
     
     // MARK: - Persistence Logic
     private func loadHabits() {
-        if let data = UserDefaults.standard.data(forKey: userDefaultsKey),
-           let decoded = try? JSONDecoder().decode([Habit].self, from: data) {
-            self.habits = decoded
-        } else {
-            // Seed initial sample habits if first launch
-            self.habits = [
-                Habit(
-                    title: "Morning Yoga",
-                    description: "Stretch and relax for 15 minutes",
-                    colorName: "cyan",
-                    frequency: "Daily",
-                    time: "08.00am",
-                    isCompleted: false,
-                    xpReward: 50
-                ),
-                Habit(
-                    title: "Read 10 Pages",
-                    description: "Daily reading before sleep",
-                    colorName: "purple",
-                    frequency: "Daily",
-                    time: "09.00pm",
-                    isCompleted: true,
-                    xpReward: 50
-                ),
-                Habit(
-                    title: "Jalan jalan sama iren",
-                    description: "Kalo ga jalan nanti ngamuk",
-                    colorName: "cyan",
-                    frequency: "Daily",
-                    time: "09.00pm",
-                    isCompleted: true,
-                    xpReward: 1000
-                ),
-            ]
+        guard let userIdString = UserDefaults.standard.string(forKey: "currentUserId"),
+              let userUUID = UUID(uuidString: userIdString) else {
+            print("Error: currentUserId not found")
+            self.habits = []
+            return
         }
-    }
-    
-    private func saveHabits() {
-        if let encoded = try? JSONEncoder().encode(habits) {
-            UserDefaults.standard.set(encoded, forKey: userDefaultsKey)
+        
+        let request: NSFetchRequest<HabitEntity> = HabitEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "userId == %@", userUUID as CVarArg)
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \HabitEntity.title, ascending: true)]
+        
+        do {
+            let fetchedHabits = try viewContext.fetch(request)
+            
+            withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+                self.habits = fetchedHabits
+            }
+        } catch {
+            print("Failed to fetch habits: \(error.localizedDescription)")
+            self.habits = []
         }
     }
     
@@ -73,32 +58,60 @@ class HabitStore: ObservableObject {
         let trimmedTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmedTitle.isEmpty else { return }
         
-        let newHabit = Habit(
-            title: trimmedTitle,
-            description: description.trimmingCharacters(in: .whitespacesAndNewlines),
-            colorName: colorName,
-            frequency: frequency,
-            time: time,
-            isCompleted: false,
-            xpReward: 50
-        )
+        guard let userIdString = UserDefaults.standard.string(forKey: "currentUserId"),
+              let userUUID = UUID(uuidString: userIdString) else {
+            print("Error: currentUserId not found")
+            return
+        }
         
-        withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
-            habits.insert(newHabit, at: 0)
+        let newHabit = HabitEntity(context: viewContext)
+            newHabit.habitId = UUID()
+            newHabit.userId = userUUID
+            newHabit.title = trimmedTitle
+            newHabit.desc = description.trimmingCharacters(in: .whitespacesAndNewlines)
+            newHabit.colorName = colorName
+            newHabit.frequency = frequency
+            newHabit.time = time
+            newHabit.isCompleted = false
+            newHabit.xpReward = 100
+        
+        do {
+            try viewContext.save()
+            
+            withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+                loadHabits()
+            }
+        } catch {
+            print("Failed to save habit to CoreData: \(error.localizedDescription)")
         }
     }
     
     func toggleCompletion(for habitID: UUID) {
-        if let index = habits.firstIndex(where: { $0.id == habitID }) {
+        if let habit = habits.first(where: { $0.habitId == habitID }) {
             withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
-                habits[index].isCompleted.toggle()
+                objectWillChange.send()
+                habit.isCompleted.toggle()
+                saveContext()
             }
         }
     }
     
     func deleteHabit(id: UUID) {
+        if let habitToDelete = habits.first(where: {$0.habitId == id}) {
+            viewContext.delete(habitToDelete)
+            saveContext()
+        }
+        
         withAnimation {
-            habits.removeAll(where: { $0.id == id })
+            loadHabits()
+        }
+    }
+    
+    private func saveContext() {
+        do {
+            try viewContext.save()
+        } catch {
+            print("Failed to save context: \(error.localizedDescription)")
         }
     }
 }
