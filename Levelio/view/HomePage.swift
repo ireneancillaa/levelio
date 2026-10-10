@@ -191,6 +191,13 @@ struct HomeTabContent: View {
 struct HeaderView: View {
     var user: UserEntity?
     
+    var formattedToday: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, d MMMM yyyy"
+        formatter.locale = Locale(identifier: "en_US")
+        return formatter.string(from: Date())
+    }
+    
     var body: some View {
         HStack(alignment: .center) {
             VStack(alignment: .leading, spacing: 4) {
@@ -198,7 +205,7 @@ struct HeaderView: View {
                     .font(.system(size: 26, weight: .heavy))
                     .foregroundColor(.white)
                 
-                Text("Monday, 20 April 2026")
+                Text(formattedToday)
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(.gray)
             }
