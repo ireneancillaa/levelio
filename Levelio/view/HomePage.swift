@@ -10,11 +10,10 @@ import CoreData
 
 struct HomePage: View {
     @AppStorage("currentUserId") private var currentUserId = ""
-    private let sharedPersistenceContext = PersistenceController.shared.container.viewContext
     
     static let sharedHabitService = HabitService(context: PersistenceController.shared.container.viewContext)
+    static let sharedHabitStore = HabitStore()
     
-    @StateObject private var habitStore = HabitStore()
     @Environment(\.managedObjectContext) private var viewContext
     @State private var selectedTab = 0
     @State private var currentUser: UserEntity?
@@ -28,7 +27,7 @@ struct HomePage: View {
             
             // --- TAB 0: HOME ---
             HomeTabContent(
-                store: habitStore,
+                store: HomePage.sharedHabitStore,
                 habitService: HomePage.sharedHabitService,
                 user: currentUser
             )
@@ -102,7 +101,7 @@ struct HomePage: View {
         // 4. KUNCI UTAMA: Memanggil AddPage dengan pembungkus NavigationStack dari luar
         .fullScreenCover(isPresented: $isPresentingAddPage) {
             NavigationStack {
-                AddPage(store: habitStore)
+                AddPage(store: HomePage.sharedHabitStore)
             }
         }
     }
@@ -158,7 +157,7 @@ struct HomeTabContent: View {
                         HabitSectionView(
                             title: "Today's Progress",
                             status: .active,
-                            habits: habitService.loadHabits().filter { !$0.isCompleted },
+                            habits: store.habits.filter { !$0.isCompleted },
                             onToggle: { habit in
                                 if let habitId = habit.habitId {
                                     store.toggleCompletion(for: habitId)
@@ -169,7 +168,7 @@ struct HomeTabContent: View {
                         HabitSectionView(
                             title: "Past Progress",
                             status: .completed,
-                            habits: habitService.loadHabits().filter { $0.isCompleted },
+                            habits: store.habits.filter { $0.isCompleted },
                             onToggle: { habit in
                                 if let habitId = habit.habitId {
                                     store.toggleCompletion(for: habitId)

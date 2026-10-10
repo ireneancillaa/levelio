@@ -209,7 +209,7 @@ struct AddPage: View {
                         showValidationError = true
                     } else {
                         do {
-                            try HabitService.shared.addHabit(
+                            store.addHabit(
                                 title: trimmed,
                                 description: description,
                                 colorName: "cyan",
@@ -277,6 +277,6 @@ struct AddPage: View {
 
 #Preview {
     NavigationStack {
-        AddPage(store: HabitStore())
+        AddPage(store: HomePage.sharedHabitStore)
     }
 }
