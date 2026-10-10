@@ -57,8 +57,15 @@ struct HomePage: View {
                 }
                 .tag(3)
             
+            let context = PersistenceController.shared.container.viewContext
+            let userService = UserService(context: context)
+            
             // --- TAB 4: PROFILE ---
-            ProfilePage(user: currentUser, habitService: HomePage.sharedHabitService)
+            ProfilePage(
+                user: currentUser,
+                habitService: HomePage.sharedHabitService,
+                userService: userService
+            )
                 .tabItem {
                     Label("Profile", systemImage: selectedTab == 4 ? "person.fill" : "person")
                 }
