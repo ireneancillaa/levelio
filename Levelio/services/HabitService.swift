@@ -125,6 +125,16 @@ class HabitService {
         return loadHabits().filter { $0.isCompleted == isCompleted }
     }
     
+    // MARK: - Active Habit Count
+    
+    /// Menghitung jumlah habit yang aktif (belum completed).
+    /// Habit aktif = habit dengan isCompleted == false.
+    /// - Returns: Jumlah habit yang masih aktif.
+    func getActiveHabitCount() -> Int {
+        let allHabits = loadHabits()
+        return allHabits.filter { !$0.isCompleted }.count
+    }
+    
     // MARK: - Private Helpers
     
     private func saveContext() throws {

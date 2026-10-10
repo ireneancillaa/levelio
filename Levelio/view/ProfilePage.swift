@@ -7,12 +7,14 @@
 
 import SwiftUI
 import CoreData
+import Combine
 
 struct ProfilePage: View {
     @Environment(\.managedObjectContext) private var viewContext
     @AppStorage("isUserLoggedIn") private var isUserLoggedIn = true
     
     var user: UserEntity?
+    var habitService: HabitService
     
     @State private var fullName: String = ""
     @State private var birthDate: Date = Date()
@@ -125,7 +127,7 @@ struct ProfilePage: View {
                             Divider().background(Color.white.opacity(0.2)).frame(height: 30)
                             
                             VStack(spacing: 6) {
-                                Text("🗓️ 10").font(.system(size: 16, weight: .bold))
+                                Text("🗓️ \(habitService.getActiveHabitCount())").font(.system(size: 16, weight: .bold))
                                 Text("Active").font(.system(size: 12, weight: .medium)).foregroundColor(.gray)
                             }.frame(maxWidth: .infinity)
                         }
@@ -455,6 +457,19 @@ struct ProfilePage: View {
     }
 }
 
+@MainActor
+class PreviewViewModel: ObservableObject {
+    @Published var user: UserEntity?
+    @Published var habitService: HabitService
+    
+    init() {
+        let context = PersistenceController.shared.container.viewContext
+        self.habitService = HabitService(context: context)
+        self.user = UserEntity()
+    }
+}
+
 #Preview {
-    ProfilePage()
+    let viewModel = PreviewViewModel()
+    return ProfilePage(user: viewModel.user, habitService: viewModel.habitService)
 }

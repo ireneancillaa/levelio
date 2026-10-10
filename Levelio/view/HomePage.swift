@@ -58,7 +58,7 @@ struct HomePage: View {
                 .tag(3)
             
             // --- TAB 4: PROFILE ---
-            ProfilePage(user: currentUser)
+            ProfilePage(user: currentUser, habitService: HomePage.sharedHabitService)
                 .tabItem {
                     Label("Profile", systemImage: selectedTab == 4 ? "person.fill" : "person")
                 }
