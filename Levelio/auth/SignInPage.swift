@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import CoreData
+import Foundation
 
 struct SignInPage: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -262,32 +262,41 @@ struct SignInPage: View {
             
             // Eksekusi jika valid
             if isValid {
-                loginUser()
+                Task {
+                    do {
+                        try await loginUser()
+                    } catch let error as AuthError {
+                        emailError = error.errorDescription
+                    } catch {
+                        emailError = "Email or Password incorrect"
+                    }
+                }
             }
         }
     }
     
-    private func loginUser() {
-        let request: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "email ==[c] %@ AND password == %@", email, password)
-        request.fetchLimit = 1
+    private func loginUser() async throws -> String {
+        let context = viewContext
+        let userService = UserService(context: context)
         
         do {
-            let result = try viewContext.fetch(request)
-            
-            if let user = result.first {
-                currentUserId = user.id?.uuidString ?? ""
-                
-                withAnimation(.easeInOut(duration: 0.25)) {
-                    isUserLoggedIn = true
-                }
-            } else {
-                emailError = "Email or Password incorrect"
-            }
+            let userId = try await userService.loginUser(email: email, password: password)
+            // Update status login global
+            isUserLoggedIn = true
+            currentUserId = userId
+            // Redirect ke halaman awal (bypass auth)
+            activePage = nil
+            return userId
+        } catch let error as AuthError {
+            emailError = error.errorDescription
+            return ""
         } catch {
             emailError = "Email or Password incorrect"
+            return ""
         }
     }
+    
+
 }
 
 #Preview {

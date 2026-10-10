@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import CoreData
+import Foundation
 
 struct FilesUserDefaultsHelper {
     static func getTermsStatus() -> Bool {
@@ -414,54 +414,43 @@ struct SignUpPage: View {
             
             // Eksekusi jika seluruh form valid
             if isValid {
-                registerUser()
+                Task {
+                    do {
+                        try await registerUser()
+                    } catch let error as AuthError {
+                        emailError = error.errorDescription
+                    } catch {
+                        emailError = "Failed to save account. Please try again."
+                    }
+                }
             }
         }
     }
     
-    private func registerUser() {
-        let request: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "email ==[c] %@", email)
+    private func registerUser() async throws -> String {
+        let context = viewContext
+        let userService = UserService(context: context)
         
         do {
-            let existingUser = try viewContext.fetch(request)
-            if !existingUser.isEmpty {
-                emailError = "Email already registered"
-                return
-            }
-            
-            let levelioId = generateLevelioId()
-            let assignedRole = email.contains("dev.co.id") ? "developer" : "user"
-            
-            let newUser = UserEntity(context: viewContext)
-            newUser.id = UUID()
-            newUser.fullName = fullName
-            newUser.email = email
-            newUser.password = password
-            newUser.levelioId = levelioId
-            newUser.role = assignedRole
-            newUser.createdDate = Date()
-            
-            try viewContext.save()
-            
-            currentUserId = newUser.id?.uuidString ?? ""
-            
-            withAnimation(.easeInOut(duration: 0.25)) {
-                isUserLoggedIn = true
-            }
+            let userId = try await userService.registerUser(fullName: fullName, email: email, password: password)
+            // Update status login global
+            isUserLoggedIn = true
+            currentUserId = userId
+            // Redirect ke halaman awal (bypass auth)
+            activePage = nil
+            return userId
+        } catch let error as AuthError {
+            emailError = error.errorDescription
+            return ""
         } catch {
             emailError = "Failed to save account. Please try again."
+            return ""
         }
     }
     
-    private func generateLevelioId() -> String {
-        var generatedId = ""
-        let randomNumber = Int.random(in: 0...99999)
-        
-        generatedId = String(format: "LV%05d", randomNumber)
-        
-        return generatedId
-    }
+
+    
+
 }
 
 #Preview {
