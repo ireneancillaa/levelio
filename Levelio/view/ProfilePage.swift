@@ -131,7 +131,7 @@ struct ProfilePage: View {
                             Divider().background(Color.white.opacity(0.2)).frame(height: 30)
                             
                             VStack(spacing: 6) {
-                                Text("🎯 40%").font(.system(size: 16, weight: .bold))
+                                Text("🎯 \(habitService.calculateCompletionPercentage())%").font(.system(size: 16, weight: .bold))
                                 Text("Completion").font(.system(size: 12, weight: .medium)).foregroundColor(.gray)
                             }.frame(maxWidth: .infinity)
                             

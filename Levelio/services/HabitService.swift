@@ -135,6 +135,28 @@ class HabitService {
         return allHabits.filter { !$0.isCompleted }.count
     }
     
+    // MARK: - Completion Calculation
+    
+    /// Menghitung completion percentage dari habit user.
+    /// - Formula: (Total Habit Completed / Total Habit) × 100
+    /// - Returns: Integer 0-100, atau 0 jika tidak ada habit sama sekali.
+    func calculateCompletionPercentage() -> Int {
+        let allHabits = loadHabits()
+        
+        // Jika tidak ada habit, return 0%
+        guard !allHabits.isEmpty else {
+            return 0
+        }
+        
+        let totalHabits = allHabits.count
+        let completedHabits = allHabits.filter { $0.isCompleted }.count
+        
+        // Hitung percentage dengan pembulatan ke integer terdekat
+        let percentage = Int(Double(completedHabits) / Double(totalHabits) * 100)
+        
+        return percentage
+    }
+    
     // MARK: - Private Helpers
     
     private func saveContext() throws {
