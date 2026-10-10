@@ -157,9 +157,9 @@ struct AddPage: View {
                         .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.white.opacity(0.1), lineWidth: 1))
                     }
                     
-                    // SECTION 3: UDIN'S PROGRESS
+                    // SECTION 3: YOUR PROGRESS
                     VStack(alignment: .leading, spacing: 12) {
-                        Text("Udin’s Progress")
+                        Text("Your Progress")
                             .font(.system(size: 18, weight: .bold))
                             .foregroundColor(.white)
                         

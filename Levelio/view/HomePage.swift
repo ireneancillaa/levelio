@@ -120,7 +120,7 @@ struct HomePage: View {
 struct HomeTabContent: View {
     @ObservedObject var store: HabitStore
     var habitService: HabitService
-    var user: UserEntity?
+    let user: UserEntity?
     
     var body: some View {
         ZStack {
@@ -143,7 +143,7 @@ struct HomeTabContent: View {
                 VStack(alignment: .leading, spacing: 25) {
                     EggHeroSection()
                     
-                    EvolutionJourneyTimeline()
+                    EvolutionJourneyTimeline(user: user)
                     
                     XpProgressCard()
                 }
@@ -245,9 +245,11 @@ struct EggHeroSection: View {
 
 // MARK: - 3. EVOLUTION JOURNEY TIMELINE
 struct EvolutionJourneyTimeline: View {
+    let user: UserEntity?
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
-            Text("Udin’s Evolution Journey")
+            Text("\(self.user?.fullName ?? "")'s Evolution Journey")
                 .font(.system(size: 20, weight: .bold))
                 .foregroundColor(.white)
             
