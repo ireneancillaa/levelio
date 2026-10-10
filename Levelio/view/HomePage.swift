@@ -9,10 +9,13 @@ import SwiftUI
 import CoreData
 
 struct HomePage: View {
-    @Environment(\.managedObjectContext) private var viewContext
     @AppStorage("currentUserId") private var currentUserId = ""
+    private let sharedPersistenceContext = PersistenceController.shared.container.viewContext
+    
+    static let sharedHabitService = HabitService(context: PersistenceController.shared.container.viewContext)
     
     @StateObject private var habitStore = HabitStore()
+    @Environment(\.managedObjectContext) private var viewContext
     @State private var selectedTab = 0
     @State private var currentUser: UserEntity?
     
@@ -24,7 +27,11 @@ struct HomePage: View {
         TabView(selection: $selectedTab) {
             
             // --- TAB 0: HOME ---
-            HomeTabContent(store: habitStore, user: currentUser)
+            HomeTabContent(
+                store: habitStore,
+                habitService: HomePage.sharedHabitService,
+                user: currentUser
+            )
                 .tabItem {
                     Label("Home", systemImage: selectedTab == 0 ? "house.fill" : "house")
                 }
@@ -113,6 +120,7 @@ struct HomePage: View {
 // MARK: - KONTEN UTAMA HALAMAN HOME
 struct HomeTabContent: View {
     @ObservedObject var store: HabitStore
+    var habitService: HabitService
     var user: UserEntity?
     
     var body: some View {
@@ -150,7 +158,7 @@ struct HomeTabContent: View {
                         HabitSectionView(
                             title: "Today's Progress",
                             status: .active,
-                            habits: store.habits.filter { !$0.isCompleted },
+                            habits: habitService.loadHabits().filter { !$0.isCompleted },
                             onToggle: { habit in
                                 if let habitId = habit.habitId {
                                     store.toggleCompletion(for: habitId)
@@ -161,7 +169,7 @@ struct HomeTabContent: View {
                         HabitSectionView(
                             title: "Past Progress",
                             status: .completed,
-                            habits: store.habits.filter { $0.isCompleted },
+                            habits: habitService.loadHabits().filter { $0.isCompleted },
                             onToggle: { habit in
                                 if let habitId = habit.habitId {
                                     store.toggleCompletion(for: habitId)

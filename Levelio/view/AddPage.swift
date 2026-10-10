@@ -208,14 +208,18 @@ struct AddPage: View {
                     if trimmed.isEmpty {
                         showValidationError = true
                     } else {
-                        store.addHabit(
-                            title: trimmed,
-                            description: description,
-                            colorName: "cyan",
-                            frequency: frequency,
-                            time: reminderTime
-                        )
-                        dismiss()
+                        do {
+                            try HabitService.shared.addHabit(
+                                title: trimmed,
+                                description: description,
+                                colorName: "cyan",
+                                frequency: frequency,
+                                time: reminderTime
+                            )
+                            dismiss()
+                        } catch {
+                            showValidationError = true
+                        }
                     }
                 }) {
                     Text("Create Habit")

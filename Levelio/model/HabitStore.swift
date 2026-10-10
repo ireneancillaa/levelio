@@ -10,108 +10,70 @@ import SwiftUI
 import Combine
 import CoreData
 
+/// Store untuk state management habits.
+/// Setelah refactor: HANYA menangani @Published state dan delegasi ke HabitService.
 @MainActor
 class HabitStore: ObservableObject {
-    private let viewContext: NSManagedObjectContext
     
+    private let habitService: HabitService
+    
+    /// State yang dipublish ke UI.
     @Published var habits: [HabitEntity] = []
     
-    private let userDefaultsKey = "levelio_user_habits_data"
+    // MARK: - Initialization
     
     init() {
-        self.viewContext = PersistenceController.shared.container.viewContext
+        self.habitService = .shared
         loadHabits()
     }
     
+    /// Convenience initializer dengan custom context.
     init(context: NSManagedObjectContext) {
-        self.viewContext = context
+        self.habitService = HabitService(context: context)
         loadHabits()
     }
     
-    // MARK: - Persistence Logic
-    private func loadHabits() {
-        guard let userIdString = UserDefaults.standard.string(forKey: "currentUserId"),
-              let userUUID = UUID(uuidString: userIdString) else {
-            print("Error: currentUserId not found")
-            self.habits = []
-            return
-        }
-        
-        let request: NSFetchRequest<HabitEntity> = HabitEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "userId == %@", userUUID as CVarArg)
-        request.sortDescriptors = [NSSortDescriptor(keyPath: \HabitEntity.title, ascending: true)]
-        
-        do {
-            let fetchedHabits = try viewContext.fetch(request)
-            
-            withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
-                self.habits = fetchedHabits
-            }
-        } catch {
-            print("Failed to fetch habits: \(error.localizedDescription)")
-            self.habits = []
-        }
-    }
+    // MARK: - Actions
     
-    // MARK: - CRUD Actions
+    /// Add new habit by delegating to service and refreshing state.
     func addHabit(title: String, description: String, colorName: String = "cyan", frequency: String = "Daily", time: String = "08.00am") {
-        let trimmedTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmedTitle.isEmpty else { return }
-        
-        guard let userIdString = UserDefaults.standard.string(forKey: "currentUserId"),
-              let userUUID = UUID(uuidString: userIdString) else {
-            print("Error: currentUserId not found")
-            return
-        }
-        
-        let newHabit = HabitEntity(context: viewContext)
-            newHabit.habitId = UUID()
-            newHabit.userId = userUUID
-            newHabit.title = trimmedTitle
-            newHabit.desc = description.trimmingCharacters(in: .whitespacesAndNewlines)
-            newHabit.colorName = colorName
-            newHabit.frequency = frequency
-            newHabit.time = time
-            newHabit.isCompleted = false
-            newHabit.xpReward = 100
-        
         do {
-            try viewContext.save()
-            
-            withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
-                loadHabits()
-            }
-        } catch {
-            print("Failed to save habit to CoreData: \(error.localizedDescription)")
-        }
-    }
-    
-    func toggleCompletion(for habitID: UUID) {
-        if let habit = habits.first(where: { $0.habitId == habitID }) {
-            withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
-                objectWillChange.send()
-                habit.isCompleted.toggle()
-                saveContext()
-            }
-        }
-    }
-    
-    func deleteHabit(id: UUID) {
-        if let habitToDelete = habits.first(where: {$0.habitId == id}) {
-            viewContext.delete(habitToDelete)
-            saveContext()
-        }
-        
-        withAnimation {
+            let _ = try habitService.addHabit(
+                title: title,
+                description: description,
+                colorName: colorName,
+                frequency: frequency,
+                time: time
+            )
             loadHabits()
+        } catch {
+            print("Failed to add habit: \(error.localizedDescription)")
         }
     }
     
-    private func saveContext() {
+    /// Toggle completion status by delegating to service and refreshing state.
+    func toggleCompletion(for habitID: UUID) {
         do {
-            try viewContext.save()
+            try habitService.toggleCompletion(for: habitID)
+            loadHabits()
         } catch {
-            print("Failed to save context: \(error.localizedDescription)")
+            print("Failed to toggle habit: \(error.localizedDescription)")
         }
+    }
+    
+    /// Delete habit by delegating to service and refreshing state.
+    func deleteHabit(id: UUID) {
+        do {
+            try habitService.deleteHabit(id: id)
+            loadHabits()
+        } catch {
+            print("Failed to delete habit: \(error.localizedDescription)")
+        }
+    }
+    
+    // MARK: - Private
+    
+    private func loadHabits() {
+        habits = habitService.loadHabits()
     }
 }
