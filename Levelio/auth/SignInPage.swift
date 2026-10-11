@@ -225,6 +225,8 @@ struct SignInPage: View {
             .ignoresSafeArea(.keyboard, edges: .bottom)
         }
         .contentShape(Rectangle())
+        .navigationBarBackButtonHidden(true)
+        .toolbar(.hidden, for: .navigationBar)
         .onTapGesture {
             hideKeyboard()
         }

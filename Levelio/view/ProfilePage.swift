@@ -117,7 +117,7 @@ struct ProfilePage: View {
                         // QUICK STATS MATRIX CARD (4 Kolom dengan Pembagi Garis)
                         HStack(spacing: 0) {
                             VStack(spacing: 6) {
-                                Text("🔥 \(user?.streak ?? 0)").font(.system(size: 16, weight: .bold))
+                                Text("🔥 \(user != nil ? habitService.calculateCurrentStreak(for: user!) : 0)").font(.system(size: 16, weight: .bold))
                                 Text("Streak").font(.system(size: 12, weight: .medium)).foregroundColor(.gray)
                             }.frame(maxWidth: .infinity)
                             

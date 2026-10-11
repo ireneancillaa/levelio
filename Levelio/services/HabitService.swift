@@ -27,14 +27,6 @@ class HabitService {
     // MARK: - CRUD Operations
     
     /// Menambahkan habit baru ke user yang sedang login.
-    /// - Parameters:
-    ///   - title: Nama habit (wajib tidak kosong).
-    ///   - description: Deskripsi habit (opsional).
-    ///   - colorName: Warna habit dari Assets.xcassets.
-    ///   - frequency: Frekuensi pelaksanaan ("Daily" atau "Weekly").
-    ///   - time: Waktu pengingat dalam format "HH.mmam"/"HH.mmpm".
-    /// - Returns: UUID dari habit yang baru dibuat.
-    /// - Throws: Error jika user tidak ditemukan atau save gagal.
     func addHabit(title: String, description: String, colorName: String = "cyan", frequency: String = "Daily", time: String = "08.00am") throws -> UUID {
         let trimmedTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmedTitle.isEmpty else {
@@ -63,23 +55,32 @@ class HabitService {
     }
     
     /// Toggle status completed habit.
-    /// - Parameter habitID: UUID dari habit yang ingin ditoggle.
     func toggleCompletion(for habitID: UUID) throws {
         let request: NSFetchRequest<HabitEntity> = HabitEntity.fetchRequest()
         request.predicate = NSPredicate(format: "habitId == %@", habitID as CVarArg)
         request.fetchLimit = 1
         
         guard let habit = try viewContext.fetch(request).first else {
-            print("Error: habit with ID \(habitID) not found")
             throw HabitError.habitNotFound(habitID)
         }
         
         habit.isCompleted.toggle()
+        
+        // Update streak jika habit dicentang menjadi completed
+        if habit.isCompleted {
+            let userRequest: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
+            if let userId = habit.userId {
+                userRequest.predicate = NSPredicate(format: "id == %@", userId as CVarArg)
+                if let user = try viewContext.fetch(userRequest).first {
+                    updateStreak(for: user)
+                }
+            }
+        }
+        
         try saveContext()
     }
     
     /// Menghapus habit berdasarkan ID.
-    /// - Parameter id: UUID dari habit yang ingin dihapus.
     func deleteHabit(id: UUID) throws {
         let request: NSFetchRequest<HabitEntity> = HabitEntity.fetchRequest()
         request.predicate = NSPredicate(format: "habitId == %@", id as CVarArg)
@@ -97,7 +98,6 @@ class HabitService {
     // MARK: - Persistence & Fetching
     
     /// Memuat semua habit untuk user yang sedang login.
-    /// - Returns: Array habit terurut berdasarkan title (ascending).
     func loadHabits() -> [HabitEntity] {
         guard let userIdString = UserDefaults.standard.string(forKey: "currentUserId"),
               let userUUID = UUID(uuidString: userIdString) else {
@@ -119,8 +119,6 @@ class HabitService {
     }
     
     /// Filter habit berdasarkan status completed.
-    /// - Parameter isCompleted: true untuk past progress, false untuk today's progress.
-    /// - Returns: Array habit sesuai filter.
     func habitsByStatus(isCompleted: Bool) -> [HabitEntity] {
         return loadHabits().filter { $0.isCompleted == isCompleted }
     }
@@ -128,8 +126,6 @@ class HabitService {
     // MARK: - Active Habit Count
     
     /// Menghitung jumlah habit yang aktif (belum completed).
-    /// Habit aktif = habit dengan isCompleted == false.
-    /// - Returns: Jumlah habit yang masih aktif.
     func getActiveHabitCount() -> Int {
         let allHabits = loadHabits()
         return allHabits.filter { !$0.isCompleted }.count
@@ -138,12 +134,9 @@ class HabitService {
     // MARK: - Completion Calculation
     
     /// Menghitung completion percentage dari habit user.
-    /// - Formula: (Total Habit Completed / Total Habit) × 100
-    /// - Returns: Integer 0-100, atau 0 jika tidak ada habit sama sekali.
     func calculateCompletionPercentage() -> Int {
         let allHabits = loadHabits()
         
-        // Jika tidak ada habit, return 0%
         guard !allHabits.isEmpty else {
             return 0
         }
@@ -151,10 +144,51 @@ class HabitService {
         let totalHabits = allHabits.count
         let completedHabits = allHabits.filter { $0.isCompleted }.count
         
-        // Hitung percentage dengan pembulatan ke integer terdekat
         let percentage = Int(Double(completedHabits) / Double(totalHabits) * 100)
-        
         return percentage
+    }
+    
+    // MARK: - Streak Calculation & Updates
+
+    /// Menghitung dan meng-update streak user secara otomatis
+    func updateStreak(for user: UserEntity) {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        
+        guard let lastActive = user.lastActiveDate.map({ calendar.startOfDay(for: $0) }) else {
+            user.streak = 1
+            user.lastActiveDate = Date()
+            return
+        }
+        
+        let numberOfDays = calendar.dateComponents([.day], from: lastActive, to: today).day ?? 0
+        
+        if numberOfDays == 1 {
+            user.streak += 1
+            user.lastActiveDate = Date()
+        } else if numberOfDays > 1 {
+            user.streak = 1
+            user.lastActiveDate = Date()
+        }
+    }
+    
+    /// Helper untuk mengecek jika streak hangus/reset saat user membuka aplikasi di hari baru
+    func calculateCurrentStreak(for user: UserEntity) -> Int {
+        guard let lastActive = user.lastActiveDate else { return 0 }
+        
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        let lastActiveDay = calendar.startOfDay(for: lastActive)
+        
+        let numberOfDays = calendar.dateComponents([.day], from: lastActiveDay, to: today).day ?? 0
+        
+        if numberOfDays > 1 {
+            user.streak = 0
+            try? viewContext.save()
+            return 0
+        }
+        
+        return Int(user.streak)
     }
     
     // MARK: - Private Helpers

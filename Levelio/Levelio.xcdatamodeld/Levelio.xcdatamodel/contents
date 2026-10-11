@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="25249" systemVersion="25G83" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="25249" systemVersion="26A434" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
     <entity name="HabitEntity" representedClassName="HabitEntity" syncable="YES" codeGenerationType="class">
         <attribute name="colorName" attributeType="String"/>
         <attribute name="desc" attributeType="String"/>
@@ -18,6 +18,7 @@
         <attribute name="fullName" attributeType="String"/>
         <attribute name="gender" attributeType="String" defaultValueString="Prefer not to say"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lastActiveDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="levelioId" attributeType="String" spotlightIndexingEnabled="YES"/>
         <attribute name="password" attributeType="String"/>
         <attribute name="role" attributeType="String"/>
