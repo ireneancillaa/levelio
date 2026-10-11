@@ -7,18 +7,31 @@
 
 import SwiftUI
 import CoreData
+import Combine
 
 struct ProfilePage: View {
     @Environment(\.managedObjectContext) private var viewContext
     @AppStorage("isUserLoggedIn") private var isUserLoggedIn = true
     
     var user: UserEntity?
+    var habitService: HabitService
+    var userService: UserService
     
     @State private var fullName: String = ""
     @State private var birthDate: Date = Date()
     @State private var selectedGender: String = "Prefer not to say"
     @State private var isEditingName: Bool = false
     @State private var isEditingBirthDate: Bool = false
+    
+    private var formattedBirthDateString: String {
+        userService.formattedDate(birthDate)
+    }
+    
+    private var levelersSinceString: String {
+        user?.createdDate?.formatted(
+            .dateTime.month(.wide).day().year().locale(Locale(identifier: "en_US"))
+        ) ?? "-"
+    }
     
     var body: some View {
         NavigationStack {
@@ -104,7 +117,7 @@ struct ProfilePage: View {
                         // QUICK STATS MATRIX CARD (4 Kolom dengan Pembagi Garis)
                         HStack(spacing: 0) {
                             VStack(spacing: 6) {
-                                Text("🔥 \(user?.streak ?? 0)").font(.system(size: 16, weight: .bold))
+                                Text("🔥 \(user != nil ? habitService.calculateCurrentStreak(for: user!) : 0)").font(.system(size: 16, weight: .bold))
                                 Text("Streak").font(.system(size: 12, weight: .medium)).foregroundColor(.gray)
                             }.frame(maxWidth: .infinity)
                             
@@ -118,14 +131,14 @@ struct ProfilePage: View {
                             Divider().background(Color.white.opacity(0.2)).frame(height: 30)
                             
                             VStack(spacing: 6) {
-                                Text("🎯 40%").font(.system(size: 16, weight: .bold))
+                                Text("🎯 \(habitService.calculateCompletionPercentage())%").font(.system(size: 16, weight: .bold))
                                 Text("Completion").font(.system(size: 12, weight: .medium)).foregroundColor(.gray)
                             }.frame(maxWidth: .infinity)
                             
                             Divider().background(Color.white.opacity(0.2)).frame(height: 30)
                             
                             VStack(spacing: 6) {
-                                Text("🗓️ 10").font(.system(size: 16, weight: .bold))
+                                Text("🗓️ \(habitService.getActiveHabitCount())").font(.system(size: 16, weight: .bold))
                                 Text("Active").font(.system(size: 12, weight: .medium)).foregroundColor(.gray)
                             }.frame(maxWidth: .infinity)
                         }
@@ -203,11 +216,7 @@ struct ProfilePage: View {
                                             .font(.system(size: 12, weight: .bold))
                                             .foregroundColor(.white.opacity(0.8))
                                     }
-                                    Text(user?.createdDate?
-                                        .formatted(
-                                            .dateTime.month(.wide).day().year()
-                                            .locale(Locale(identifier: "en_US"))
-                                        ) ?? "-")
+                                    Text(levelersSinceString)
                                         .font(.system(size: 15, weight: .medium))
                                         .foregroundColor(.white)
                                 }
@@ -310,7 +319,7 @@ struct ProfilePage: View {
                                                 .foregroundColor(.white.opacity(0.8))
                                         }
                                         
-                                        Text(formattedDate(birthDate))
+                                        Text(formattedBirthDateString)
                                             .font(.system(size: 15, weight: .medium))
                                             .foregroundColor(.white)
                                         
@@ -339,7 +348,7 @@ struct ProfilePage: View {
                                             .tint(Color("secondary"))
                                             .padding(.horizontal, 12)
                                             .padding(.vertical, 8)
-                                            .onChange(of: birthDate) {
+                                            .onChange(of: birthDate) { _, _ in
                                                 saveProfile()
                                             }
                                     }
@@ -418,43 +427,58 @@ struct ProfilePage: View {
             }
             .preferredColorScheme(.dark)
             .onAppear {
-                populateUserData()
+                loadUserProfile()
             }
-            .onChange(of: user) {
-                populateUserData()
+            .onChange(of: user) { _, _ in
+                loadUserProfile()
             }
         }
     }
     
-    private func populateUserData() {
+    private func loadUserProfile() {
         guard let user = user else { return }
-        fullName = user.fullName ?? ""
-        selectedGender = user.gender ?? "Prefer not to say"
-        if let bDate = user.birthDate {
-            birthDate = bDate
-        }
+        let profile = userService.getUserProfile(user: user)
+        fullName = profile.fullName
+        selectedGender = profile.gender
+        birthDate = profile.birthDate ?? Date()
     }
     
     private func saveProfile() {
         guard let user = user else { return }
-        user.fullName = fullName
-        user.gender = selectedGender
-        user.birthDate = birthDate
-        
         do {
-            try viewContext.save()
+            try userService.saveUserProfile(
+                fullName: fullName,
+                gender: selectedGender,
+                birthDate: birthDate,
+                user: user
+            )
         } catch {
             print("Failed to save user profile: \(error)")
         }
     }
     
-    private func formattedDate(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-yyyy"
-        return formatter.string(from: date)
+}
+
+@MainActor
+class PreviewViewModel: ObservableObject {
+    @Published var user: UserEntity?
+    @Published var habitService: HabitService
+    private let userService: UserService
+    
+    init() {
+        let context = PersistenceController.shared.container.viewContext
+        self.userService = UserService(context: context)
+        self.habitService = HabitService(context: context)
+        self.user = UserEntity(context: context)
     }
 }
 
 #Preview {
-    ProfilePage()
+    let context = PersistenceController.shared.container.viewContext
+    return ProfilePage(
+        user: UserEntity(context: context),
+        habitService: HabitService(context: context),
+        userService: UserService(context: context)
+    )
+    .environment(\.managedObjectContext, context)
 }

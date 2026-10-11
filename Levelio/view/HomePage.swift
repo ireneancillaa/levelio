@@ -9,10 +9,12 @@ import SwiftUI
 import CoreData
 
 struct HomePage: View {
-    @Environment(\.managedObjectContext) private var viewContext
     @AppStorage("currentUserId") private var currentUserId = ""
     
-    @StateObject private var habitStore = HabitStore()
+    static let sharedHabitService = HabitService(context: PersistenceController.shared.container.viewContext)
+    static let sharedHabitStore = HabitStore()
+    
+    @Environment(\.managedObjectContext) private var viewContext
     @State private var selectedTab = 0
     @State private var currentUser: UserEntity?
     
@@ -24,7 +26,11 @@ struct HomePage: View {
         TabView(selection: $selectedTab) {
             
             // --- TAB 0: HOME ---
-            HomeTabContent(store: habitStore, user: currentUser)
+            HomeTabContent(
+                store: HomePage.sharedHabitStore,
+                habitService: HomePage.sharedHabitService,
+                user: currentUser
+            )
                 .tabItem {
                     Label("Home", systemImage: selectedTab == 0 ? "house.fill" : "house")
                 }
@@ -51,8 +57,15 @@ struct HomePage: View {
                 }
                 .tag(3)
             
+            let context = PersistenceController.shared.container.viewContext
+            let userService = UserService(context: context)
+            
             // --- TAB 4: PROFILE ---
-            ProfilePage(user: currentUser)
+            ProfilePage(
+                user: currentUser,
+                habitService: HomePage.sharedHabitService,
+                userService: userService
+            )
                 .tabItem {
                     Label("Profile", systemImage: selectedTab == 4 ? "person.fill" : "person")
                 }
@@ -95,7 +108,7 @@ struct HomePage: View {
         // 4. KUNCI UTAMA: Memanggil AddPage dengan pembungkus NavigationStack dari luar
         .fullScreenCover(isPresented: $isPresentingAddPage) {
             NavigationStack {
-                AddPage(store: habitStore)
+                AddPage(store: HomePage.sharedHabitStore)
             }
         }
     }
@@ -113,7 +126,8 @@ struct HomePage: View {
 // MARK: - KONTEN UTAMA HALAMAN HOME
 struct HomeTabContent: View {
     @ObservedObject var store: HabitStore
-    var user: UserEntity?
+    var habitService: HabitService
+    let user: UserEntity?
     
     var body: some View {
         ZStack {
@@ -136,7 +150,7 @@ struct HomeTabContent: View {
                 VStack(alignment: .leading, spacing: 25) {
                     EggHeroSection()
                     
-                    EvolutionJourneyTimeline()
+                    EvolutionJourneyTimeline(user: user)
                     
                     XpProgressCard()
                 }
@@ -184,6 +198,13 @@ struct HomeTabContent: View {
 struct HeaderView: View {
     var user: UserEntity?
     
+    var formattedToday: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, d MMMM yyyy"
+        formatter.locale = Locale(identifier: "en_US")
+        return formatter.string(from: Date())
+    }
+    
     var body: some View {
         HStack(alignment: .center) {
             VStack(alignment: .leading, spacing: 4) {
@@ -191,7 +212,7 @@ struct HeaderView: View {
                     .font(.system(size: 26, weight: .heavy))
                     .foregroundColor(.white)
                 
-                Text("Monday, 20 April 2026")
+                Text(formattedToday)
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(.gray)
             }
@@ -238,9 +259,11 @@ struct EggHeroSection: View {
 
 // MARK: - 3. EVOLUTION JOURNEY TIMELINE
 struct EvolutionJourneyTimeline: View {
+    let user: UserEntity?
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
-            Text("Udin’s Evolution Journey")
+            Text("\(self.user?.fullName ?? "")'s Evolution Journey")
                 .font(.system(size: 20, weight: .bold))
                 .foregroundColor(.white)
             
