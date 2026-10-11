@@ -8,8 +8,6 @@
 import Foundation
 import CoreData
 
-/// Service class untuk seluruh operasi habit (business logic).
-/// Single source of truth untuk CRUD dan persistence habits.
 @MainActor
 class HabitService {
     
@@ -21,12 +19,10 @@ class HabitService {
         self.viewContext = context
     }
     
-    /// Convenience initializer dengan shared PersistenceController.
+    // Convenience initializer dengan shared PersistenceController.
     static let shared = HabitService(context: PersistenceController.shared.container.viewContext)
     
     // MARK: - CRUD Operations
-    
-    /// Menambahkan habit baru ke user yang sedang login.
     func addHabit(title: String, description: String, colorName: String = "cyan", frequency: String = "Daily", time: String = "08.00am") throws -> UUID {
         let trimmedTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmedTitle.isEmpty else {
@@ -54,7 +50,6 @@ class HabitService {
         return newHabit.habitId!
     }
     
-    /// Toggle status completed habit.
     func toggleCompletion(for habitID: UUID) throws {
         let request: NSFetchRequest<HabitEntity> = HabitEntity.fetchRequest()
         request.predicate = NSPredicate(format: "habitId == %@", habitID as CVarArg)
@@ -80,7 +75,6 @@ class HabitService {
         try saveContext()
     }
     
-    /// Menghapus habit berdasarkan ID.
     func deleteHabit(id: UUID) throws {
         let request: NSFetchRequest<HabitEntity> = HabitEntity.fetchRequest()
         request.predicate = NSPredicate(format: "habitId == %@", id as CVarArg)
@@ -96,8 +90,6 @@ class HabitService {
     }
     
     // MARK: - Persistence & Fetching
-    
-    /// Memuat semua habit untuk user yang sedang login.
     func loadHabits() -> [HabitEntity] {
         guard let userIdString = UserDefaults.standard.string(forKey: "currentUserId"),
               let userUUID = UUID(uuidString: userIdString) else {
@@ -118,22 +110,17 @@ class HabitService {
         }
     }
     
-    /// Filter habit berdasarkan status completed.
     func habitsByStatus(isCompleted: Bool) -> [HabitEntity] {
         return loadHabits().filter { $0.isCompleted == isCompleted }
     }
     
     // MARK: - Active Habit Count
-    
-    /// Menghitung jumlah habit yang aktif (belum completed).
     func getActiveHabitCount() -> Int {
         let allHabits = loadHabits()
         return allHabits.filter { !$0.isCompleted }.count
     }
     
     // MARK: - Completion Calculation
-    
-    /// Menghitung completion percentage dari habit user.
     func calculateCompletionPercentage() -> Int {
         let allHabits = loadHabits()
         
@@ -149,8 +136,6 @@ class HabitService {
     }
     
     // MARK: - Streak Calculation & Updates
-
-    /// Menghitung dan meng-update streak user secara otomatis
     func updateStreak(for user: UserEntity) {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
@@ -172,7 +157,6 @@ class HabitService {
         }
     }
     
-    /// Helper untuk mengecek jika streak hangus/reset saat user membuka aplikasi di hari baru
     func calculateCurrentStreak(for user: UserEntity) -> Int {
         guard let lastActive = user.lastActiveDate else { return 0 }
         
@@ -192,7 +176,6 @@ class HabitService {
     }
     
     // MARK: - Private Helpers
-    
     private func saveContext() throws {
         do {
             try viewContext.save()
@@ -204,7 +187,6 @@ class HabitService {
 }
 
 // MARK: - Errors
-
 enum HabitError: Error, LocalizedError {
     case emptyHabitTitle
     case userNotFound

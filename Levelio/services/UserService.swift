@@ -56,13 +56,7 @@ class UserService {
             throw AuthError.saveFailed
         }
     }
-    
-    /// Menyimpan perubahan profile user ke database
-    /// - Parameters:
-    ///   - fullName: Nama lengkap user
-    ///   - gender: Gender pilihan user
-    ///   - birthDate: Tanggal lahir user
-    ///   - user: Entity yang akan diupdate
+
     func saveUserProfile(fullName: String, gender: String, birthDate: Date?, user: UserEntity) throws {
         user.fullName = fullName
         user.gender = gender
@@ -70,9 +64,7 @@ class UserService {
         
         try viewContext.save()
     }
-    
-    /// Mengambil data profile user dan melakukan mapping
-    /// - Parameter user: Entity yang sudah diambil dari database
+
     func getUserProfile(user: UserEntity) -> (fullName: String, gender: String, birthDate: Date?) {
         let fullName = user.fullName ?? ""
         let gender = user.gender ?? "Prefer not to say"
@@ -80,9 +72,6 @@ class UserService {
         return (fullName, gender, birthDate)
     }
     
-    /// Mengubah format tanggal menjadi string DD-MM-YYYY
-    /// - Parameter date: Tanggal yang akan diformat
-    /// - Returns: String dalam format DD-MM-YYYY
     func formattedDate(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yyyy"
