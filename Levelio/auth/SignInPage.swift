@@ -15,6 +15,7 @@ struct SignInPage: View {
     // Sinkronisasi status login global menggunakan penyimpanan internal iOS
     @AppStorage("isUserLoggedIn") private var isUserLoggedIn = false
     @AppStorage("currentUserId") private var currentUserId = ""
+    @AppStorage("currentUserName") private var currentUserName = ""
     
     @State private var email = ""
     @State private var password = ""
@@ -55,7 +56,7 @@ struct SignInPage: View {
                                     .foregroundColor(.gray.opacity(0.8))
                             }
                         }
-                        .padding(.top, 28)
+                        .padding(.top, 16)
                         
                         // 2. Form Input Area
                         VStack(spacing: 16) {
@@ -220,9 +221,9 @@ struct SignInPage: View {
                     }
                 }
                 .padding(.horizontal, 24)
-                .padding(.bottom, 40)
+                .padding(.top, 12)
+                .padding(.bottom, 24)
             }
-            .ignoresSafeArea(.keyboard, edges: .bottom)
         }
         .contentShape(Rectangle())
         .navigationBarBackButtonHidden(true)
@@ -264,38 +265,28 @@ struct SignInPage: View {
             
             // Eksekusi jika valid
             if isValid {
-                Task {
-                    do {
-                        try await loginUser()
-                    } catch let error as AuthError {
-                        emailError = error.errorDescription
-                    } catch {
-                        emailError = "Email or Password incorrect"
-                    }
+                do {
+                    try loginUser()
+                } catch let error as AuthError {
+                    emailError = error.errorDescription
+                } catch {
+                    emailError = "Email or Password incorrect"
                 }
             }
         }
     }
     
-    private func loginUser() async throws -> String {
+    private func loginUser() throws {
         let context = viewContext
         let userService = UserService(context: context)
         
-        do {
-            let userId = try await userService.loginUser(email: email, password: password)
-            // Update status login global
-            isUserLoggedIn = true
-            currentUserId = userId
-            // Redirect ke halaman awal (bypass auth)
-            activePage = nil
-            return userId
-        } catch let error as AuthError {
-            emailError = error.errorDescription
-            return ""
-        } catch {
-            emailError = "Email or Password incorrect"
-            return ""
-        }
+        let result = try userService.loginUser(email: email, password: password)
+        // Update status login global
+        currentUserId = result.userId
+        currentUserName = result.fullName
+        isUserLoggedIn = true
+        // Redirect ke halaman awal (bypass auth)
+        activePage = nil
     }
     
 

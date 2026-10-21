@@ -11,13 +11,45 @@ struct AddPage: View {
     @Environment(\.dismiss) private var dismiss
     @ObservedObject var store: HabitStore
     
+    struct HabitColorOption: Identifiable, Equatable {
+        let id: String
+        let name: String
+        let color: Color
+    }
+    
+    let colorOptions: [HabitColorOption] = [
+        HabitColorOption(id: "primary", name: "Primary", color: Color("primary")),
+        HabitColorOption(id: "secondary", name: "Secondary", color: Color("secondary")),
+        HabitColorOption(id: "tertiary", name: "Tertiary", color: Color("tertiary"))
+    ]
+    
     // --- STATE FORM DATA ---
     @State private var habitName = ""
     @State private var description = ""
-    @State private var selectedColor = Color.cyan
+    @State private var selectedColorName = "primary"
     @State private var frequency = "Daily"
-    @State private var reminderTime = "08.00am"
+    @State private var reminderDate: Date = {
+        var components = Calendar.current.dateComponents([.year, .month, .day], from: Date())
+        components.hour = 8
+        components.minute = 0
+        return Calendar.current.date(from: components) ?? Date()
+    }()
     @State private var showValidationError = false
+    
+    private var selectedColor: Color {
+        colorOptions.first(where: { $0.id == selectedColorName })?.color ?? Color("primary")
+    }
+    
+    private var currentStage: DinoStage {
+        DinoStage.stage(for: store.totalXP)
+    }
+    
+    private var formattedReminderTime: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "hh.mma"
+        formatter.locale = Locale(identifier: "en_US")
+        return formatter.string(from: reminderDate).lowercased()
+    }
     
     let frequencies = ["Daily", "Weekly"]
     
@@ -29,9 +61,36 @@ struct AddPage: View {
                 .scaledToFill()
                 .ignoresSafeArea()
             
-            // --- 1. SCROLLABLE FORM CONTENT ---
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack(alignment: .leading, spacing: 24) {
+            VStack(spacing: 0) {
+                // --- TOP APP BAR (NO BACKGROUND COLOR) ---
+                HStack {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                    }
+                    .buttonStyle(.glassCircle)
+                    
+                    Spacer()
+                    
+                    Text("New Habit")
+                        .font(.system(size: 24, weight: .black))
+                        .foregroundColor(.white)
+                    
+                    Spacer()
+                    
+                    // Spacer penyeimbang tombol back agar teks tetap presisi di tengah
+                    Color.clear
+                        .frame(width: 44, height: 44)
+                }
+                .frame(height: 55)
+                .padding(.horizontal, 24)
+                .padding(.top, 12)
+                .padding(.bottom, 12)
+                
+                // --- 1. SCROLLABLE FORM CONTENT ---
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(alignment: .leading, spacing: 24) {
                     
                     // SECTION 1: HABIT DETAIL
                     VStack(alignment: .leading, spacing: 12) {
@@ -85,14 +144,38 @@ struct AddPage: View {
                                 Text("Color")
                                     .foregroundColor(.white)
                                 Spacer()
-                                Circle()
-                                    .fill(selectedColor)
-                                    .frame(width: 22, height: 22)
-                                Image(systemName: "chevron.right")
-                                    .font(.system(size: 14, weight: .bold))
-                                    .foregroundColor(.gray)
+                                
+                                HStack(spacing: 8) {
+                                    ForEach(colorOptions) { option in
+                                        Button {
+                                            withAnimation(.spring(response: 0.25, dampingFraction: 0.7)) {
+                                                selectedColorName = option.id
+                                            }
+                                        } label: {
+                                            ZStack {
+                                                Circle()
+                                                    .fill(option.color)
+                                                    .frame(width: 24, height: 24)
+                                                
+                                                if selectedColorName == option.id {
+                                                    Circle()
+                                                        .stroke(Color.white, lineWidth: 2)
+                                                        .frame(width: 32, height: 32)
+                                                    
+                                                    Image(systemName: "checkmark")
+                                                        .font(.system(size: 10, weight: .bold))
+                                                        .foregroundColor(.white)
+                                                }
+                                            }
+                                            .frame(width: 44, height: 44)
+                                            .contentShape(Circle())
+                                        }
+                                        .buttonStyle(.plain)
+                                        .accessibilityLabel(Text(option.name))
+                                    }
+                                }
                             }
-                            .padding(.vertical, 16)
+                            .padding(.vertical, 8)
                         }
                         .padding(.horizontal, 16)
                         .background(
@@ -141,11 +224,16 @@ struct AddPage: View {
                                 Text("Reminder Time")
                                     .foregroundColor(.white)
                                 Spacer()
-                                Text(reminderTime)
-                                    .foregroundColor(.cyan)
-                                    .font(.system(size: 14, weight: .semibold))
+                                DatePicker(
+                                    "",
+                                    selection: $reminderDate,
+                                    displayedComponents: .hourAndMinute
+                                )
+                                .labelsHidden()
+                                .tint(.cyan)
+                                .colorScheme(.dark)
                             }
-                            .padding(.vertical, 16)
+                            .padding(.vertical, 12)
                         }
                         .padding(.horizontal, 16)
                         .background(
@@ -164,7 +252,7 @@ struct AddPage: View {
                             .foregroundColor(.white)
                         
                         HStack(spacing: 16) {
-                            Image("dino-egg-blue")
+                            Image(currentStage.imageName)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50, height: 60)
@@ -179,7 +267,7 @@ struct AddPage: View {
                                         .foregroundColor(.cyan)
                                 }
                                 
-                                Text("to boost your pet’s Productivity stat")
+                                Text("to grow your \(currentStage.name)")
                                     .font(.system(size: 13, weight: .medium))
                                     .foregroundColor(.gray)
                             }
@@ -196,10 +284,11 @@ struct AddPage: View {
                     }
                 }
                 .padding(.horizontal, 24)
-                .padding(.top, 50)
-                .padding(.bottom, 160)
+                .padding(.top, 10)
+                .padding(.bottom, 110)
             }
             .scrollDismissesKeyboard(.interactively)
+        }
             
             // --- 2. FIXED BOTTOM BUTTON AREA (Overlay di atas ScrollView) ---
             VStack {
@@ -208,18 +297,14 @@ struct AddPage: View {
                     if trimmed.isEmpty {
                         showValidationError = true
                     } else {
-                        do {
-                            store.addHabit(
-                                title: trimmed,
-                                description: description,
-                                colorName: "cyan",
-                                frequency: frequency,
-                                time: reminderTime
-                            )
-                            dismiss()
-                        } catch {
-                            showValidationError = true
-                        }
+                        store.addHabit(
+                            title: trimmed,
+                            description: description,
+                            colorName: selectedColorName,
+                            frequency: frequency,
+                            time: formattedReminderTime
+                        )
+                        dismiss()
                     }
                 }) {
                     Text("Create Habit")
@@ -238,7 +323,7 @@ struct AddPage: View {
                 }
                 .padding(.horizontal, 24)
                 .padding(.top, 12)
-                .padding(.bottom, 90)
+                .padding(.bottom, 24)
             }
             .background(
                 Color.black.opacity(0.4)
@@ -253,22 +338,8 @@ struct AddPage: View {
         }
         .preferredColorScheme(.dark)
         .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "chevron.left")
-                }
-                .buttonStyle(.glassCircle)
-            }
-            
-            ToolbarItem(placement: .principal) {
-                Text("New Habit")
-                    .font(.system(size: 24, weight: .black))
-                    .foregroundColor(.white)
-            }
-        }
+        .navigationBarHidden(true)
+        .toolbar(.hidden, for: .navigationBar)
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar(.hidden, for: .tabBar)
         .ignoresSafeArea(.keyboard, edges: .bottom)
@@ -276,7 +347,5 @@ struct AddPage: View {
 }
 
 #Preview {
-    NavigationStack {
-        AddPage(store: HomePage.sharedHabitStore)
-    }
+    AddPage(store: HomePage.sharedHabitStore)
 }

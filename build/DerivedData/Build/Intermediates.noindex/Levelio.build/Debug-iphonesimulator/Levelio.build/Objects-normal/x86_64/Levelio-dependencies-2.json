@@ -2,670 +2,670 @@
   {
     "isFramework" : true,
     "moduleName" : "Accessibility",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/Accessibility.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/Accessibility.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : true,
     "moduleName" : "Combine",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/Combine.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/Combine.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "CoreAudio",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/CoreAudio.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/CoreAudio.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : true,
     "moduleName" : "CoreData",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/CoreData.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/CoreData.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "CoreFoundation",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/CoreFoundation.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/CoreFoundation.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : true,
     "moduleName" : "CoreGraphics",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/CoreGraphics.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/CoreGraphics.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "CoreImage",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/CoreImage.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/CoreImage.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "CoreLocation",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/CoreLocation.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/CoreLocation.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : true,
     "moduleName" : "CoreMedia",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/CoreMedia.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/CoreMedia.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : true,
     "moduleName" : "CoreMotion",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/CoreMotion.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/CoreMotion.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : true,
     "moduleName" : "CoreText",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/CoreText.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/CoreText.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : true,
     "moduleName" : "CoreTransferable",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/CoreTransferable.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/CoreTransferable.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : true,
     "moduleName" : "CoreVideo",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/CoreVideo.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/CoreVideo.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "Darwin",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/Darwin.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/Darwin.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : true,
     "moduleName" : "DataDetection",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/DataDetection.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/DataDetection.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : true,
     "moduleName" : "DeveloperToolsSupport",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/DeveloperToolsSupport.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/DeveloperToolsSupport.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "Dispatch",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/Dispatch.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/Dispatch.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : true,
     "moduleName" : "FileProvider",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/FileProvider.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/FileProvider.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : true,
     "moduleName" : "Foundation",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/Foundation.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/Foundation.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : true,
     "moduleName" : "ImageIO",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/ImageIO.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/ImageIO.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "Metal",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/Metal.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/Metal.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "OSLog",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/OSLog.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/OSLog.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "ObjectiveC",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/ObjectiveC.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/ObjectiveC.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "Observation",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/Observation.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/Observation.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "QuartzCore",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/QuartzCore.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/QuartzCore.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "Spatial",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/Spatial.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/Spatial.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "Swift",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/Swift.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/Swift.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : true,
     "moduleName" : "SwiftData",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/SwiftData.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/SwiftData.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "SwiftOnoneSupport",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/SwiftOnoneSupport.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/SwiftOnoneSupport.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : true,
     "moduleName" : "SwiftUI",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/SwiftUI.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/SwiftUI.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : true,
     "moduleName" : "SwiftUICore",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/SwiftUICore.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/SwiftUICore.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : true,
     "moduleName" : "Symbols",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/Symbols.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/Symbols.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "System",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/System.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/System.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : true,
     "moduleName" : "UIKit",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/UIKit.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/UIKit.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "UniformTypeIdentifiers",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/UniformTypeIdentifiers.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/UniformTypeIdentifiers.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "XPC",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/XPC.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/XPC.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "_Builtin_float",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/_Builtin_float.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/_Builtin_float.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "_Concurrency",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/_Concurrency.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/_Concurrency.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "_DarwinFoundation1",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/_DarwinFoundation1.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/_DarwinFoundation1.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "_DarwinFoundation2",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/_DarwinFoundation2.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/_DarwinFoundation2.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "_DarwinFoundation3",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/_DarwinFoundation3.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/_DarwinFoundation3.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "_StringProcessing",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/_StringProcessing.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/_StringProcessing.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : true,
     "moduleName" : "_SwiftData_CoreData",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/_SwiftData_CoreData.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/_SwiftData_CoreData.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : true,
     "moduleName" : "_SwiftData_SwiftUI",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/_SwiftData_SwiftUI.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/_SwiftData_SwiftUI.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "os",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/os.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/os.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "isFramework" : false,
     "moduleName" : "simd",
-    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.0\/simd.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
+    "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/iphonesimulator\/prebuilt-modules\/27.1\/simd.swiftmodule\/x86_64-apple-ios-simulator.swiftmodule"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/Accessibility.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/Accessibility-APE7MG0X73V3G652RZHLBEK7I.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/Accessibility-EUIO93BJNM36ROV6A9B3RH8X1.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "Accessibility"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/CFNetwork.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CFNetwork-3YR8EKMCCC25J2L3NP0RN1IFW.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CFNetwork-I6ZCALQQPTLFKLLP3TUAKT45.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CFNetwork"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/CoreAudio.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreAudio-1RC9NYUF19D3XKZXQLRMTF3ZX.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreAudio-D44EJ4Q78VF3TN2746IHQDJL6.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CoreAudio"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/CoreAudioTypes.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreAudioTypes-BQ500AXAD0MD3G2J8R47QMQFX.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreAudioTypes-B2DWOE5NGH3L6JMCY8KDXIQPT.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CoreAudioTypes"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/CoreData.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreData-4F8NOUGI150T6GJL9W1BS4QUM.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreData-1QDO5LFV9IKH6L37AFJDPTU0I.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CoreData"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/CoreFoundation.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreFoundation-7TD6EHVLYGMXEDS5OVJUHHNPC.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreFoundation-A4I4R8YNSZ67RHMIZTGPLHGY8.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CoreFoundation"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/CoreGraphics.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreGraphics-8DCETBLJDAV7US93YU9PZBZCD.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreGraphics-7YHQ79335G42QNBMY1JS8VQAP.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CoreGraphics"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/CoreImage.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreImage-3TOTFRGOIXBJUWT8HJ9GYW2V5.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreImage-7GJ3S440BRMXUF3XKT4WNM14P.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CoreImage"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/CoreLocation.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreLocation-36LBGFBHF4DG0PHCSDIQSKMKO.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreLocation-640HZ4C0XP11995BN95TZXV6B.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CoreLocation"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/CoreMedia.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreMedia-8OF6GPQQYLT5Z9IQC1PVXQJZS.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreMedia-DO2KBLN7VNV99HG6EHI4PAMGZ.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CoreMedia"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/CoreMotion.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreMotion-CM14JU6JLF7DMDC1AFF8BSB4Q.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreMotion-7PTC3XPTYFG3ZCA36Z8HHAG2W.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CoreMotion"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/CoreText.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreText-CB2KAZLW2W77OF64G3RYWVGY.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreText-8N58PFV994BSCYGJJR0HTBQ0X.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CoreText"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/CoreTransferable.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreTransferable-GA1KX2LGL2KNN4V32C742AA1.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreTransferable-7RKNZHCZ8E3QGYA5RI77X8I1Q.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CoreTransferable"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/CoreVideo.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreVideo-DYBO8QD25DSH8ERKOCQA0R7MM.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/CoreVideo-59K4FDCCX75BJXHE6KTXLEKFG.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CoreVideo"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/usr\/include\/Darwin.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/Darwin-3TF0NZA9U4U7RA2K6GKG0WNYY.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/Darwin-AFL3AOUIP5QNM05GV3TFE0801.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "Darwin"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/DataDetection.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/DataDetection-540PYFMJN9KJ6ZL9S3D8E5VEF.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/DataDetection-6E9C3ALDI8R544YN9W08T8UPS.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "DataDetection"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/DeveloperToolsSupport.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/DeveloperToolsSupport-B20QNEDN7DZOWX7GFY07PUTR0.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/DeveloperToolsSupport-3VGA0BBIZOLOV71PVGS86B64L.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "DeveloperToolsSupport"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/usr\/include\/dispatch.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/Dispatch-2VZFMOCU8IPE3X3PID9ZXGCWQ.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/Dispatch-1O48BILEA62DHMGEWBU26BQIZ.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "Dispatch"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/FileProvider.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/FileProvider-55065GJTFUACGL76QNJ8KBWNO.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/FileProvider-9I8HNF4W72NOJ01MQJ6NE8ZSQ.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "FileProvider"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/Foundation.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/Foundation-D7B9IKTAV67ESSTQD4OI5VEJG.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/Foundation-B0NAQL5YNY1Z1E2VWIYSTW4HF.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "Foundation"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/IOSurface.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/IOSurface-23PO3M7S5O12DA99K9IT5LW9O.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/IOSurface-CPMNL3ISLTDLF9H9ZL24OTK34.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "IOSurface"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/ImageIO.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/ImageIO-1X0CEQ3PN2AQM0LPMRFQ6A743.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/ImageIO-1A6X4BCGTZMQ940QOKB44ABD4.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "ImageIO"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/usr\/include\/DarwinBasic.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/MachO-9Z8HNC0MQVOGLP8PI7W4RMH15.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/MachO-5JTWD0M40E77GJ1EFJ716BVHL.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "MachO"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/Metal.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/Metal-DZDRWXPFCIIOVI4QCES5F02XT.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/Metal-9RG73EWDFJ9CI8Y8I8H8KRVZ4.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "Metal"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/OSLog.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/OSLog-242NS8EQY8F7E4V2KJR54BKWD.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/OSLog-2LKEWGWR6CG77QG7JUPJN1A5B.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "OSLog"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/usr\/include\/ObjectiveC.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/ObjectiveC-BXYQH0G227I8G6861I0MDK6Z5.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/ObjectiveC-EKE307I0GXFVYX1QZFL985M6N.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "ObjectiveC"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/OpenGLES.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/OpenGLES-EE867D98ITV8G6ROV67BS4TPQ.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/OpenGLES-98VKKX3RO6PMJXCXX8A10YS4B.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "OpenGLES"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/QuartzCore.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/QuartzCore-9YMCUNLTE89DZ41X6TXM548NX.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/QuartzCore-E5VQTCXMYQDY0OAYTN51K2PIP.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "QuartzCore"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/Security.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/Security-3MS321YZ82F897NVISBHZBZQ4.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/Security-950RTLCHWBSTZF80VGAP0L8IH.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "Security"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/usr\/include\/Spatial\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/Spatial-8FOKZPOVPB8BBDOBSVU9FCXYW.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/Spatial-A80U11E6EKILWCUBDH8ZCS3G2.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "Spatial"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/usr\/lib\/swift\/shims\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/SwiftShims-9FMIC89U2BBEQVWNDZ302M1DP.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/SwiftShims-2WYJM3GLVCBGHA7SIC8KN0TS5.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "SwiftShims"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/SwiftUI.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/SwiftUI-4NQFD2TBOS4OI9TVWHQBF07IB.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/SwiftUI-6OL1382P6PJWMNS0STJRNOKX1.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "SwiftUI"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/SwiftUICore.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/SwiftUICore-BMEFZBB6DVQRD5T49RO2L2W2Q.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/SwiftUICore-11440ILIAUX9SOZ44ORHCEZDE.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "SwiftUICore"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/Symbols.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/Symbols-EE0GGIQID5IX2PL8TKJM5XUHR.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/Symbols-AZVRB5Y45IUGM2M42YXIZFV57.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "Symbols"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/UIKit.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/UIKit-ABEQW6OIVGKP2THM8ROYWO77L.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/UIKit-E2OPR1YYB4S7LSY4MIUGYY5AA.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "UIKit"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/SubFrameworks\/UIUtilities.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/UIUtilities-5D396V3I23K78E17IGE5ZIDEL.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/UIUtilities-2H59VGNZYSYKANZTTIESP2FY1.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "UIUtilities"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/UniformTypeIdentifiers.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/UniformTypeIdentifiers-VNBLFLGTMUBLPQT2HW7CY54L.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/UniformTypeIdentifiers-1H7UWVJPMIK7096SF81PNYEOU.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "UniformTypeIdentifiers"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/UserNotifications.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/UserNotifications-2RMNKXX2SHBEPTRGA6XK4MDK4.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/UserNotifications-VQO4JL9LA79EUILPXCKF9QZ9.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "UserNotifications"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/usr\/include\/xpc.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/XPC-BANYUSHG6FM4C5STG7WNBWV76.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/XPC-1FN35PVEK7IT4L0U1LGC91LGI.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "XPC"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/usr\/include\/DarwinFoundation1.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_AvailabilityInternal-CUA6ZMSVN2A434ZGFW78005U5.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_AvailabilityInternal-BQFPMXK5G3JWG6I2I2AZZGRJA.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_AvailabilityInternal"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_Builtin_float-W6QCIQLICZNNAT1S54ROQUAB.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_Builtin_float-B73CJ0LP1HLFB7W4ABKJ2EGI9.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_Builtin_float"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_Builtin_intrinsics-5C6XJWZJ8IQRTG1F3AG0KRS9O.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_Builtin_intrinsics-98968OHPS8RTLTLOI5ACBQ2ML.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_Builtin_intrinsics"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_Builtin_inttypes-7J667UU4G8NJFXTVXOA25H0T9.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_Builtin_inttypes-1R9Y54V32Q1DT3ET28EO3CC0X.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_Builtin_inttypes"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_Builtin_limits-BSEPXP8BCEHHV7MYFBIBYUVOX.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_Builtin_limits-1AXSLFFMM4X0NZGFQ39LBOUPY.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_Builtin_limits"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_Builtin_stdarg-DDLZDGI79BDIRITKRNQ4MSYTF.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_Builtin_stdarg-DFG04GMWZ8UD8Z1WZ7UXRTFHR.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_Builtin_stdarg"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_Builtin_stdatomic-B1XPYOE187PTFPKHOD803Y2JJ.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_Builtin_stdatomic-EJJ6Z3KBCZIJ0MIISAGN8KEB8.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_Builtin_stdatomic"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_Builtin_stdbool-EYPHDRDE4L2H4CCW25PBPL9GO.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_Builtin_stdbool-47S3TDVMPCDXMFINLSIXVI2GS.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_Builtin_stdbool"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_Builtin_stddef-BASBAR54BQX4XF521F1RBF8KZ.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_Builtin_stddef-5S3J4EEQFEEQQU5N2KNHEHPR1.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_Builtin_stddef"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_Builtin_stdint-2CSC6I7PYUHZ0KQXUOIAO1KG1.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_Builtin_stdint-BFXX67RXWK9KK9U0O2BTT0UW2.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_Builtin_stdint"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_Builtin_tgmath-661YU3VQZL6EMJHII6GU0TM7D.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_Builtin_tgmath-10FEOUCPCMX16JAMEPQGMTFTX.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_Builtin_tgmath"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/usr\/include\/DarwinFoundation1.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_DarwinFoundation1-5AI8YQ7HBKWO5XYMT3TS0IR3.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_DarwinFoundation1-A6Q92LLMW43M2ZQW2IM8SXPW3.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_DarwinFoundation1"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/usr\/include\/DarwinFoundation2.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_DarwinFoundation2-DOLPJNGASWSPKZB4GXR25WETA.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_DarwinFoundation2-AS7FBEYIR3XA7QK8GWUZT59JO.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_DarwinFoundation2"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/usr\/include\/DarwinFoundation3.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_DarwinFoundation3-2PXTDW6V368BC9EAJH1VXFU2Y.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_DarwinFoundation3-3X9WELIS2NUODK8EQ8LL2M3HU.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_DarwinFoundation3"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/System\/Library\/Frameworks\/_LocationEssentials.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_LocationEssentials-CRMVFZE32H72ZXTD7C8OAWP15.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_LocationEssentials-9761L5CBEA47E29GUMK9X9S8C.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_LocationEssentials"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/usr\/lib\/swift\/shims\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_SwiftConcurrencyShims-6LCIG3RYQOC7FMSTF8ASE8FOO.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/_SwiftConcurrencyShims-AJJQW77MTQA3M0GETO1GOHXUK.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_SwiftConcurrencyShims"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/usr\/include\/os.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/os-5VFAHH1Y1X9FA011W9TYYHCXS.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/os-5YI3PACR2KWWSDVO66PGCOQZ9.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "os"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/usr\/include\/os.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/os_object-1Q1OGHI14EFDO9KBUY1J1PMO9.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/os_object-ER294XANGW96W9FJ1XDQX6SSZ.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "os_object"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/usr\/include\/os.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/os_workgroup-4JVX18BYSDJOUHPP29II1TMML.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/os_workgroup-A1FIPWBI9YQ902AMJ6E2HCVXA.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "os_workgroup"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/ptrauth-5JABDEJW0ILY1GGS5LHZ85ATE.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/ptrauth-A1LWXF82PPW1RIIA3DEPXD74Z.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "ptrauth"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/21\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/ptrcheck-2FF4XFXAM4VUKGERNUHT8J5PJ.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/ptrcheck-42HBXK9H69TX0MQBYVLB97015.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "ptrcheck"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/usr\/include\/simd\/module.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/simd-E65QFB45VNW2G53LZ61E71RBI.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/simd-21FGC9OKIJLL5ENE0CDBKW0D9.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "simd"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/usr\/include\/c_standard_library.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/string_h-ETZXJHBY8Z6DS4QFL1CMGID6S.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/string_h-2Y6VD5GHMFTOHWCXUH9HUT63.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "string_h"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneSimulator.platform\/Developer\/SDKs\/iPhoneSimulator.sdk\/usr\/include\/DarwinFoundation2.modulemap",
-    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/sys_types-21JY55X3T3G8VHG3I05OY63UO.pcm",
+    "clangModulePath" : "\/Users\/ireneancilla\/Internship\/Levelio\/build\/DerivedData\/SDKExplicitPrecompiledModules\/sys_types-65Q53LB4MFBK3FR5G2JB4RA9D.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "sys_types"

@@ -22,6 +22,8 @@
         <attribute name="levelioId" attributeType="String" spotlightIndexingEnabled="YES"/>
         <attribute name="password" attributeType="String"/>
         <attribute name="role" attributeType="String"/>
+        <attribute name="bestStreak" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="streak" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="xp" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
 </model>

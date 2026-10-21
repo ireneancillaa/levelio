@@ -25,6 +25,7 @@ struct SignUpPage: View {
     // Sinkronisasi status login global aplikasi
     @AppStorage("isUserLoggedIn") private var isUserLoggedIn = false
     @AppStorage("currentUserId") private var currentUserId = ""
+    @AppStorage("currentUserName") private var currentUserName = ""
     
     @State private var fullName = ""
     @State private var email = ""
@@ -71,7 +72,7 @@ struct SignUpPage: View {
                                     .foregroundColor(.gray.opacity(0.8))
                             }
                         }
-                        .padding(.top, 28)
+                        .padding(.top, 16)
                         
                         // 2. Form Input Fields
                         VStack(spacing: 14) {
@@ -342,9 +343,9 @@ struct SignUpPage: View {
                     }
                 }
                 .padding(.horizontal, 24)
-                .padding(.bottom, 16)
+                .padding(.top, 12)
+                .padding(.bottom, 24)
             }
-            .ignoresSafeArea(.keyboard, edges: .bottom)
         }
         .contentShape(Rectangle())
         .navigationBarBackButtonHidden(true)
@@ -416,38 +417,28 @@ struct SignUpPage: View {
             
             // Eksekusi jika seluruh form valid
             if isValid {
-                Task {
-                    do {
-                        try await registerUser()
-                    } catch let error as AuthError {
-                        emailError = error.errorDescription
-                    } catch {
-                        emailError = "Failed to save account. Please try again."
-                    }
+                do {
+                    try registerUser()
+                } catch let error as AuthError {
+                    emailError = error.errorDescription
+                } catch {
+                    emailError = "Failed to save account. Please try again."
                 }
             }
         }
     }
     
-    private func registerUser() async throws -> String {
+    private func registerUser() throws {
         let context = viewContext
         let userService = UserService(context: context)
         
-        do {
-            let userId = try await userService.registerUser(fullName: fullName, email: email, password: password)
-            // Update status login global
-            isUserLoggedIn = true
-            currentUserId = userId
-            // Redirect ke halaman awal (bypass auth)
-            activePage = nil
-            return userId
-        } catch let error as AuthError {
-            emailError = error.errorDescription
-            return ""
-        } catch {
-            emailError = "Failed to save account. Please try again."
-            return ""
-        }
+        let userId = try userService.registerUser(fullName: fullName, email: email, password: password)
+        // Update status login global
+        currentUserId = userId
+        currentUserName = fullName
+        isUserLoggedIn = true
+        // Redirect ke halaman awal (bypass auth)
+        activePage = nil
     }
     
 

@@ -4,8 +4,12 @@
 /Users/ireneancilla/Internship/Levelio/Levelio/auth/SignUpPage.swift
 /Users/ireneancilla/Internship/Levelio/Levelio/auth/TermsAndConditionsPage.swift
 /Users/ireneancilla/Internship/Levelio/Levelio/auth/WelcomeScreen.swift
+/Users/ireneancilla/Internship/Levelio/Levelio/model/DinoStage.swift
 /Users/ireneancilla/Internship/Levelio/Levelio/model/Habit.swift
 /Users/ireneancilla/Internship/Levelio/Levelio/model/HabitStore.swift
+/Users/ireneancilla/Internship/Levelio/Levelio/services/HabitService.swift
+/Users/ireneancilla/Internship/Levelio/Levelio/services/UserService.swift
+/Users/ireneancilla/Internship/Levelio/Levelio/utils/Screen+Extensions.swift
 /Users/ireneancilla/Internship/Levelio/Levelio/utils/View+Extensions.swift
 /Users/ireneancilla/Internship/Levelio/Levelio/view/AddPage.swift
 /Users/ireneancilla/Internship/Levelio/Levelio/view/ChallengesPage.swift
@@ -18,6 +22,8 @@
 /Users/ireneancilla/Internship/Levelio/Levelio/LevelioApp.swift
 /Users/ireneancilla/Internship/Levelio/Levelio/PersistenceController.swift
 /Users/ireneancilla/Internship/Levelio/Levelio/SplashScreen.swift
+/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/DerivedSources/CoreDataGenerated/Levelio/HabitEntity+CoreDataClass.swift
+/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/DerivedSources/CoreDataGenerated/Levelio/HabitEntity+CoreDataProperties.swift
 /Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/DerivedSources/CoreDataGenerated/Levelio/Levelio+CoreDataModel.swift
 /Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/DerivedSources/CoreDataGenerated/Levelio/UserEntity+CoreDataClass.swift
 /Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/DerivedSources/CoreDataGenerated/Levelio/UserEntity+CoreDataProperties.swift

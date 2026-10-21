@@ -21,6 +21,10 @@ struct SplashScreen: View {
     // State tambahan khusus untuk mengontrol efek fade-in awal
     @State private var isViewAppeared = false
     
+    private var isCompactScreen: Bool {
+        UIScreen.isCompact
+    }
+    
     let carouselItems = [
         CarouselItem(
             imageName: "dino-mountain",
@@ -51,7 +55,7 @@ struct SplashScreen: View {
                 VStack(spacing: 0) {
                     // Spacer atas konstan untuk mengunci posisi vertikal gambar
                     Spacer()
-                        .frame(height: 60)
+                        .frame(height: isCompactScreen ? 20 : 50)
                     
                     // TabView murni iOS
                     TabView(selection: $currentPage) {
@@ -63,26 +67,26 @@ struct SplashScreen: View {
                                 Image(item.imageName)
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(height: 250)
+                                    .frame(height: isCompactScreen ? 180 : 240)
                                 
                                 Spacer()
-                                    .frame(height: 40) // Jarak pasti antara gambar dan teks
+                                    .frame(height: isCompactScreen ? 20 : 36) // Jarak pasti antara gambar dan teks
                                 
                                 // 2. Bagian Teks: Diberikan tinggi statis agar halaman 1, 2, 3 tingginya sama persis
                                 VStack(alignment: .leading, spacing: 8) {
                                     Text(item.title)
-                                        .font(.system(size: 32, weight: .heavy))
+                                        .font(.system(size: isCompactScreen ? 26 : 32, weight: .heavy))
                                         .foregroundColor(.white)
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                     
                                     Text(item.subtitle)
-                                        .font(.system(size: 20, weight: .semibold))
+                                        .font(.system(size: isCompactScreen ? 16 : 20, weight: .semibold))
                                         .foregroundColor(.gray)
                                         .multilineTextAlignment(.leading)
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                 }
                                 .padding(.horizontal, 24)
-                                .frame(height: 120, alignment: .top) // Mengunci tinggi area teks
+                                .frame(height: isCompactScreen ? 95 : 120, alignment: .top) // Mengunci tinggi area teks
                             }
                             .tag(index)
                         }
@@ -100,10 +104,10 @@ struct SplashScreen: View {
                         }
                     }
                     .animation(.spring(response: 0.4, dampingFraction: 0.75), value: currentPage)
-                    .padding(.bottom, 40)
+                    .padding(.bottom, isCompactScreen ? 20 : 32)
                     
                     // Bagian Tombol Aksi
-                    VStack(spacing: 16) {
+                    VStack(spacing: 14) {
                         let isLastPage = currentPage == carouselItems.count - 1
                         
                         Button(action: {
@@ -139,7 +143,7 @@ struct SplashScreen: View {
                         .disabled(isLastPage)
                         .animation(.easeInOut(duration: 0.3), value: isLastPage)
                     }
-                    .padding(.bottom, 50)
+                    .padding(.bottom, 24)
                 }
             }
             // Mengatur transparansi dan skala seluruh hierarki ZStack untuk transisi masuk yang halus

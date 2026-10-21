@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 enum AuthPage {
     case signIn
@@ -18,6 +19,10 @@ enum AuthPage {
 struct WelcomeScreen: View {
     @State private var activePage: AuthPage? = nil
     
+    private var isCompactScreen: Bool {
+        UIScreen.isCompact
+    }
+    
     var body: some View {
         ZStack {
             Image("background")
@@ -29,31 +34,31 @@ struct WelcomeScreen: View {
                 Spacer()
                 
                 // Hero Character & Title
-                VStack(spacing: 20) {
+                VStack(spacing: isCompactScreen ? 14 : 20) {
                     Image("dino-car")
                         .resizable()
                         .scaledToFit()
-                        .frame(height: 200)
+                        .frame(height: isCompactScreen ? 150 : 200)
                     
                     VStack(spacing: 8) {
                         Text("Hello Levelers!")
-                            .font(.system(size: 32, weight: .heavy))
+                            .font(.system(size: isCompactScreen ? 28 : 32, weight: .heavy))
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                         
                         Text("Don't forget to keep your streak alive")
-                            .font(.system(size: 18, weight: .semibold))
+                            .font(.system(size: isCompactScreen ? 16 : 18, weight: .semibold))
                             .foregroundColor(.gray)
                             .multilineTextAlignment(.center)
                             .frame(maxWidth: .infinity)
                     }
                     .padding(.horizontal, 24)
                 }
-                .padding(.top, 28)
+                .padding(.top, isCompactScreen ? 16 : 28)
                 
                 Spacer()
                 
-                // Bottom Action Buttons sticky 16pt above Home Bar
+                // Bottom Action Buttons sticky 24pt above Home Bar
                 VStack(spacing: 12) {
                     Button(action: {
                         activePage = .signIn
@@ -84,7 +89,7 @@ struct WelcomeScreen: View {
                     }
                 }
                 .padding(.horizontal, 24)
-                .padding(.bottom, 40)
+                .padding(.bottom, 24)
             }
         }
         .navigationBarBackButtonHidden(true)

@@ -372,14 +372,31 @@ extern "C" {
 
 @class NSEntityDescription;
 @class NSManagedObjectContext;
+SWIFT_CLASS_NAMED("HabitEntity")
+@interface HabitEntity : NSManagedObject
+- (nonnull instancetype)initWithEntity:(NSEntityDescription * _Nonnull)entity insertIntoManagedObjectContext:(NSManagedObjectContext * _Nullable)context OBJC_DESIGNATED_INITIALIZER;
+@end
+
+@class NSString;
+@class NSUUID;
+@interface HabitEntity (SWIFT_EXTENSION(Levelio))
+@property (nonatomic, copy) NSString * _Nullable colorName;
+@property (nonatomic, copy) NSString * _Nullable desc;
+@property (nonatomic, copy) NSString * _Nullable frequency;
+@property (nonatomic, copy) NSUUID * _Nullable habitId;
+@property (nonatomic) BOOL isCompleted;
+@property (nonatomic, copy) NSString * _Nullable time;
+@property (nonatomic, copy) NSString * _Nullable title;
+@property (nonatomic, copy) NSUUID * _Nullable userId;
+@property (nonatomic) int64_t xpReward;
+@end
+
 SWIFT_CLASS("_TtC7Levelio10UserEntity")
 @interface UserEntity : NSManagedObject
 - (nonnull instancetype)initWithEntity:(NSEntityDescription * _Nonnull)entity insertIntoManagedObjectContext:(NSManagedObjectContext * _Nullable)context OBJC_DESIGNATED_INITIALIZER;
 @end
 
 @class NSDate;
-@class NSString;
-@class NSUUID;
 @interface UserEntity (SWIFT_EXTENSION(Levelio))
 @property (nonatomic, copy) NSDate * _Nullable birthDate;
 @property (nonatomic, copy) NSDate * _Nullable createdDate;
@@ -387,10 +404,13 @@ SWIFT_CLASS("_TtC7Levelio10UserEntity")
 @property (nonatomic, copy) NSString * _Nullable fullName;
 @property (nonatomic, copy) NSString * _Nullable gender;
 @property (nonatomic, copy) NSUUID * _Nullable id;
+@property (nonatomic, copy) NSDate * _Nullable lastActiveDate;
 @property (nonatomic, copy) NSString * _Nullable levelioId;
 @property (nonatomic, copy) NSString * _Nullable password;
 @property (nonatomic, copy) NSString * _Nullable role;
+@property (nonatomic) int64_t bestStreak;
 @property (nonatomic) int64_t streak;
+@property (nonatomic) int64_t xp;
 @end
 
 #endif // defined(__OBJC__)
@@ -775,14 +795,31 @@ extern "C" {
 
 @class NSEntityDescription;
 @class NSManagedObjectContext;
+SWIFT_CLASS_NAMED("HabitEntity")
+@interface HabitEntity : NSManagedObject
+- (nonnull instancetype)initWithEntity:(NSEntityDescription * _Nonnull)entity insertIntoManagedObjectContext:(NSManagedObjectContext * _Nullable)context OBJC_DESIGNATED_INITIALIZER;
+@end
+
+@class NSString;
+@class NSUUID;
+@interface HabitEntity (SWIFT_EXTENSION(Levelio))
+@property (nonatomic, copy) NSString * _Nullable colorName;
+@property (nonatomic, copy) NSString * _Nullable desc;
+@property (nonatomic, copy) NSString * _Nullable frequency;
+@property (nonatomic, copy) NSUUID * _Nullable habitId;
+@property (nonatomic) BOOL isCompleted;
+@property (nonatomic, copy) NSString * _Nullable time;
+@property (nonatomic, copy) NSString * _Nullable title;
+@property (nonatomic, copy) NSUUID * _Nullable userId;
+@property (nonatomic) int64_t xpReward;
+@end
+
 SWIFT_CLASS("_TtC7Levelio10UserEntity")
 @interface UserEntity : NSManagedObject
 - (nonnull instancetype)initWithEntity:(NSEntityDescription * _Nonnull)entity insertIntoManagedObjectContext:(NSManagedObjectContext * _Nullable)context OBJC_DESIGNATED_INITIALIZER;
 @end
 
 @class NSDate;
-@class NSString;
-@class NSUUID;
 @interface UserEntity (SWIFT_EXTENSION(Levelio))
 @property (nonatomic, copy) NSDate * _Nullable birthDate;
 @property (nonatomic, copy) NSDate * _Nullable createdDate;
@@ -790,10 +827,13 @@ SWIFT_CLASS("_TtC7Levelio10UserEntity")
 @property (nonatomic, copy) NSString * _Nullable fullName;
 @property (nonatomic, copy) NSString * _Nullable gender;
 @property (nonatomic, copy) NSUUID * _Nullable id;
+@property (nonatomic, copy) NSDate * _Nullable lastActiveDate;
 @property (nonatomic, copy) NSString * _Nullable levelioId;
 @property (nonatomic, copy) NSString * _Nullable password;
 @property (nonatomic, copy) NSString * _Nullable role;
+@property (nonatomic) int64_t bestStreak;
 @property (nonatomic) int64_t streak;
+@property (nonatomic) int64_t xp;
 @end
 
 #endif // defined(__OBJC__)

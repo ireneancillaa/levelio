@@ -7,7 +7,7 @@
         "key": "Levelers Challenges",
         "location": {
           "startingColumn": 30,
-          "startingLine": 23
+          "startingLine": 64
         }
       },
       {
@@ -15,47 +15,71 @@
         "key": "Complete quests and earn XP",
         "location": {
           "startingColumn": 30,
-          "startingLine": 26
+          "startingLine": 67
         }
       },
       {
         "comment": "",
-        "key": "Spring Growth Marathon",
+        "key": "Growth Marathon",
         "location": {
           "startingColumn": 34,
-          "startingLine": 62
+          "startingLine": 113
         }
       },
       {
         "comment": "",
-        "key": "Complete 20 habits to help your pet gain +500 XP",
+        "key": "Complete 15 habits to help your pet gain +500 XP",
         "location": {
           "startingColumn": 34,
-          "startingLine": 66
+          "startingLine": 117
         }
       },
       {
         "comment": "",
-        "key": "7 days remaining",
+        "key": "%lld days remaining",
         "location": {
           "startingColumn": 38,
-          "startingLine": 52
+          "startingLine": 93
+        }
+      },
+      {
+        "comment": "",
+        "key": "Claimed",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 103
+        }
+      },
+      {
+        "comment": "",
+        "key": "CLAIM REWARD",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 128
+        }
+      },
+      {
+        "comment": "",
+        "key": "+500 XP 🎉",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 132
         }
       },
       {
         "comment": "",
         "key": "+500XP",
         "location": {
-          "startingColumn": 38,
-          "startingLine": 73
+          "startingColumn": 42,
+          "startingLine": 150
         }
       },
       {
         "comment": "",
-        "key": "12/20",
+        "key": "%lld/15",
         "location": {
-          "startingColumn": 38,
-          "startingLine": 77
+          "startingColumn": 42,
+          "startingLine": 155
         }
       },
       {
@@ -63,15 +87,23 @@
         "key": "Daily Challenges",
         "location": {
           "startingColumn": 34,
-          "startingLine": 99
+          "startingLine": 178
         }
       },
       {
         "comment": "",
-        "key": "Complete 3 habits today",
+        "key": "Done",
         "location": {
           "startingColumn": 46,
-          "startingLine": 114
+          "startingLine": 218
+        }
+      },
+      {
+        "comment": "",
+        "key": "Complete %lld habits today",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 193
         }
       },
       {
@@ -79,7 +111,15 @@
         "key": "+50XP",
         "location": {
           "startingColumn": 46,
-          "startingLine": 117
+          "startingLine": 196
+        }
+      },
+      {
+        "comment": "",
+        "key": "Claim",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 208
         }
       },
       {
@@ -87,15 +127,23 @@
         "key": "Progress",
         "location": {
           "startingColumn": 42,
-          "startingLine": 124
+          "startingLine": 225
         }
       },
       {
         "comment": "",
-        "key": "2 / 3",
+        "key": "%lld / %lld",
         "location": {
           "startingColumn": 42,
-          "startingLine": 128
+          "startingLine": 229
+        }
+      },
+      {
+        "comment": "",
+        "key": "Claim",
+        "location": {
+          "startingColumn": 52,
+          "startingLine": 267
         }
       },
       {
@@ -103,7 +151,7 @@
         "key": "3-day streak",
         "location": {
           "startingColumn": 46,
-          "startingLine": 163
+          "startingLine": 281
         }
       },
       {
@@ -111,15 +159,23 @@
         "key": "+100XP",
         "location": {
           "startingColumn": 46,
-          "startingLine": 166
+          "startingLine": 284
         }
       },
       {
         "comment": "",
-        "key": "Drink 2L Water",
+        "key": "Claim",
+        "location": {
+          "startingColumn": 52,
+          "startingLine": 320
+        }
+      },
+      {
+        "comment": "",
+        "key": "All Habits",
         "location": {
           "startingColumn": 46,
-          "startingLine": 194
+          "startingLine": 334
         }
       },
       {
@@ -127,7 +183,7 @@
         "key": "+75XP",
         "location": {
           "startingColumn": 46,
-          "startingLine": 197
+          "startingLine": 337
         }
       },
       {
@@ -135,79 +191,31 @@
         "key": "Past Challenges",
         "location": {
           "startingColumn": 34,
-          "startingLine": 219
+          "startingLine": 365
         }
       },
       {
         "comment": "",
-        "key": "Spring Growth Marathon",
+        "key": "No completed challenges yet",
         "location": {
-          "startingColumn": 38,
-          "startingLine": 239
+          "startingColumn": 46,
+          "startingLine": 376
         }
       },
       {
         "comment": "",
-        "key": "Complete 20 habits to help your pet gain +500 XP",
+        "key": "Complete quests above to record your achievements here",
         "location": {
-          "startingColumn": 38,
-          "startingLine": 243
+          "startingColumn": 46,
+          "startingLine": 379
         }
       },
       {
         "comment": "",
         "key": "Completed",
         "location": {
-          "startingColumn": 46,
-          "startingLine": 227
-        }
-      },
-      {
-        "comment": "",
-        "key": "+500XP",
-        "location": {
-          "startingColumn": 42,
-          "startingLine": 249
-        }
-      },
-      {
-        "comment": "",
-        "key": "20/20",
-        "location": {
-          "startingColumn": 42,
-          "startingLine": 254
-        }
-      },
-      {
-        "comment": "",
-        "key": "Complete 5 habits today",
-        "location": {
-          "startingColumn": 46,
-          "startingLine": 279
-        }
-      },
-      {
-        "comment": "",
-        "key": "+50XP",
-        "location": {
-          "startingColumn": 46,
-          "startingLine": 282
-        }
-      },
-      {
-        "comment": "",
-        "key": "Done!",
-        "location": {
-          "startingColumn": 42,
-          "startingLine": 289
-        }
-      },
-      {
-        "comment": "",
-        "key": "5 / 5",
-        "location": {
-          "startingColumn": 42,
-          "startingLine": 293
+          "startingColumn": 26,
+          "startingLine": 450
         }
       }
     ]

@@ -4,10 +4,18 @@
     "Localizable": [
       {
         "comment": "",
+        "key": "New Habit",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 76
+        }
+      },
+      {
+        "comment": "",
         "key": "Habit Detail",
         "location": {
           "startingColumn": 34,
-          "startingLine": 39
+          "startingLine": 98
         }
       },
       {
@@ -15,7 +23,7 @@
         "key": "Habit name is required",
         "location": {
           "startingColumn": 38,
-          "startingLine": 45
+          "startingLine": 104
         }
       },
       {
@@ -23,7 +31,7 @@
         "key": "Enter habit name",
         "location": {
           "startingColumn": 78,
-          "startingLine": 56
+          "startingLine": 115
         }
       },
       {
@@ -31,7 +39,7 @@
         "key": "",
         "location": {
           "startingColumn": 43,
-          "startingLine": 56
+          "startingLine": 115
         }
       },
       {
@@ -39,7 +47,7 @@
         "key": "Description",
         "location": {
           "startingColumn": 80,
-          "startingLine": 73
+          "startingLine": 132
         }
       },
       {
@@ -47,7 +55,7 @@
         "key": "",
         "location": {
           "startingColumn": 43,
-          "startingLine": 73
+          "startingLine": 132
         }
       },
       {
@@ -55,7 +63,7 @@
         "key": "Color",
         "location": {
           "startingColumn": 38,
-          "startingLine": 85
+          "startingLine": 144
         }
       },
       {
@@ -63,7 +71,7 @@
         "key": "Schedule",
         "location": {
           "startingColumn": 30,
-          "startingLine": 112
+          "startingLine": 195
         }
       },
       {
@@ -71,7 +79,7 @@
         "key": "Frequency",
         "location": {
           "startingColumn": 38,
-          "startingLine": 121
+          "startingLine": 204
         }
       },
       {
@@ -79,7 +87,7 @@
         "key": "Frequency",
         "location": {
           "startingColumn": 40,
-          "startingLine": 125
+          "startingLine": 208
         }
       },
       {
@@ -87,23 +95,31 @@
         "key": "Reminder Time",
         "location": {
           "startingColumn": 38,
-          "startingLine": 141
+          "startingLine": 224
         }
       },
       {
         "comment": "",
-        "key": "Udin’s Progress",
+        "key": "",
+        "location": {
+          "startingColumn": 37,
+          "startingLine": 228
+        }
+      },
+      {
+        "comment": "",
+        "key": "Your Progress",
         "location": {
           "startingColumn": 30,
-          "startingLine": 162
+          "startingLine": 250
         }
       },
       {
         "comment": "",
-        "key": "to boost your pet’s Productivity stat",
+        "key": "to grow your %@",
         "location": {
           "startingColumn": 38,
-          "startingLine": 182
+          "startingLine": 270
         }
       },
       {
@@ -111,7 +127,7 @@
         "key": "XP Gain:",
         "location": {
           "startingColumn": 42,
-          "startingLine": 174
+          "startingLine": 262
         }
       },
       {
@@ -119,7 +135,7 @@
         "key": "+100",
         "location": {
           "startingColumn": 42,
-          "startingLine": 177
+          "startingLine": 265
         }
       },
       {
@@ -127,15 +143,7 @@
         "key": "Create Habit",
         "location": {
           "startingColumn": 26,
-          "startingLine": 221
-        }
-      },
-      {
-        "comment": "",
-        "key": "New Habit",
-        "location": {
-          "startingColumn": 22,
-          "startingLine": 263
+          "startingLine": 310
         }
       }
     ]

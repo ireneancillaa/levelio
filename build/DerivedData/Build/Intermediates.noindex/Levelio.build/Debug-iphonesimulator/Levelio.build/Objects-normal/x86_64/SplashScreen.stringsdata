@@ -7,7 +7,7 @@
         "key": "Get Started",
         "location": {
           "startingColumn": 34,
-          "startingLine": 116
+          "startingLine": 120
         }
       },
       {
@@ -15,7 +15,7 @@
         "key": "Skip",
         "location": {
           "startingColumn": 34,
-          "startingLine": 134
+          "startingLine": 138
         }
       }
     ]

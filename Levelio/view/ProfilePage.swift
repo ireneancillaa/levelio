@@ -12,16 +12,27 @@ import Combine
 struct ProfilePage: View {
     @Environment(\.managedObjectContext) private var viewContext
     @AppStorage("isUserLoggedIn") private var isUserLoggedIn = true
+    @AppStorage("currentUserId") private var currentUserId = ""
+    @AppStorage("currentUserName") private var currentUserName = ""
     
     var user: UserEntity?
     var habitService: HabitService
     var userService: UserService
+    @ObservedObject var store: HabitStore = HomePage.sharedHabitStore
     
     @State private var fullName: String = ""
     @State private var birthDate: Date = Date()
     @State private var selectedGender: String = "Prefer not to say"
     @State private var isEditingName: Bool = false
     @State private var isEditingBirthDate: Bool = false
+    
+    private var totalXP: Int {
+        store.totalXP
+    }
+    
+    private var currentStage: DinoStage {
+        DinoStage.stage(for: totalXP)
+    }
     
     private var formattedBirthDateString: String {
         userService.formattedDate(birthDate)
@@ -31,6 +42,10 @@ struct ProfilePage: View {
         user?.createdDate?.formatted(
             .dateTime.month(.wide).day().year().locale(Locale(identifier: "en_US"))
         ) ?? "-"
+    }
+    
+    private var isCompactScreen: Bool {
+        UIScreen.isCompact
     }
     
     var body: some View {
@@ -54,6 +69,8 @@ struct ProfilePage: View {
                         Spacer()
                         
                         Button {
+                            currentUserId = ""
+                            currentUserName = ""
                             isUserLoggedIn = false
                         } label: {
                             Image(systemName: "rectangle.portrait.and.arrow.forward")
@@ -62,28 +79,28 @@ struct ProfilePage: View {
                     }
                     .frame(height: 55)
                     .padding(.horizontal, 24)
-                    .padding(.top, 50)
-                    .padding(.bottom, 20)
+                    .padding(.top, 12)
+                    .padding(.bottom, isCompactScreen ? 8 : 16)
                     
                     // --- AREA STATIS ATAS (STAY / TIDAK IKUT SCROLL) ---
                     // Hanya menyisakan Avatar, Level Progress, dan Stat Matrix
-                    VStack(alignment: .leading, spacing: 24) {
+                    VStack(alignment: .leading, spacing: isCompactScreen ? 14 : 22) {
                         // USER HERO SECTION (Avatar & ID)
-                        HStack(spacing: 20) {
+                        HStack(spacing: 16) {
                             Image("ava-1")
                                 .resizable()
                                 .scaledToFill()
-                                .frame(width: 90, height: 90)
+                                .frame(width: isCompactScreen ? 65 : 85, height: isCompactScreen ? 65 : 85)
                                 .background(Color.white.opacity(0.1))
                                 .clipShape(Circle())
                                 .overlay(Circle().stroke(Color.white.opacity(0.2), lineWidth: 1))
                             
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(fullName.isEmpty ? (user?.fullName ?? "Explorer") : fullName)
-                                    .font(.system(size: 20, weight: .bold))
+                                    .font(.system(size: isCompactScreen ? 18 : 20, weight: .bold))
                                     .foregroundColor(.white)
                                 Text(user?.levelioId ?? "LV00000")
-                                    .font(.system(size: 14, weight: .medium))
+                                    .font(.system(size: 13, weight: .medium))
                                     .foregroundColor(.gray)
                             }
                         }
@@ -92,13 +109,19 @@ struct ProfilePage: View {
                         // LEVEL & XP PROGRESS BAR
                         VStack(spacing: 8) {
                             HStack {
-                                Text("Level 1")
+                                Text("Level \(currentStage.level)")
                                     .font(.system(size: 15, weight: .bold))
                                     .foregroundColor(.white)
                                 Spacer()
-                                Text("150/400 XP")
-                                    .font(.system(size: 14, weight: .semibold))
-                                    .foregroundColor(.gray)
+                                if currentStage.isMaxLevel {
+                                    Text("\(totalXP) XP (MAX)")
+                                        .font(.system(size: 14, weight: .semibold))
+                                        .foregroundColor(.gray)
+                                } else {
+                                    Text("\(totalXP)/\(currentStage.targetXP) XP")
+                                        .font(.system(size: 14, weight: .semibold))
+                                        .foregroundColor(.gray)
+                                }
                             }
                             
                             GeometryReader { geo in
@@ -108,7 +131,8 @@ struct ProfilePage: View {
                                         .frame(height: 6)
                                     Capsule()
                                         .fill(Color.cyan)
-                                        .frame(width: geo.size.width * (150.0 / 400.0), height: 6)
+                                        .frame(width: max(0, min(geo.size.width, geo.size.width * CGFloat(currentStage.progressRatio(for: totalXP)))), height: 6)
+                                        .animation(.spring(response: 0.4, dampingFraction: 0.7), value: totalXP)
                                 }
                             }
                             .frame(height: 6)
@@ -117,14 +141,14 @@ struct ProfilePage: View {
                         // QUICK STATS MATRIX CARD (4 Kolom dengan Pembagi Garis)
                         HStack(spacing: 0) {
                             VStack(spacing: 6) {
-                                Text("🔥 \(user != nil ? habitService.calculateCurrentStreak(for: user!) : 0)").font(.system(size: 16, weight: .bold))
+                                Text("🔥 \(store.currentStreak)").font(.system(size: 16, weight: .bold))
                                 Text("Streak").font(.system(size: 12, weight: .medium)).foregroundColor(.gray)
                             }.frame(maxWidth: .infinity)
                             
                             Divider().background(Color.white.opacity(0.2)).frame(height: 30)
                             
                             VStack(spacing: 6) {
-                                Text("⚡️ 120").font(.system(size: 16, weight: .bold))
+                                Text("⚡️ \(store.todayXP)").font(.system(size: 16, weight: .bold))
                                 Text("Today's XP").font(.system(size: 12, weight: .medium)).foregroundColor(.gray)
                             }.frame(maxWidth: .infinity)
                             
@@ -143,59 +167,82 @@ struct ProfilePage: View {
                             }.frame(maxWidth: .infinity)
                         }
                         .foregroundColor(.white)
-                        .padding(.vertical, 16)
+                        .padding(.vertical, isCompactScreen ? 10 : 16)
                         .background(Color.white.opacity(0.04))
                         .cornerRadius(14)
                         .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.white.opacity(0.08), lineWidth: 1))
                     }
                     .padding(.horizontal, 24)
-                    .padding(.top, 10)
+                    .padding(.top, isCompactScreen ? 4 : 10)
                     
                     // --- 2. KUNCI UTAMA: SCROLLABLE CONTENT (CARD PREMIUM MASUK KE SINI) ---
                     ScrollView(.vertical, showsIndicators: false) {
                         VStack(alignment: .leading, spacing: 24) {
                             
-                            // UPGRADE TO PREMIUM BANNER (Sekarang ikut ter-scroll)
+                            // PREMIUM STATUS OR UPGRADE BANNER
+                            let isPremium = user?.role == "premium"
+                            
                             ZStack(alignment: .trailing) {
                                 VStack(alignment: .leading, spacing: 8) {
-                                    Text("💎 Upgrade to Premium")
-                                        .font(.system(size: 16, weight: .bold))
-                                        .foregroundColor(.white)
+                                    HStack(spacing: 6) {
+                                        Text(isPremium ? "✨ Levelio Premium" : "💎 Upgrade to Premium")
+                                            .font(.system(size: 16, weight: .bold))
+                                            .foregroundColor(.white)
+                                        
+                                        if isPremium {
+                                            Text("ACTIVE")
+                                                .font(.system(size: 10, weight: .black))
+                                                .foregroundColor(.black)
+                                                .padding(.horizontal, 6)
+                                                .padding(.vertical, 2)
+                                                .background(Color.yellow)
+                                                .cornerRadius(4)
+                                        }
+                                    }
                                     
-                                    Text("Level up faster with unlimited habits\n& advanced stats.")
+                                    Text(isPremium ? "Unlimited habits, zero ads, and all analytics unlocked." : "Level up faster with unlimited habits\n& advanced stats.")
                                         .font(.system(size: 13, weight: .medium))
                                         .foregroundColor(.white.opacity(0.7))
                                         .lineSpacing(3)
-                                        .padding(.bottom, 10)
+                                        .padding(.bottom, isPremium ? 2 : 10)
                                     
-                                    // Sekarang menggunakan NavigationLink agar bisa push ke halaman subscription
-                                    NavigationLink(destination: SubscriptionPage()) {
-                                        Text("Upgrade Now")
-                                            .font(.system(size: 14, weight: .bold))
-                                            .foregroundColor(.white)
-                                            .padding(.horizontal, 24)
-                                            .padding(.vertical, 10)
-                                            .background(
-                                                LinearGradient(
-                                                    colors: [Color.blue.opacity(0.6), Color.cyan.opacity(0.8)],
-                                                    startPoint: .leading,
-                                                    endPoint: .trailing
+                                    if !isPremium {
+                                        NavigationLink(destination: SubscriptionPage(user: user)) {
+                                            Text("Upgrade Now")
+                                                .font(.system(size: 14, weight: .bold))
+                                                .foregroundColor(.white)
+                                                .padding(.horizontal, 24)
+                                                .padding(.vertical, 10)
+                                                .background(
+                                                    LinearGradient(
+                                                        colors: [Color.blue.opacity(0.6), Color.cyan.opacity(0.8)],
+                                                        startPoint: .leading,
+                                                        endPoint: .trailing
+                                                    )
                                                 )
-                                            )
-                                            .cornerRadius(25)
-                                            .overlay(RoundedRectangle(cornerRadius: 25).stroke(Color.white, lineWidth: 1.5))
+                                                .cornerRadius(25)
+                                                .overlay(RoundedRectangle(cornerRadius: 25).stroke(Color.white, lineWidth: 1.5))
+                                        }
                                     }
                                 }
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 
-                                Image("unlock")
+                                Image(isPremium ? "dino-premium" : "unlock")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 80, height: 80)
+                                    .frame(width: isPremium ? 75 : 80, height: isPremium ? 75 : 80)
                                     .offset(x: 15, y: -15)
                             }
                             .padding(.all, 20)
-                            .background(LinearGradient(colors: [Color(red: 0.12, green: 0.16, blue: 0.35), Color(red: 0.15, green: 0.28, blue: 0.38)], startPoint: .topLeading, endPoint: .bottomTrailing))
+                            .background(
+                                LinearGradient(
+                                    colors: isPremium ?
+                                    [Color(red: 0.18, green: 0.14, blue: 0.35), Color(red: 0.12, green: 0.22, blue: 0.38)] :
+                                    [Color(red: 0.12, green: 0.16, blue: 0.35), Color(red: 0.15, green: 0.28, blue: 0.38)],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
                             .cornerRadius(16)
                             .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.white.opacity(0.12), lineWidth: 1))
                             .clipped()
@@ -419,12 +466,15 @@ struct ProfilePage: View {
                             .foregroundColor(.white)
                         }
                         .padding(.horizontal, 24)
-                        .padding(.top, 24)
-                        .padding(.bottom, 110)
+                        .padding(.top, isCompactScreen ? 12 : 24)
+                        .padding(.bottom, 24)
                     }
                     .clipped()
                 }
             }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
+            .toolbar(.hidden, for: .navigationBar)
             .preferredColorScheme(.dark)
             .onAppear {
                 loadUserProfile()
@@ -452,6 +502,7 @@ struct ProfilePage: View {
                 birthDate: birthDate,
                 user: user
             )
+            currentUserName = fullName
         } catch {
             print("Failed to save user profile: \(error)")
         }

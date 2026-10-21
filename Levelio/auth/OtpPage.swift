@@ -32,7 +32,7 @@ struct OtpPage: View {
                     Spacer()
                 }
                 .padding(.horizontal, 24)
-                .padding(.top, 50)
+                .padding(.top, 12)
                 .padding(.bottom, 12)
                 
                 // --- 2. SCROLLABLE FORM CONTENT ---
@@ -135,9 +135,9 @@ struct OtpPage: View {
                     }
                 }
                 .padding(.horizontal, 24)
-                .padding(.bottom, 40)
+                .padding(.top, 12)
+                .padding(.bottom, 24)
             }
-            .ignoresSafeArea(.keyboard, edges: .bottom)
         }
         .contentShape(Rectangle())
         .onTapGesture {

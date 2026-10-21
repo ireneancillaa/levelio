@@ -116,6 +116,16 @@
     "swift-dependencies" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/WelcomeScreen.swiftdeps",
     "swiftmodule" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/WelcomeScreen~partial.swiftmodule"
   },
+  "/Users/ireneancilla/Internship/Levelio/Levelio/model/DinoStage.swift" : {
+    "const-values" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/DinoStage.swiftconstvalues",
+    "dependencies" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/DinoStage.d",
+    "diagnostics" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/DinoStage.dia",
+    "index-unit-output-path" : "/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/DinoStage.o",
+    "llvm-bc" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/DinoStage.bc",
+    "object" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/DinoStage.o",
+    "swift-dependencies" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/DinoStage.swiftdeps",
+    "swiftmodule" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/DinoStage~partial.swiftmodule"
+  },
   "/Users/ireneancilla/Internship/Levelio/Levelio/model/Habit.swift" : {
     "const-values" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/Habit.swiftconstvalues",
     "dependencies" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/Habit.d",
@@ -135,6 +145,36 @@
     "object" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitStore.o",
     "swift-dependencies" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitStore.swiftdeps",
     "swiftmodule" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitStore~partial.swiftmodule"
+  },
+  "/Users/ireneancilla/Internship/Levelio/Levelio/services/HabitService.swift" : {
+    "const-values" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitService.swiftconstvalues",
+    "dependencies" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitService.d",
+    "diagnostics" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitService.dia",
+    "index-unit-output-path" : "/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitService.o",
+    "llvm-bc" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitService.bc",
+    "object" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitService.o",
+    "swift-dependencies" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitService.swiftdeps",
+    "swiftmodule" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitService~partial.swiftmodule"
+  },
+  "/Users/ireneancilla/Internship/Levelio/Levelio/services/UserService.swift" : {
+    "const-values" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/UserService.swiftconstvalues",
+    "dependencies" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/UserService.d",
+    "diagnostics" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/UserService.dia",
+    "index-unit-output-path" : "/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/UserService.o",
+    "llvm-bc" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/UserService.bc",
+    "object" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/UserService.o",
+    "swift-dependencies" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/UserService.swiftdeps",
+    "swiftmodule" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/UserService~partial.swiftmodule"
+  },
+  "/Users/ireneancilla/Internship/Levelio/Levelio/utils/Screen+Extensions.swift" : {
+    "const-values" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/Screen+Extensions.swiftconstvalues",
+    "dependencies" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/Screen+Extensions.d",
+    "diagnostics" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/Screen+Extensions.dia",
+    "index-unit-output-path" : "/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/Screen+Extensions.o",
+    "llvm-bc" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/Screen+Extensions.bc",
+    "object" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/Screen+Extensions.o",
+    "swift-dependencies" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/Screen+Extensions.swiftdeps",
+    "swiftmodule" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/Screen+Extensions~partial.swiftmodule"
   },
   "/Users/ireneancilla/Internship/Levelio/Levelio/utils/View+Extensions.swift" : {
     "const-values" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/View+Extensions.swiftconstvalues",
@@ -205,6 +245,26 @@
     "object" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/SubscriptionPage.o",
     "swift-dependencies" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/SubscriptionPage.swiftdeps",
     "swiftmodule" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/SubscriptionPage~partial.swiftmodule"
+  },
+  "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/DerivedSources/CoreDataGenerated/Levelio/HabitEntity+CoreDataClass.swift" : {
+    "const-values" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitEntity+CoreDataClass.swiftconstvalues",
+    "dependencies" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitEntity+CoreDataClass.d",
+    "diagnostics" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitEntity+CoreDataClass.dia",
+    "index-unit-output-path" : "/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitEntity+CoreDataClass.o",
+    "llvm-bc" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitEntity+CoreDataClass.bc",
+    "object" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitEntity+CoreDataClass.o",
+    "swift-dependencies" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitEntity+CoreDataClass.swiftdeps",
+    "swiftmodule" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitEntity+CoreDataClass~partial.swiftmodule"
+  },
+  "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/DerivedSources/CoreDataGenerated/Levelio/HabitEntity+CoreDataProperties.swift" : {
+    "const-values" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitEntity+CoreDataProperties.swiftconstvalues",
+    "dependencies" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitEntity+CoreDataProperties.d",
+    "diagnostics" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitEntity+CoreDataProperties.dia",
+    "index-unit-output-path" : "/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitEntity+CoreDataProperties.o",
+    "llvm-bc" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitEntity+CoreDataProperties.bc",
+    "object" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitEntity+CoreDataProperties.o",
+    "swift-dependencies" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitEntity+CoreDataProperties.swiftdeps",
+    "swiftmodule" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/HabitEntity+CoreDataProperties~partial.swiftmodule"
   },
   "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/DerivedSources/CoreDataGenerated/Levelio/Levelio+CoreDataModel.swift" : {
     "const-values" : "/Users/ireneancilla/Internship/Levelio/build/DerivedData/Build/Intermediates.noindex/Levelio.build/Debug-iphonesimulator/Levelio.build/Objects-normal/arm64/Levelio+CoreDataModel.swiftconstvalues",

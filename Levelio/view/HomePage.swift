@@ -10,6 +10,7 @@ import CoreData
 
 struct HomePage: View {
     @AppStorage("currentUserId") private var currentUserId = ""
+    @AppStorage("currentUserName") private var currentUserName = ""
     
     static let sharedHabitService = HabitService(context: PersistenceController.shared.container.viewContext)
     static let sharedHabitStore = HabitStore()
@@ -29,7 +30,8 @@ struct HomePage: View {
             HomeTabContent(
                 store: HomePage.sharedHabitStore,
                 habitService: HomePage.sharedHabitService,
-                user: currentUser
+                user: currentUser,
+                userName: currentUserName
             )
                 .tabItem {
                     Label("Home", systemImage: selectedTab == 0 ? "house.fill" : "house")
@@ -37,7 +39,11 @@ struct HomePage: View {
                 .tag(0)
             
             // --- TAB 1: STATS ---
-            StatsPage(user: currentUser)
+            StatsPage(
+                user: currentUser,
+                store: HomePage.sharedHabitStore,
+                habitService: HomePage.sharedHabitService
+            )
                 .tabItem {
                     Label("Stats", systemImage: selectedTab == 1 ? "chart.bar.fill" : "chart.bar")
                 }
@@ -51,7 +57,11 @@ struct HomePage: View {
                 .tag(2)
             
             // --- TAB 3: CHALLENGES ---
-            ChallengesPage()
+            ChallengesPage(
+                user: currentUser,
+                store: HomePage.sharedHabitStore,
+                habitService: HomePage.sharedHabitService
+            )
                 .tabItem {
                     Label("Challenges", systemImage: selectedTab == 3 ? "trophy.fill" : "trophy")
                 }
@@ -64,7 +74,8 @@ struct HomePage: View {
             ProfilePage(
                 user: currentUser,
                 habitService: HomePage.sharedHabitService,
-                userService: userService
+                userService: userService,
+                store: HomePage.sharedHabitStore
             )
                 .tabItem {
                     Label("Profile", systemImage: selectedTab == 4 ? "person.fill" : "person")
@@ -73,43 +84,52 @@ struct HomePage: View {
         }
         .tint(.blue)
         .preferredColorScheme(.dark)
-        .task {
+        .task(id: currentUserId) {
+            loadCurrentUser()
+        }
+        .onAppear {
+            loadCurrentUser()
+        }
+        .onChange(of: currentUserId) { _, _ in
             loadCurrentUser()
         }
         
-        // 2. DETEKSI AMAN: Begitu user mengetuk Tab ke-2 (Plus), periksa role admin atau bukan
+        // 2. DETEKSI AMAN: Begitu user mengetuk Tab, periksa tab dan role admin/premium
         .onChange(of: selectedTab) { oldValue, newValue in
+            if newValue == 0 {
+                loadCurrentUser()
+            }
             if newValue == 2 {
                 // Kembalikan seleksi tab aktif ke halaman sebelumnya agar tidak macet di layar kosong
                 selectedTab = oldValue
                 
                 let userEmail = currentUser?.email?.lowercased() ?? ""
                 let isAdmin = userEmail.hasSuffix("@dev.co.id") || userEmail.contains("dev.co.id") || currentUser?.role == "developer"
+                let isPremium = currentUser?.role == "premium"
                 
-                if isAdmin {
-                    // Jika admin, langsung tampilkan AddPage tanpa iklan
+                if isAdmin || isPremium {
+                    // Jika admin atau premium, langsung tampilkan AddPage tanpa iklan
                     isPresentingAddPage = true
                 } else {
-                    // Jika bukan admin, tampilkan iklan SubscriptionPage terlebih dahulu
+                    // Jika bukan admin/premium, tampilkan iklan SubscriptionPage terlebih dahulu
                     isPresentingAdPage = true
                 }
             }
         }
         
-        // 3. TAMPILAN IKLAN SUBSCRIPTION PAGE (Untuk user non-admin)
+        // 3. TAMPILAN IKLAN SUBSCRIPTION PAGE (Untuk user non-admin / non-premium)
         .fullScreenCover(isPresented: $isPresentingAdPage) {
-            SubscriptionPage(isAdMode: true, onAdDismissed: {
+            SubscriptionPage(user: currentUser, isAdMode: true, onAdDismissed: {
+                loadCurrentUser()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                     isPresentingAddPage = true
                 }
             })
         }
         
-        // 4. KUNCI UTAMA: Memanggil AddPage dengan pembungkus NavigationStack dari luar
+        // 4. Memanggil AddPage langsung tanpa NavigationStack agar tidak ada duplikasi tombol back
         .fullScreenCover(isPresented: $isPresentingAddPage) {
-            NavigationStack {
-                AddPage(store: HomePage.sharedHabitStore)
-            }
+            AddPage(store: HomePage.sharedHabitStore)
         }
     }
     
@@ -119,7 +139,13 @@ struct HomePage: View {
         request.predicate = NSPredicate(format: "id == %@", uuid as CVarArg)
         request.fetchLimit = 1
         
-        currentUser = try? viewContext.fetch(request).first
+        if let fetchedUser = try? viewContext.fetch(request).first {
+            currentUser = fetchedUser
+            if let name = fetchedUser.fullName, !name.isEmpty {
+                currentUserName = name
+            }
+            HomePage.sharedHabitStore.refresh(for: fetchedUser)
+        }
     }
 }
 
@@ -128,6 +154,19 @@ struct HomeTabContent: View {
     @ObservedObject var store: HabitStore
     var habitService: HabitService
     let user: UserEntity?
+    var userName: String = ""
+    
+    @State private var habitToDelete: HabitEntity? = nil
+    @State private var showDeleteConfirmation = false
+    @State private var showResetConfirmation = false
+    
+    private var isCompactScreen: Bool {
+        UIScreen.isCompact
+    }
+    
+    private var currentStage: DinoStage {
+        DinoStage.stage(for: store.totalXP)
+    }
     
     var body: some View {
         ZStack {
@@ -141,25 +180,25 @@ struct HomeTabContent: View {
             VStack(spacing: 0) {
                 
                 // --- AREA 1: HEADER STATIS (Identik dengan Stats & Challenges) ---
-                HeaderView(user: user)
+                HeaderView(user: user, userName: userName, streak: store.currentStreak)
                     .padding(.horizontal, 24)
-                    .padding(.top, 50)
-                    .padding(.bottom, 20)
+                    .padding(.top, 12)
+                    .padding(.bottom, isCompactScreen ? 8 : 16)
                 
                 // --- AREA 2: HERO, TIMELINE, XP CARD ---
-                VStack(alignment: .leading, spacing: 25) {
-                    EggHeroSection()
+                VStack(alignment: .leading, spacing: isCompactScreen ? 12 : 20) {
+                    EggHeroSection(stage: currentStage, isCompact: isCompactScreen)
                     
-                    EvolutionJourneyTimeline(user: user)
+                    EvolutionJourneyTimeline(user: user, userName: userName, currentStage: currentStage, isCompact: isCompactScreen)
                     
-                    XpProgressCard()
+                    XpProgressCard(totalXP: store.totalXP, stage: currentStage, isCompact: isCompactScreen)
                 }
                 .padding(.horizontal, 24)
-                .padding(.bottom, 20) // Memberi jarak sebelum masuk ke batas awal ScrollView
+                .padding(.bottom, isCompactScreen ? 10 : 16)
                 
                 // --- AREA 2: SCROLLABLE (Hanya bagian progress ke bawah) ---
                 ScrollView(.vertical, showsIndicators: false) {
-                    VStack(alignment: .leading, spacing: 25) {
+                    VStack(alignment: .leading, spacing: isCompactScreen ? 16 : 22) {
                         
                         HabitSectionView(
                             title: "Today's Progress",
@@ -167,9 +206,16 @@ struct HomeTabContent: View {
                             habits: store.habits.filter { !$0.isCompleted },
                             onToggle: { habit in
                                 if let habitId = habit.habitId {
-                                    store.toggleCompletion(for: habitId)
+                                    store.toggleCompletion(for: habitId, user: user)
                                 }
-                            }
+                            },
+                            onDelete: { habit in
+                                habitToDelete = habit
+                                showDeleteConfirmation = true
+                            },
+                            onReset: store.habits.contains { $0.isCompleted } ? {
+                                showResetConfirmation = true
+                            } : nil
                         )
                         
                         HabitSectionView(
@@ -178,18 +224,39 @@ struct HomeTabContent: View {
                             habits: store.habits.filter { $0.isCompleted },
                             onToggle: { habit in
                                 if let habitId = habit.habitId {
-                                    store.toggleCompletion(for: habitId)
+                                    store.toggleCompletion(for: habitId, user: user)
                                 }
+                            },
+                            onDelete: { habit in
+                                habitToDelete = habit
+                                showDeleteConfirmation = true
                             }
                         )
                         
                     }
                     .padding(.horizontal, 24)
-                    .padding(.top, 5) // Padding tipis agar bayangan card teratas tidak terpotong kaku
-                    .padding(.bottom, 90)
+                    .padding(.top, 5)
+                    .padding(.bottom, 24)
                 }
             }
-            .safeAreaPadding(.top) // Otomatis menjaga tumpukan atas menghormati Dynamic Island/Notch iPhone
+        }
+        .alert("Reset Daily Habits?", isPresented: $showResetConfirmation) {
+            Button("Reset", role: .destructive) {
+                store.resetAllHabits(for: user)
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("This will uncheck all completed habits so you can track them again today.")
+        }
+        .alert("Delete Habit?", isPresented: $showDeleteConfirmation) {
+            Button("Delete", role: .destructive) {
+                if let habit = habitToDelete, let id = habit.habitId {
+                    store.deleteHabit(id: id, user: user)
+                }
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("Are you sure you want to permanently delete '\(habitToDelete?.title ?? "this habit")'?")
         }
     }
 }
@@ -197,6 +264,31 @@ struct HomeTabContent: View {
 // MARK: - 1. HEADER VIEW
 struct HeaderView: View {
     var user: UserEntity?
+    var userName: String = ""
+    var streak: Int = 0
+    
+    private var firstName: String {
+        let effectiveName = !userName.isEmpty ? userName : (user?.fullName ?? "")
+        let first = effectiveName.trimmingCharacters(in: .whitespacesAndNewlines)
+            .components(separatedBy: " ")
+            .first?
+            .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        return first.isEmpty ? "Explorer" : first
+    }
+    
+    private var greetingPrefix: String {
+        let hour = Calendar.current.component(.hour, from: Date())
+        switch hour {
+        case 5..<12:
+            return "Good morning"
+        case 12..<17:
+            return "Good afternoon"
+        case 17..<21:
+            return "Good evening"
+        default:
+            return "Good night"
+        }
+    }
     
     var formattedToday: String {
         let formatter = DateFormatter()
@@ -206,9 +298,9 @@ struct HeaderView: View {
     }
     
     var body: some View {
-        HStack(alignment: .center) {
+        HStack(alignment: .center, spacing: 10) {
             VStack(alignment: .leading, spacing: 4) {
-                Text("Morning, \(user?.fullName ?? "Explorer")!")
+                Text("\(greetingPrefix), \(firstName)!")
                     .font(.system(size: 26, weight: .heavy))
                     .foregroundColor(.white)
                 
@@ -219,11 +311,32 @@ struct HeaderView: View {
             
             Spacer()
             
+            // Streak Flame Pill Badge
+            HStack(spacing: 5) {
+                Image(systemName: "flame.fill")
+                    .font(.system(size: 13))
+                    .foregroundColor(streak > 0 ? .orange : .gray)
+                
+                Text("\(streak) \(streak == 1 ? "Day" : "Days")")
+                    .font(.system(size: 12, weight: .bold))
+                    .foregroundColor(streak > 0 ? .white : .gray)
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 7)
+            .background(
+                Capsule()
+                    .fill(streak > 0 ? Color.orange.opacity(0.15) : Color.white.opacity(0.06))
+            )
+            .overlay(
+                Capsule()
+                    .stroke(streak > 0 ? Color.orange.opacity(0.4) : Color.white.opacity(0.1), lineWidth: 1)
+            )
+            
             // Avatar Dino Lingkaran Berwarna Hijau
             Image("ava-1") // Pastikan asset disiapkan di Assets catalog
                 .resizable()
                 .scaledToFit()
-                .frame(width: 55, height: 55)
+                .frame(width: 50, height: 50)
                 .background(Circle().fill(Color.white.opacity(0.1)))
                 .clipShape(Circle())
                 .overlay(Circle().stroke(Color.gray.opacity(0.3), lineWidth: 1))
@@ -233,48 +346,83 @@ struct HeaderView: View {
 
 // MARK: - 2. EGG HERO SECTION
 struct EggHeroSection: View {
+    let stage: DinoStage
+    var isCompact: Bool = false
+    
     var body: some View {
         HStack {
             Spacer()
             ZStack(alignment: .topTrailing) {
-                // Gambar Telur Utama Berpendar (Glow)
-                Image("dino-egg-blue")
+                // Gambar Pet Sesuai Tahap Evolusi
+                Image(stage.imageName)
                     .resizable()
                     .scaledToFit()
-                    .frame(maxHeight: 160)
+                    .frame(maxHeight: isCompact ? 110 : 155)
                     .shadow(color: Color.blue.opacity(0.3), radius: 20, x: 0, y: 10)
+                    .animation(.spring(response: 0.45, dampingFraction: 0.7), value: stage)
                 
-                // Balon Komik Dialog "Hatch me!"
-                Image("speech-bubble") // Atur asset balon teks Anda
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 70)
-                    .offset(x: 50, y: -20)
+                // Balon Dialog Berbasis Stage
+                SpeechBubbleView(stage: stage)
+                    .offset(x: stage == .egg ? 50 : 35, y: -20)
             }
             Spacer()
         }
-        .padding(.vertical, 6)
+        .padding(.vertical, isCompact ? 2 : 6)
+    }
+}
+
+struct SpeechBubbleView: View {
+    let stage: DinoStage
+    
+    var body: some View {
+        if stage == .egg {
+            Image("speech-bubble")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 70)
+        } else {
+            HStack(spacing: 4) {
+                Text(stage.speechBubbleText)
+                    .font(.system(size: 11, weight: .bold))
+                    .foregroundColor(Color("primary"))
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 6)
+            .background(
+                Capsule()
+                    .fill(Color.black.opacity(0.6))
+                    .overlay(Capsule().stroke(Color("secondary").opacity(0.6), lineWidth: 1.5))
+            )
+        }
     }
 }
 
 // MARK: - 3. EVOLUTION JOURNEY TIMELINE
 struct EvolutionJourneyTimeline: View {
     let user: UserEntity?
+    var userName: String = ""
+    let currentStage: DinoStage
+    var isCompact: Bool = false
+    
+    private var displayName: String {
+        let effectiveName = !userName.isEmpty ? userName : (user?.fullName ?? "")
+        return effectiveName.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 15) {
-            Text("\(self.user?.fullName ?? "")'s Evolution Journey")
-                .font(.system(size: 20, weight: .bold))
+        VStack(alignment: .leading, spacing: isCompact ? 8 : 12) {
+            Text(displayName.isEmpty ? "Evolution Journey" : "\(displayName)'s Evolution Journey")
+                .font(.system(size: isCompact ? 17 : 20, weight: .bold))
                 .foregroundColor(.white)
             
             HStack(spacing: 0) {
-                TimelineNode(imageName: "dino-egg-blue", label: "Egg", isActive: true)
-                TimelineLine()
-                TimelineNode(imageName: "dino-hatch-blue", label: "Hatchling", isActive: false)
-                TimelineLine()
-                TimelineNode(imageName: "dino-baby-blue", label: "Baby Dino", isActive: false)
-                TimelineLine()
-                TimelineNode(imageName: "dino-adult-blue", label: "Adult Dino", isActive: false)
+                TimelineNode(imageName: "dino-egg-blue", label: "Egg", isActive: currentStage.level >= 1, isCompact: isCompact)
+                TimelineLine(isActive: currentStage.level >= 2)
+                TimelineNode(imageName: "dino-hatch-blue", label: "Hatchling", isActive: currentStage.level >= 2, isCompact: isCompact)
+                TimelineLine(isActive: currentStage.level >= 3)
+                TimelineNode(imageName: "dino-baby-blue", label: "Baby Dino", isActive: currentStage.level >= 3, isCompact: isCompact)
+                TimelineLine(isActive: currentStage.level >= 4)
+                TimelineNode(imageName: "dino-adult-blue", label: "Adult Dino", isActive: currentStage.level >= 4, isCompact: isCompact)
             }
         }
     }
@@ -284,13 +432,14 @@ struct TimelineNode: View {
     let imageName: String
     let label: String
     let isActive: Bool
+    var isCompact: Bool = false
     
     var body: some View {
-        VStack(spacing: 6) {
+        VStack(spacing: isCompact ? 4 : 6) {
             ZStack {
                 Circle()
                     .fill(isActive ? Color.white.opacity(0.15) : Color.white.opacity(0.04))
-                    .frame(width: 44, height: 44)
+                    .frame(width: isCompact ? 36 : 44, height: isCompact ? 36 : 44)
                     .overlay(
                         Circle()
                             .stroke(isActive ? Color("secondary") : Color.white.opacity(0.1), lineWidth: isActive ? 2 : 1)
@@ -299,44 +448,58 @@ struct TimelineNode: View {
                 Image(imageName)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 26, height: 26)
+                    .frame(width: isCompact ? 20 : 26, height: isCompact ? 20 : 26)
                     .opacity(isActive ? 1.0 : 0.4)
             }
             
             Text(label)
-                .font(.system(size: 10, weight: isActive ? .bold : .medium))
+                .font(.system(size: isCompact ? 9 : 10, weight: isActive ? .bold : .medium))
                 .foregroundColor(isActive ? .white : .gray)
                 .lineLimit(1)
                 .minimumScaleFactor(0.8)
         }
         .frame(maxWidth: .infinity)
+        .animation(.easeInOut(duration: 0.3), value: isActive)
     }
 }
 
 struct TimelineLine: View {
+    var isActive: Bool = false
+    
     var body: some View {
         Rectangle()
-            .fill(Color.white.opacity(0.15))
+            .fill(isActive ? Color("secondary") : Color.white.opacity(0.15))
             .frame(height: 2)
             .offset(y: -10)
+            .animation(.easeInOut(duration: 0.3), value: isActive)
     }
 }
 
 // MARK: - 4. XP PROGRESS CARD
 struct XpProgressCard: View {
+    let totalXP: Int
+    let stage: DinoStage
+    var isCompact: Bool = false
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: isCompact ? 8 : 12) {
             // Label Level Saat Ini & XP Numeric Indicator
             HStack {
-                Text("Level 1: Egg")
-                    .font(.system(size: 16, weight: .bold))
+                Text("Level \(stage.level): \(stage.name)")
+                    .font(.system(size: isCompact ? 14 : 16, weight: .bold))
                     .foregroundColor(.white)
                 
                 Spacer()
                 
-                Text("150 / 400 XP")
-                    .font(.system(size: 14, weight: .bold))
-                    .foregroundColor(Color("secondary"))
+                if stage.isMaxLevel {
+                    Text("\(totalXP) XP (MAX)")
+                        .font(.system(size: isCompact ? 12 : 14, weight: .bold))
+                        .foregroundColor(Color("secondary"))
+                } else {
+                    Text("\(totalXP) / \(stage.targetXP) XP")
+                        .font(.system(size: isCompact ? 12 : 14, weight: .bold))
+                        .foregroundColor(Color("secondary"))
+                }
             }
             
             // Custom Linear Progress Bar Capsul
@@ -348,7 +511,8 @@ struct XpProgressCard: View {
                     
                     Capsule()
                         .fill(LinearGradient(colors: [Color("secondary"), Color("secondary").opacity(0.6)], startPoint: .leading, endPoint: .trailing))
-                        .frame(width: geo.size.width * (150.0 / 400.0), height: 6)
+                        .frame(width: max(0, min(geo.size.width, geo.size.width * CGFloat(stage.progressRatio(for: totalXP)))), height: 6)
+                        .animation(.spring(response: 0.4, dampingFraction: 0.7), value: totalXP)
                 }
             }
             .frame(height: 6)
@@ -357,15 +521,27 @@ struct XpProgressCard: View {
             HStack(spacing: 4) {
                 Image(systemName: "megaphone.fill")
                     .font(.system(size: 11))
-                Text("250 XP left to hatch into")
-                Text("Hatchling")
-                    .fontWeight(.bold)
-                    .foregroundColor(Color("primary"))
+                
+                if stage.isMaxLevel {
+                    Text("Max level reached! Dino is fully grown!")
+                        .fontWeight(.semibold)
+                        .foregroundColor(Color("primary"))
+                } else if stage == .egg {
+                    Text("\(stage.remainingXP(for: totalXP)) XP left to hatch into")
+                    Text("Hatchling")
+                        .fontWeight(.bold)
+                        .foregroundColor(Color("primary"))
+                } else {
+                    Text("\(stage.remainingXP(for: totalXP)) XP left to evolve into")
+                    Text(stage.nextStage?.name ?? "")
+                        .fontWeight(.bold)
+                        .foregroundColor(Color("primary"))
+                }
             }
             .font(.system(size: 12, weight: .medium))
             .foregroundColor(.gray)
         }
-        .padding(.all, 16)
+        .padding(.all, isCompact ? 12 : 16)
         .background(Color.white.opacity(0.04))
         .cornerRadius(14)
         .overlay(
@@ -385,6 +561,8 @@ struct HabitSectionView: View {
     let status: HabitStatus
     let habits: [HabitEntity]
     let onToggle: (HabitEntity) -> Void
+    var onDelete: ((HabitEntity) -> Void)? = nil
+    var onReset: (() -> Void)? = nil
     
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
@@ -394,6 +572,23 @@ struct HabitSectionView: View {
                     .foregroundColor(.white)
                 
                 Spacer()
+                
+                if let onReset = onReset {
+                    Button(action: onReset) {
+                        HStack(spacing: 4) {
+                            Image(systemName: "arrow.counterclockwise")
+                                .font(.system(size: 11, weight: .bold))
+                            Text("Reset")
+                                .font(.system(size: 11, weight: .bold))
+                        }
+                        .foregroundColor(.gray)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(Color.white.opacity(0.08))
+                        .cornerRadius(8)
+                    }
+                    .frame(minWidth: 44, minHeight: 44)
+                }
                 
                 Text("\(habits.count)")
                     .font(.system(size: 12, weight: .bold))
@@ -423,9 +618,12 @@ struct HabitSectionView: View {
                 .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.white.opacity(0.05), lineWidth: 1))
             } else {
                 ForEach(habits) { habit in
-                    HabitRowCard(habit: habit, status: status) {
-                        onToggle(habit)
-                    }
+                    HabitRowCard(
+                        habit: habit,
+                        status: status,
+                        onToggle: { onToggle(habit) },
+                        onDelete: onDelete != nil ? { onDelete?(habit) } : nil
+                    )
                 }
             }
         }
@@ -436,61 +634,100 @@ struct HabitRowCard: View {
     let habit: HabitEntity
     let status: HabitStatus
     let onToggle: () -> Void
+    var onDelete: (() -> Void)? = nil
+    
+    private var habitColor: Color {
+        switch habit.colorName?.lowercased() {
+        case "secondary", "purple":
+            return Color("secondary")
+        case "tertiary", "indigo", "blue":
+            return Color("tertiary")
+        default:
+            return Color("primary")
+        }
+    }
     
     var body: some View {
-        Button(action: onToggle) {
-            HStack(spacing: 16) {
-                // Indikator Titik Berwarna Lingkaran (Ungu vs Cyan)
-                Circle()
-                    .fill(status == .active ? Color("secondary").opacity(0.8) : Color("primary").opacity(0.8))
-                    .frame(width: 20, height: 20)
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(habit.title ?? "Untitled Habit")
-                        .font(.system(size: 15, weight: .bold))
-                        .foregroundColor(.white)
+        HStack(spacing: 0) {
+            Button(action: onToggle) {
+                HStack(spacing: 16) {
+                    // Indikator Titik Berwarna Lingkaran Sesuai Pilihan Warna Habit
+                    Circle()
+                        .fill(status == .active ? habitColor.opacity(0.9) : habitColor.opacity(0.4))
+                        .frame(width: 20, height: 20)
                     
-                    Text(habit.time ?? "08.00am")
-                        .font(.system(size: 12, weight: .medium))
-                        .foregroundColor(.gray)
-                }
-                
-                Spacer()
-                
-                // Info XP & Status Centang Kanan
-                if status == .active {
-                    Text("+\(habit.xpReward)XP")
-                        .font(.system(size: 14, weight: .bold))
-                        .foregroundColor(Color("secondary").opacity(0.9))
-                    
-                    Image(systemName: "circle")
-                        .font(.system(size: 18))
-                        .foregroundColor(.gray.opacity(0.5))
-                } else {
-                    VStack(alignment: .trailing, spacing: 2) {
-                        Text("+\(habit.xpReward)XP")
-                            .font(.system(size: 14, weight: .bold))
-                            .foregroundColor(.gray.opacity(0.4))
-                            .strikethrough() // Efek coret tulisan XP karena sudah diklaim
-                        Text("Completed!")
-                            .font(.system(size: 11, weight: .semibold))
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(habit.title ?? "Untitled Habit")
+                            .font(.system(size: 15, weight: .bold))
+                            .foregroundColor(.white)
+                        
+                        Text(habit.time ?? "08.00am")
+                            .font(.system(size: 12, weight: .medium))
                             .foregroundColor(.gray)
                     }
                     
-                    Image(systemName: "checkmark.circle.fill")
-                        .font(.system(size: 18))
-                        .foregroundColor(.white)
+                    Spacer()
+                    
+                    // Info XP & Status Centang Kanan
+                    if status == .active {
+                        Text("+\(habit.xpReward)XP")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundColor(habitColor.opacity(0.9))
+                        
+                        Image(systemName: "circle")
+                            .font(.system(size: 18))
+                            .foregroundColor(.gray.opacity(0.5))
+                    } else {
+                        VStack(alignment: .trailing, spacing: 2) {
+                            Text("+\(habit.xpReward)XP")
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundColor(.gray.opacity(0.4))
+                                .strikethrough() // Efek coret tulisan XP karena sudah diklaim
+                            Text("Completed!")
+                                .font(.system(size: 11, weight: .semibold))
+                                .foregroundColor(.gray)
+                        }
+                        
+                        Image(systemName: "checkmark.circle.fill")
+                            .font(.system(size: 18))
+                            .foregroundColor(.white)
+                    }
                 }
             }
-            .padding(.all, 16)
-            .background(Color.white.opacity(0.04))
-            .cornerRadius(14)
-            .overlay(
-                RoundedRectangle(cornerRadius: 14)
-                    .stroke(Color.white.opacity(0.08), lineWidth: 1)
-            )
+            .buttonStyle(PlainButtonStyle())
+            
+            if let onDelete = onDelete {
+                Menu {
+                    Button(role: .destructive, action: onDelete) {
+                        Label("Delete Habit", systemImage: "trash")
+                    }
+                } label: {
+                    Image(systemName: "ellipsis")
+                        .font(.system(size: 14, weight: .bold))
+                        .foregroundColor(.gray.opacity(0.6))
+                        .frame(width: 36, height: 36)
+                        .contentShape(Rectangle())
+                }
+                .frame(width: 44, height: 44)
+                .padding(.leading, 4)
+            }
         }
-        .buttonStyle(PlainButtonStyle())
+        .padding(.leading, 16)
+        .padding(.trailing, onDelete != nil ? 8 : 16)
+        .padding(.vertical, 12)
+        .background(Color.white.opacity(0.04))
+        .cornerRadius(14)
+        .overlay(
+            RoundedRectangle(cornerRadius: 14)
+                .stroke(Color.white.opacity(0.08), lineWidth: 1)
+        )
+        .contextMenu {
+            if let onDelete = onDelete {
+                Button(role: .destructive, action: onDelete) {
+                    Label("Delete Habit", systemImage: "trash")
+                }
+            }
+        }
     }
 }
 

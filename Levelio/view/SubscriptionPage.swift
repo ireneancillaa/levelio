@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct BenefitItem: Identifiable {
     let id = UUID()
@@ -17,7 +18,9 @@ struct BenefitItem: Identifiable {
 
 struct SubscriptionPage: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.managedObjectContext) private var viewContext
     
+    var user: UserEntity? = nil
     var isAdMode: Bool = false
     var onAdDismissed: (() -> Void)? = nil
     
@@ -133,8 +136,8 @@ struct SubscriptionPage: View {
                 }
                 .frame(height: 55)
                 .padding(.horizontal, 24)
-                .padding(.top, 50)
-                .padding(.bottom, 20)
+                .padding(.top, 12)
+                .padding(.bottom, 12)
                 
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 24) {
@@ -434,11 +437,11 @@ struct SubscriptionPage: View {
                             .padding(.horizontal, 20)
                         }
                         
-                        // --- 6. SOCIAL PROOF & RATING ---
+                        // --- 6. VALUE PROMISE ---
                         HStack(spacing: 8) {
-                            Text("⭐️⭐️⭐️⭐️⭐️")
+                            Text("✨")
                                 .font(.system(size: 12))
-                            Text("4.9/5 rated by 10,000+ habit builders")
+                            Text("Crafted to help you build lasting, rewarding habits")
                                 .font(.system(size: 11, weight: .medium))
                                 .foregroundColor(.white.opacity(0.7))
                         }
@@ -520,10 +523,10 @@ struct SubscriptionPage: View {
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 12)
-                .padding(.bottom, 36)
+                .padding(.bottom, 24)
                 .background(
                     Color.black.opacity(0.4)
-                        .ignoresSafeArea()
+                        .ignoresSafeArea(edges: .bottom)
                 )
             }
         }
@@ -563,6 +566,18 @@ struct SubscriptionPage: View {
         // Simulasikan delay transaksi In-App Purchase
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
             isPurchasing = false
+            if let user = user {
+                user.role = "premium"
+                try? viewContext.save()
+            } else if let userIdString = UserDefaults.standard.string(forKey: "currentUserId"),
+                      let userUUID = UUID(uuidString: userIdString) {
+                let request: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
+                request.predicate = NSPredicate(format: "id == %@", userUUID as CVarArg)
+                if let foundUser = try? viewContext.fetch(request).first {
+                    foundUser.role = "premium"
+                    try? viewContext.save()
+                }
+            }
             alertMessage = "Welcome to Levelio Premium! 🚀\nYour subscription is now active."
             showAlert = true
         }

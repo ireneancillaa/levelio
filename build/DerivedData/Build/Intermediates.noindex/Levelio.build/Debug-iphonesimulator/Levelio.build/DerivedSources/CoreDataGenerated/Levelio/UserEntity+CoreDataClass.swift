@@ -2,7 +2,7 @@
 //  UserEntity+CoreDataClass.swift
 //  
 //
-//  Created by Irene Ancilla Chow on 01/10/26.
+//  Created by Irene Ancilla Chow on 21/10/26.
 //
 //  This file was automatically generated and should not be edited.
 //

@@ -48,6 +48,9 @@ class UserService {
         newUser.levelioId = levelioId
         newUser.role = assignedRole
         newUser.createdDate = Date()
+        newUser.streak = 0
+        newUser.bestStreak = 0
+        newUser.xp = 0
         
         do {
             try viewContext.save()
@@ -78,7 +81,7 @@ class UserService {
         return formatter.string(from: date)
     }
     
-    func loginUser(email: String, password: String) throws -> String {
+    func loginUser(email: String, password: String) throws -> (userId: String, fullName: String) {
         let request: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
         request.predicate = NSPredicate(format: "email ==[c] %@ AND password == %@", email, password)
         request.fetchLimit = 1
@@ -86,7 +89,7 @@ class UserService {
         let results = try viewContext.fetch(request)
         
         if let user = results.first {
-            return user.id?.uuidString ?? ""
+            return (user.id?.uuidString ?? "", user.fullName ?? "")
         } else {
             throw AuthError.invalidCredentials
         }

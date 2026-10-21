@@ -7,23 +7,31 @@
         "key": "Profile",
         "location": {
           "startingColumn": 30,
-          "startingLine": 37
+          "startingLine": 65
         }
       },
       {
         "comment": "",
-        "key": "Level 1",
+        "key": "Level %lld",
         "location": {
           "startingColumn": 38,
-          "startingLine": 82
+          "startingLine": 112
         }
       },
       {
         "comment": "",
-        "key": "150/400 XP",
+        "key": "%lld XP (MAX)",
         "location": {
-          "startingColumn": 38,
-          "startingLine": 86
+          "startingColumn": 42,
+          "startingLine": 117
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld/%lld XP",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 121
         }
       },
       {
@@ -31,7 +39,7 @@
         "key": "🔥 %lld",
         "location": {
           "startingColumn": 38,
-          "startingLine": 107
+          "startingLine": 144
         }
       },
       {
@@ -39,15 +47,15 @@
         "key": "Streak",
         "location": {
           "startingColumn": 38,
-          "startingLine": 108
+          "startingLine": 145
         }
       },
       {
         "comment": "",
-        "key": "⚡️ 120",
+        "key": "⚡️ %lld",
         "location": {
           "startingColumn": 38,
-          "startingLine": 114
+          "startingLine": 151
         }
       },
       {
@@ -55,15 +63,15 @@
         "key": "Today's XP",
         "location": {
           "startingColumn": 38,
-          "startingLine": 115
+          "startingLine": 152
         }
       },
       {
         "comment": "",
-        "key": "🎯 40%",
+        "key": "🎯 %lld%%",
         "location": {
           "startingColumn": 38,
-          "startingLine": 121
+          "startingLine": 158
         }
       },
       {
@@ -71,15 +79,15 @@
         "key": "Completion",
         "location": {
           "startingColumn": 38,
-          "startingLine": 122
+          "startingLine": 159
         }
       },
       {
         "comment": "",
-        "key": "🗓️ 10",
+        "key": "🗓️ %lld",
         "location": {
           "startingColumn": 38,
-          "startingLine": 128
+          "startingLine": 165
         }
       },
       {
@@ -87,31 +95,55 @@
         "key": "Active",
         "location": {
           "startingColumn": 38,
-          "startingLine": 129
+          "startingLine": 166
         }
       },
       {
         "comment": "",
-        "key": "💎 Upgrade to Premium",
+        "key": "Unlimited habits, zero ads, and all analytics unlocked.",
         "location": {
-          "startingColumn": 42,
-          "startingLine": 148
+          "startingColumn": 54,
+          "startingLine": 203
         }
       },
       {
         "comment": "",
         "key": "Level up faster with unlimited habits\n& advanced stats.",
         "location": {
-          "startingColumn": 42,
-          "startingLine": 152
+          "startingColumn": 114,
+          "startingLine": 203
+        }
+      },
+      {
+        "comment": "",
+        "key": "ACTIVE",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 193
+        }
+      },
+      {
+        "comment": "",
+        "key": "✨ Levelio Premium",
+        "location": {
+          "startingColumn": 58,
+          "startingLine": 188
+        }
+      },
+      {
+        "comment": "",
+        "key": "💎 Upgrade to Premium",
+        "location": {
+          "startingColumn": 82,
+          "startingLine": 188
         }
       },
       {
         "comment": "",
         "key": "Upgrade Now",
         "location": {
-          "startingColumn": 46,
-          "startingLine": 160
+          "startingColumn": 50,
+          "startingLine": 211
         }
       },
       {
@@ -119,7 +151,7 @@
         "key": "Levelers Since",
         "location": {
           "startingColumn": 38,
-          "startingLine": 192
+          "startingLine": 252
         }
       },
       {
@@ -127,7 +159,7 @@
         "key": "User’s Information",
         "location": {
           "startingColumn": 38,
-          "startingLine": 224
+          "startingLine": 280
         }
       },
       {
@@ -135,7 +167,7 @@
         "key": "Full Name",
         "location": {
           "startingColumn": 51,
-          "startingLine": 241
+          "startingLine": 297
         }
       },
       {
@@ -143,7 +175,7 @@
         "key": "",
         "location": {
           "startingColumn": 52,
-          "startingLine": 336
+          "startingLine": 392
         }
       },
       {
@@ -151,7 +183,7 @@
         "key": "Prefer not to say",
         "location": {
           "startingColumn": 50,
-          "startingLine": 358
+          "startingLine": 414
         }
       },
       {
@@ -159,7 +191,7 @@
         "key": "Female",
         "location": {
           "startingColumn": 50,
-          "startingLine": 367
+          "startingLine": 423
         }
       },
       {
@@ -167,7 +199,7 @@
         "key": "Male",
         "location": {
           "startingColumn": 50,
-          "startingLine": 376
+          "startingLine": 432
         }
       }
     ]

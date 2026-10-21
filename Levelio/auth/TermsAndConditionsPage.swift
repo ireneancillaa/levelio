@@ -85,7 +85,7 @@ struct TermsAndConditionsPage: View {
                     Spacer()
                 }
                 .padding(.horizontal, 24)
-                .padding(.top, 50)
+                .padding(.top, 12)
                 .padding(.bottom, 12)
                 
                 // --- 2. HEADER & AT A GLANCE (STATIC / UN-SCROLLED) ---
@@ -295,14 +295,13 @@ struct TermsAndConditionsPage: View {
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 14)
-                .padding(.bottom, 34)
+                .padding(.bottom, 24)
                 .background(
                     Color.black.opacity(0.3)
                         .blur(radius: 10)
                         .ignoresSafeArea(edges: .bottom)
                 )
             }
-            .safeAreaPadding(.top)
         }
         .navigationBarBackButtonHidden(true)
     }

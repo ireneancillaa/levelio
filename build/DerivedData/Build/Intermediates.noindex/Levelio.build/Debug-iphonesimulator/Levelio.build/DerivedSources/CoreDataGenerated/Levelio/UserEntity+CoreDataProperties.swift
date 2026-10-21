@@ -2,7 +2,7 @@
 //  UserEntity+CoreDataProperties.swift
 //  
 //
-//  Created by Irene Ancilla Chow on 01/10/26.
+//  Created by Irene Ancilla Chow on 21/10/26.
 //
 //  This file was automatically generated and should not be edited.
 //
@@ -25,10 +25,13 @@ extension UserEntity {
     @NSManaged nonisolated public var fullName: String?
     @NSManaged nonisolated public var gender: String?
     @NSManaged nonisolated public var id: UUID?
+    @NSManaged nonisolated public var lastActiveDate: Date?
     @NSManaged nonisolated public var levelioId: String?
     @NSManaged nonisolated public var password: String?
     @NSManaged nonisolated public var role: String?
+    @NSManaged nonisolated public var bestStreak: Int64
     @NSManaged nonisolated public var streak: Int64
+    @NSManaged nonisolated public var xp: Int64
 
 }
 

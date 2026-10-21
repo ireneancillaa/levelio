@@ -7,7 +7,7 @@
         "key": "Home",
         "location": {
           "startingColumn": 27,
-          "startingLine": 29
+          "startingLine": 37
         }
       },
       {
@@ -15,7 +15,7 @@
         "key": "Stats",
         "location": {
           "startingColumn": 27,
-          "startingLine": 36
+          "startingLine": 48
         }
       },
       {
@@ -23,7 +23,7 @@
         "key": "Add",
         "location": {
           "startingColumn": 27,
-          "startingLine": 43
+          "startingLine": 55
         }
       },
       {
@@ -31,7 +31,7 @@
         "key": "Challenges",
         "location": {
           "startingColumn": 27,
-          "startingLine": 50
+          "startingLine": 66
         }
       },
       {
@@ -39,63 +39,159 @@
         "key": "Profile",
         "location": {
           "startingColumn": 27,
-          "startingLine": 57
+          "startingLine": 81
         }
       },
       {
         "comment": "",
-        "key": "Morning, %@!",
+        "key": "Reset Daily Habits?",
         "location": {
-          "startingColumn": 22,
-          "startingLine": 186
+          "startingColumn": 16,
+          "startingLine": 243
         }
       },
       {
         "comment": "",
-        "key": "Monday, 20 April 2026",
+        "key": "Delete Habit?",
         "location": {
-          "startingColumn": 22,
-          "startingLine": 190
+          "startingColumn": 16,
+          "startingLine": 251
         }
       },
       {
         "comment": "",
-        "key": "Udin’s Evolution Journey",
+        "key": "Reset",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 244
+        }
+      },
+      {
+        "comment": "",
+        "key": "Cancel",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 247
+        }
+      },
+      {
+        "comment": "",
+        "key": "This will uncheck all completed habits so you can track them again today.",
         "location": {
           "startingColumn": 18,
-          "startingLine": 239
+          "startingLine": 249
         }
       },
       {
         "comment": "",
-        "key": "Level 1: Egg",
+        "key": "Delete",
         "location": {
-          "startingColumn": 22,
-          "startingLine": 304
+          "startingColumn": 20,
+          "startingLine": 252
         }
       },
       {
         "comment": "",
-        "key": "150 / 400 XP",
+        "key": "Cancel",
         "location": {
-          "startingColumn": 22,
-          "startingLine": 310
+          "startingColumn": 20,
+          "startingLine": 257
         }
       },
       {
         "comment": "",
-        "key": "250 XP left to hatch into",
+        "key": "Are you sure you want to permanently delete '%@'?",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 259
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@, %@!",
         "location": {
           "startingColumn": 22,
-          "startingLine": 333
+          "startingLine": 303
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld %@",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 320
+        }
+      },
+      {
+        "comment": "",
+        "key": "Evolution Journey",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 414
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@'s Evolution Journey",
+        "location": {
+          "startingColumn": 62,
+          "startingLine": 414
+        }
+      },
+      {
+        "comment": "",
+        "key": "Level %lld: %@",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 488
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld XP (MAX)",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 495
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld / %lld XP",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 499
+        }
+      },
+      {
+        "comment": "",
+        "key": "Max level reached! Dino is fully grown!",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 526
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld XP left to hatch into",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 530
         }
       },
       {
         "comment": "",
         "key": "Hatchling",
         "location": {
-          "startingColumn": 22,
-          "startingLine": 334
+          "startingColumn": 26,
+          "startingLine": 531
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld XP left to evolve into",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 535
         }
       },
       {
@@ -103,7 +199,15 @@
         "key": "%lld",
         "location": {
           "startingColumn": 22,
-          "startingLine": 371
+          "startingLine": 593
+        }
+      },
+      {
+        "comment": "",
+        "key": "Reset",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 581
         }
       },
       {
@@ -111,7 +215,7 @@
         "key": "No active habits right now",
         "location": {
           "startingColumn": 50,
-          "startingLine": 387
+          "startingLine": 609
         }
       },
       {
@@ -119,15 +223,7 @@
         "key": "No completed habits yet",
         "location": {
           "startingColumn": 81,
-          "startingLine": 387
-        }
-      },
-      {
-        "comment": "",
-        "key": "+%lldXP",
-        "location": {
-          "startingColumn": 26,
-          "startingLine": 435
+          "startingLine": 609
         }
       },
       {
@@ -135,15 +231,39 @@
         "key": "+%lldXP",
         "location": {
           "startingColumn": 30,
-          "startingLine": 444
+          "startingLine": 673
+        }
+      },
+      {
+        "comment": "",
+        "key": "+%lldXP",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 682
         }
       },
       {
         "comment": "",
         "key": "Completed!",
         "location": {
-          "startingColumn": 30,
-          "startingLine": 448
+          "startingColumn": 34,
+          "startingLine": 686
+        }
+      },
+      {
+        "comment": "",
+        "key": "Delete Habit",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 702
+        }
+      },
+      {
+        "comment": "",
+        "key": "Delete Habit",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 727
         }
       }
     ]
