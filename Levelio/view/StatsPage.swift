@@ -12,49 +12,52 @@ struct StatsPage: View {
     @ObservedObject var store: HabitStore = HomePage.sharedHabitStore
     var habitService: HabitService = HomePage.sharedHabitService
     
+    private var isCompactScreen: Bool {
+        UIScreen.isCompact
+    }
+    
     var body: some View {
-        ZStack {
-            // 1. Latar Belakang Gelap Khas Levelio
+        VStack(spacing: 0) {
+            
+            // --- AREA 1: STATIS (Header Terkunci di Atas Layar) ---
+            StatsHeaderView()
+                .padding(.horizontal, 24)
+                .padding(.top, 8)
+                .padding(.bottom, isCompactScreen ? 8 : 16)
+            
+            // --- AREA 2: SCROLLABLE (Mulai dari Streak Banner ke Bawah) ---
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(alignment: .leading, spacing: isCompactScreen ? 16 : 20) {
+                    
+                    // Banner Utama: Papan Target Panahan
+                    StreakCardView(user: user, currentStreak: store.currentStreak)
+                    
+                    // Dua Kartu Kembar: Best Streak & Completion
+                    TwinMetricsGrid(
+                        bestStreak: store.bestStreak,
+                        completionRate: habitService.calculateCompletionPercentage()
+                    )
+                    
+                    // Section Kalender: Consistency Tracker
+                    VStack(alignment: .leading, spacing: 15) {
+                        Text("Consistency")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.white)
+                        
+                        ConsistencyCalendarView(habitService: habitService, user: user)
+                    }
+                }
+                .padding(.horizontal, 24)
+                .padding(.top, 5)
+                .padding(.bottom, 24)
+            }
+        }
+        .background(
             Image("background")
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
-            
-            VStack(spacing: 0) {
-                
-                // --- AREA 1: STATIS (Header Terkunci di Atas Layar) ---
-                StatsHeaderView()
-                    .padding(.horizontal, 24)
-                    .padding(.top, 12)
-                    .padding(.bottom, 16)
-                
-                // --- AREA 2: SCROLLABLE (Mulai dari Streak Banner ke Bawah) ---
-                ScrollView(.vertical, showsIndicators: false) {
-                    VStack(alignment: .leading, spacing: 20) {
-                        
-                        // Banner Utama: Papan Target Panahan
-                        StreakCardView(user: user, currentStreak: store.currentStreak)
-                        
-                        // Dua Kartu Kembar: Best Streak & Completion
-                        TwinMetricsGrid(
-                            bestStreak: store.bestStreak,
-                            completionRate: habitService.calculateCompletionPercentage()
-                        )
-                        
-                        // Section Kalender: Consistency Tracker
-                        VStack(alignment: .leading, spacing: 15) {
-                            Text("Consistency")
-                                .font(.system(size: 20, weight: .bold))
-                                .foregroundColor(.white)
-                            
-                            ConsistencyCalendarView(habitService: habitService, user: user)
-                        }
-                    }
-                    .padding(.horizontal, 24)
-                    .padding(.bottom, 24)
-                }
-            }
-        }
+        )
     }
 }
 
@@ -121,20 +124,19 @@ struct StreakCardView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             
             // Gambar Dart Target yang otomatis nempel di kanan bawah dan ter-crop melengkung
-            Image("dart") // Nama aset gambar target panah Anda
+            Image("dart")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 130, height: 130) // Sesuaikan ukuran gambar agar pas
-                .offset(x: 0, y: 15) // Menggeser sedikit ke kanan bawah sesuai gambar contoh Anda
+                .frame(width: 130, height: 130)
+                .offset(x: 0, y: 15)
             
         }
-        // --- FORMULA GLASSMORPHISM SAMA SEPERTI SEBELUMNYA ---
         .background(
             ZStack {
                 Color("primary").opacity(0.04)
             }
         )
-        .cornerRadius(16) // Kunci lengkungan sudut card utama
+        .cornerRadius(16)
         .overlay(
             RoundedRectangle(cornerRadius: 16)
                 .stroke(
@@ -145,8 +147,6 @@ struct StreakCardView: View {
                     lineWidth: 1
                 )
         )
-        /* KUNCI UTAMA: Memotong gambar dart yang keluar dari batas
-           tanpa memengaruhi ukuran lebar layout horizontal luar card */
         .clipped()
     }
 }
@@ -161,7 +161,7 @@ struct TwinMetricsGrid: View {
             
             // Kartu Kiri: Best Streak
             VStack(alignment: .leading, spacing: 14) {
-                Image(systemName: "medal.star") // Gunakan icon piala/medali kustom Anda jika ada
+                Image(systemName: "medal.star")
                     .font(.system(size: 20))
                     .foregroundColor(.white)
                     .frame(width: 45, height: 45)
@@ -195,7 +195,7 @@ struct TwinMetricsGrid: View {
             
             // Kartu Kanan: Completion Rate
             VStack(alignment: .leading, spacing: 14) {
-                Image(systemName: "chart.pie") // Icon lingkaran diagram completion
+                Image(systemName: "chart.pie")
                     .font(.system(size: 20))
                     .foregroundColor(.white)
                     .frame(width: 45, height: 45)
@@ -235,7 +235,6 @@ struct ConsistencyCalendarView: View {
     var habitService: HabitService = HomePage.sharedHabitService
     var user: UserEntity? = nil
     
-    // State untuk menyimpan bulan dan tahun yang sedang aktif dilihat oleh user
     @State private var currentMonthDate = Date()
     
     private var activeDays: Set<Int> {
@@ -255,7 +254,6 @@ struct ConsistencyCalendarView: View {
                 Spacer()
                 
                 HStack(spacing: 8) {
-                    // Tombol ganti ke bulan sebelumnya dengan tap target >= 44x44
                     Button(action: { changeMonth(by: -1) }) {
                         Image(systemName: "chevron.left")
                             .font(.system(size: 15, weight: .bold))
@@ -263,7 +261,6 @@ struct ConsistencyCalendarView: View {
                             .frame(width: 44, height: 44)
                             .contentShape(Rectangle())
                     }
-                    // Tombol ganti ke bulan berikutnya dengan tap target >= 44x44
                     Button(action: { changeMonth(by: 1) }) {
                         Image(systemName: "chevron.right")
                             .font(.system(size: 15, weight: .bold))
@@ -294,7 +291,6 @@ struct ConsistencyCalendarView: View {
             LazyVGrid(columns: columns, spacing: 18) {
                 ForEach(0..<totalSlots, id: \.self) { index in
                     if index < firstDayOffset {
-                        // Slot kosong sebelum tanggal 1 dimulai
                         Text("")
                             .frame(height: 34)
                     } else {
@@ -353,30 +349,25 @@ struct ConsistencyCalendarView: View {
     
     // MARK: - LOGIKA PENANGGALAN OTOMATIS
     
-    // 1. Mendapatkan teks nama bulan dan tahun (misal: "April 2026")
     private func formatMonthYear(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM yyyy"
         return formatter.string(from: date)
     }
     
-    // 2. Menghitung berapa banyak hari dalam bulan tersebut (28, 29, 30, atau 31 hari)
     private func getDaysInMonth() -> Int {
         let calendar = Calendar.current
         let range = calendar.range(of: .day, in: .month, for: currentMonthDate)!
         return range.count
     }
     
-    // 3. Menghitung hari pertama bulan tersebut jatuh di hari apa (SUN = 0, MON = 1, dst)
     private func getFirstDayOfWeekOffset() -> Int {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.year, .month], from: currentMonthDate)
         let firstDayOfMonth = calendar.date(from: components)!
-        // Nilai bawaan weekday iOS: Minggu = 1, Senin = 2... dikurang 1 agar pas indeks 0
         return calendar.component(.weekday, from: firstDayOfMonth) - 1
     }
     
-    // 4. Memeriksa apakah sel tanggal tersebut merupakan hari ini (Real-time Match)
     private func checkIsToday(dateNumber: Int) -> Bool {
         let calendar = Calendar.current
         var components = calendar.dateComponents([.year, .month], from: currentMonthDate)
@@ -386,7 +377,6 @@ struct ConsistencyCalendarView: View {
         return calendar.isDateInToday(targetDate)
     }
     
-    // 5. Fungsi aksi untuk berpindah bulan saat tombol panah ditekan
     private func changeMonth(by value: Int) {
         let calendar = Calendar.current
         if let newDate = calendar.date(byAdding: .month, value: value, to: currentMonthDate) {

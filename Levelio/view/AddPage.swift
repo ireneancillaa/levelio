@@ -54,43 +54,40 @@ struct AddPage: View {
     let frequencies = ["Daily", "Weekly"]
     
     var body: some View {
-        ZStack(alignment: .bottom) {
-            // Latar Belakang Gelap Khas Levelio
-            Image("background")
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
+        VStack(spacing: 0) {
             
-            VStack(spacing: 0) {
-                // --- TOP APP BAR (NO BACKGROUND COLOR) ---
-                HStack {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "chevron.left")
-                    }
-                    .buttonStyle(.glassCircle)
-                    
-                    Spacer()
-                    
-                    Text("New Habit")
-                        .font(.system(size: 24, weight: .black))
+            // --- TOP APP BAR ---
+            HStack {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .font(.system(size: 16, weight: .bold))
                         .foregroundColor(.white)
-                    
-                    Spacer()
-                    
-                    // Spacer penyeimbang tombol back agar teks tetap presisi di tengah
-                    Color.clear
-                        .frame(width: 44, height: 44)
+                        .frame(width: 36, height: 36)
+                        .background(Circle().fill(Color.white.opacity(0.12)))
                 }
-                .frame(height: 55)
-                .padding(.horizontal, 24)
-                .padding(.top, 12)
-                .padding(.bottom, 12)
                 
-                // --- 1. SCROLLABLE FORM CONTENT ---
-                ScrollView(.vertical, showsIndicators: false) {
-                    VStack(alignment: .leading, spacing: 24) {
+                Spacer()
+                
+                Text("New Habit")
+                    .font(.system(size: 20, weight: .black))
+                    .foregroundColor(.white)
+                
+                Spacer()
+                
+                // Spacer penyeimbang tombol back agar teks tetap presisi di tengah
+                Color.clear
+                    .frame(width: 36, height: 36)
+            }
+            .frame(height: 44)
+            .padding(.horizontal, 20)
+            .padding(.top, 8)
+            .padding(.bottom, 8)
+            
+            // --- 1. SCROLLABLE FORM CONTENT ---
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 24) {
                     
                     // SECTION 1: HABIT DETAIL
                     VStack(alignment: .leading, spacing: 12) {
@@ -283,14 +280,13 @@ struct AddPage: View {
                         .overlay(RoundedRectangle(cornerRadius: 14).stroke(Color.white.opacity(0.1), lineWidth: 1))
                     }
                 }
-                .padding(.horizontal, 24)
+                .padding(.horizontal, 20)
                 .padding(.top, 10)
-                .padding(.bottom, 110)
+                .padding(.bottom, 24)
             }
             .scrollDismissesKeyboard(.interactively)
-        }
             
-            // --- 2. FIXED BOTTOM BUTTON AREA (Overlay di atas ScrollView) ---
+            // --- 2. FIXED BOTTOM BUTTON AREA ---
             VStack {
                 Button(action: {
                     let trimmed = habitName.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -321,17 +317,21 @@ struct AddPage: View {
                         )
                         .cornerRadius(25)
                 }
-                .padding(.horizontal, 24)
-                .padding(.top, 12)
-                .padding(.bottom, 24)
             }
+            .padding(.horizontal, 20)
+            .padding(.top, 12)
+            .padding(.bottom, 16)
             .background(
-                Color.black.opacity(0.4)
-                    .blur(radius: 10)
+                Color.black.opacity(0.6)
                     .ignoresSafeArea(edges: .bottom)
             )
-            .ignoresSafeArea(.keyboard, edges: .bottom)
         }
+        .background(
+            Image("background")
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea()
+        )
         .contentShape(Rectangle())
         .onTapGesture {
             hideKeyboard()
@@ -339,10 +339,6 @@ struct AddPage: View {
         .preferredColorScheme(.dark)
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
-        .toolbar(.hidden, for: .navigationBar)
-        .toolbarBackground(.hidden, for: .navigationBar)
-        .toolbar(.hidden, for: .tabBar)
-        .ignoresSafeArea(.keyboard, edges: .bottom)
     }
 }
 
